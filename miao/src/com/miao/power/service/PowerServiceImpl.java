@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.miao.core.BaseServiceImpl;
-import com.miao.core.Page;
+import com.miao.core.service.BaseServiceImpl;
+import com.miao.core.utils.Page;
 import com.miao.entity.Power;
 import com.miao.power.dao.PowerDao;
 

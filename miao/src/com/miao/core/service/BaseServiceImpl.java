@@ -1,7 +1,9 @@
-package com.miao.core;
+package com.miao.core.service;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.miao.core.dao.BaseDao;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 	

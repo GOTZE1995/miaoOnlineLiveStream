@@ -2,8 +2,8 @@ package com.miao.room.service;
 
 import java.util.List;
 
-import com.miao.core.BaseService;
-import com.miao.core.Page;
+import com.miao.core.service.BaseService;
+import com.miao.core.utils.Page;
 import com.miao.entity.Room;
 
 /**

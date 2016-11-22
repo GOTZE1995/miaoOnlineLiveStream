@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 
-import com.miao.core.BaseDaoImpl;
+import com.miao.core.dao.BaseDaoImpl;
 import com.miao.entity.Room;
 
 /**

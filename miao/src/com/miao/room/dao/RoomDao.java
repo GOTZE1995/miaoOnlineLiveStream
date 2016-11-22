@@ -2,7 +2,7 @@ package com.miao.room.dao;
 
 import java.util.List;
 
-import com.miao.core.BaseDao;
+import com.miao.core.dao.BaseDao;
 import com.miao.entity.Room;
 
 /**

@@ -10,8 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.miao.core.Page;
-import com.miao.entity.Power;
+import com.miao.core.utils.Page;
 import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.room.service.RoomService;

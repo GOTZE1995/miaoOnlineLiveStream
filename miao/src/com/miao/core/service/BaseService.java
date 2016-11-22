@@ -1,4 +1,4 @@
-package com.miao.core;
+package com.miao.core.service;
 
 import java.io.Serializable;
 import java.util.List;

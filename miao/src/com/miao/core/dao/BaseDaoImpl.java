@@ -1,4 +1,4 @@
-package com.miao.core;
+package com.miao.core.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

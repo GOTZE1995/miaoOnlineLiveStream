@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.miao.core.Page;
+import com.miao.core.utils.Page;
 import com.miao.entity.Role;
 import com.miao.role.service.RoleService;
 

@@ -2,7 +2,7 @@ package com.miao.user.dao;
 
 import java.util.List;
 
-import com.miao.core.BaseDao;
+import com.miao.core.dao.BaseDao;
 import com.miao.entity.User;
 /**
  * 用户数据访问层

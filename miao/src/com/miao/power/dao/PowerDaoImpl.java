@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 
-import com.miao.core.BaseDaoImpl;
+import com.miao.core.dao.BaseDaoImpl;
 import com.miao.entity.Power;
-import com.miao.room.dao.RoomDao;
 
 /**
  * 权限数据访问层实现
