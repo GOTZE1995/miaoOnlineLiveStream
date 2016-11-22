@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.miao.core.Page;
 import com.miao.entity.User;
 import com.miao.user.service.UserService;
 
@@ -191,7 +192,6 @@ public class UserController {
 	
 	/**
 	 * 用户更新界面
-	 * @author 宋禹龙
 	 * @param id
 	 * @param request
 	 * @return jsp页面

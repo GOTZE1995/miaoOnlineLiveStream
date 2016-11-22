@@ -143,9 +143,14 @@ MARGIN-LEFT: auto;">
 			 <div class="">
 				 <div class="col-md-5 abt-pic">
 					 <h3>直播间</h3>
-					 <video src="sintell.mp4" controls="controls">
-							your browser does not support the video tag
-					 </video>
+						 <object width='640' height='377' id='StrobeMediaPlayback' name='StrobeMediaPlayback' type='application/x-shockwave-flash' classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' >
+							<param name='movie' value='swfs/StrobeMediaPlayback.swf' />
+					 		<param name='quality' value='high' /> 
+					 		<param name='bgcolor' value='#000000' />
+					  		<param name='allowfullscreen' value='true' />
+					  		<param name='flashvars' value= '&src=rtmp://10.7.89.37/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true'/>
+					   		<embed src='swfs/StrobeMediaPlayback.swf' width='640' height='377' id='StrobeMediaPlayback' quality='high' bgcolor='#000000' name='StrobeMediaPlayback' allowfullscreen='true' pluginspage='http://www.adobe.com/go/getflashplayer' flashvars='&src=rtmp://10.7.89.37/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' type='application/x-shockwave-flash'> </embed>
+					   	 </object>
 				 </div>
 
 				 <div class="text1" style="float:none; margin-right:10px;">
