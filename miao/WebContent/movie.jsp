@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="clearfix"> </div>
 						</div><!-- /.navbar-collapse -->
 				<!-- /.container-fluid -->
-				<p style="font-size:16px;color:#6B4226; font-family:YouYuan; margin-top:27px; width:1160px; margin-right:140px">欢迎,${myName}</p>
+				<p style="font-size:16px;color:#6B4226; font-family:YouYuan; margin-top:27px; width:1160px; margin-right:140px">欢迎,${user.userName}</p>
 				<div class="login-pop" style="margin-right:30px; width:50px; height:40px; margin-top:-40px">
 						<div id="loginpop" style="width:70px; height:40px; margin-right:0px; margin-top:10px">
 							<form action="${basePath}user/logout"><input type="submit" style="font-size:18px;color:black;font-family:YouYuan" value="退出"/></form>					

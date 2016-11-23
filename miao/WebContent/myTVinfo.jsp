@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	request.setAttribute("basePath", basePath);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=basePath%>"/>
 <title>直播间信息页面</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -62,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="clearfix"> </div>
 						</div><!-- /.navbar-collapse -->
 				<!-- /.container-fluid -->
-				<p style="font-size:16px;color:#6B4226; font-family:YouYuan; margin-top:27px; width:1160px; margin-right:140px">欢迎,${myName}</p>
+				<p style="font-size:16px;color:#6B4226; font-family:YouYuan; margin-top:27px; width:1160px; margin-right:140px">欢迎,${user.userName}</p>
 				<div class="login-pop" style="margin-right:30px; width:50px; height:40px; margin-top:-40px">
 						<div id="loginpop" style="width:70px; height:40px; margin-right:0px; margin-top:10px">
 							<form action="${basePath}user/logout"><input type="submit" style="font-size:18px;color:black;font-family:YouYuan" value="退出"/></form>					
@@ -125,13 +131,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									
 		<!-- Tab 0 -->					<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 											<div class="profile-content">
-												<h3>Mark Carter </h3>
-												<form action="#" method="">								
+												<h3>${user.userName } </h3>
+												<form action="${pageContext.request.contextPath}/room/updateMyRoom.do" method="post">								
 												<h4>房间名称</h4>	
 												<div class="phone-group">			
 														<div class="cell-form">
 														
-																<input type="text" value="xx直播间" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xx直播间';}">	
+																<input type="text" name="roomName" value="${user.room.roomName }" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xx直播间';}">	
 															
 														</div>
 
@@ -140,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<h4>房间公告</h4>	
 												<div class="phone-group">			
 														<div class="cell-form">
-															<textarea name="message" rows="4" cols="49" placeholder="可以输入多行文本"></textarea>
+															<textarea name="memo" rows="4" cols="49" placeholder="${user.room.memo }"></textarea>
 														</div>
 														<div class="clear"></div>
 												</div>
@@ -173,13 +179,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										
 	<!-- Tab 1 -->						<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 											<div class="profile-content">
-												<h3>Mark Carter </h3>
-												<form action="#" method="">								
+												<h3>${user.userName } </h3>
+												<form action="${pageContext.request.contextPath}/room/updateMyphoe" method="post">								
 												<h4>联系方式</h4>
 												<div class="email-group">
 														<div class="email-form">
 										
-																<input type="text" class="fb-ico" value="markcarter@gmail.com" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'markcarter@gmail.com';}">	
+																<input type="text" name="phone" class="fb-ico" value="${user.room.phone }" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">	
 										
 														</div>
 														<div class="clear"></div>

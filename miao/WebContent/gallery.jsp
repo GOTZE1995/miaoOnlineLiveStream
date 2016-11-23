@@ -1,11 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	request.setAttribute("basePath", basePath);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=basePath%>" />
 <title>Education Tutorial a Educational Category Flat Bootstrap
 	Responsive Website Template | Gallery :: w3layouts</title>
+
+<script type="text/javascript">
+	function doSearch() {
+		document.forms[0].action = "room/findRoom.do";
+		document.forms[0].submit();
+	}
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords"
@@ -16,26 +31,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function check() {
 		alert("请您先登录");
 	}
+
+	function loginCheckUserName() {
+		var username = $('#username').val();
+		$.ajax({
+			url : 'user/checkUsername.do',
+			data : {
+				'username' : username
+			},
+			type : 'post',
+			async : false,
+			success : function(result) {
+				if (result == "pass") {
+					alert("该用户不存在");
+				}
+			}
+		})
+	}
+
+	function loginCheckUserNameAndPwd() {
+		var username = $('#username').val();
+		var password = $('#password').val();
+		$.ajax({
+			url : 'user/loginCheckUserNameAndPwd.do',
+			data : {
+				'password' : password,
+				'username' : username
+			},
+			type : 'post',
+			async : false,
+			success : function(result) {
+				if (result != "pass") {
+					alert("用户名与密码不匹配");
+				}
+			}
+		})
+	}
+
+	function doSubmit() {
+		if ($('#username').val() != "" && $('#password').val() != "") {
+			document.forms[0].submit();
+		} else {
+			alert("用户名或密码不能为空");
+		}
+	}
 </script>
 
 <script type="application/x-javascript">
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
-<!--bootstrap-->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
-<!--coustom css-->
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-<!--script-->
 <script src="js/jquery-1.11.0.min.js"></script>
-<!-- js -->
 <script src="js/bootstrap.js"></script>
-<!-- /js -->
-<!--fonts-->
-<!--/fonts-->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
-<!--script-->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -46,17 +97,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!--/script-->
 </head>
 <div id="main"
 	style="width: 1349px; MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
 	<body>
-		<!--header-->
 		<div class="header" id="home">
-			<nav class="navbar navbar-default"> <c:if
-				test="${sessionScope.myName==null}">
+			<nav class="navbar navbar-default"> <c:if test="${user==null}">
 				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed"
 							data-toggle="collapse"
@@ -69,18 +116,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 						</h1>
 					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
-							<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
-							<li><a href="gallery.jsp" onclick="check()"><span
+							<li><a href="${basePath }room/findRoom"><span data-hover="About">视频直播</span></a></li>
+							<li><a href="${basePath }room/findRoom" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
-
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-
 					<div class="login-pop">
 						<div id="loginpop">
 							<a href="#" id="loginButton"><span>登录</span></a>
@@ -90,15 +134,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<fieldset id="body">
 										<fieldset>
 											<label for="email">用户名</label> <input type="text"
-												name="userName" id="userName">
+												name="userName" class="username" id="username"
+												placeholder="用户名" onblur="loginCheckUserName()" />
 										</fieldset>
 										<fieldset>
 											<label for="password">密码</label> <input type="password"
-												name="password" id="password">
+												id="password" class="password" placeholder="密码"
+												onblur="loginCheckUserNameAndPwd()" name="password">
 										</fieldset>
-										<input type="submit" id="login" value="登录"> <label
-											for="checkbox"><input type="checkbox" id="checkbox">
-											<i>记住密码</i></label>
+										<input type="submit" id="login" value="登录"
+											onclick="doSubmit()"> <label for="checkbox"><input
+											type="checkbox" id="checkbox"> <i>记住密码</i> </label>
 									</fieldset>
 									<span><a href="register.jsp">点我快速注册</a></span>
 								</form>
@@ -107,9 +153,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<script src="js/menu_jquery.js"></script>
 				</div>
-			</c:if> <c:if test="${sessionScope.myName!=null}">
+			</c:if> <c:if test="${user!=null}">
 				<div class="container" style="width: 1300px">
-					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed"
 							data-toggle="collapse"
@@ -122,21 +167,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 						</h1>
 					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1"
 						style="width: 780px; margin-left: 60px">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
-							<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
+							<li><a href="${basePath }room/findRoom"><span
+									data-hover="About">视频直播</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
-
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<!-- /.navbar-collapse -->
-					<!-- /.container-fluid -->
 					<p
-						style="font-size: 16px; color: #6B4226; font-family: YouYuan; margin-top: 27px; width: 1160px; margin-right: 140px">欢迎,${myName}</p>
+						style="font-size: 16px; color: #6B4226; font-family: YouYuan; margin-top: 27px; width: 1160px; margin-right: 140px">欢迎,${user.userName}</p>
 					<div class="login-pop"
 						style="margin-right: 30px; width: 50px; height: 40px; margin-top: -40px">
 						<div id="loginpop"
@@ -151,191 +193,84 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<script src="js/menu_jquery.js"></script>
 				</div>
 			</c:if> </nav>
-			<!--/script-->
 			<div class="clearfix"></div>
 		</div>
-		<!-- Top Navigation -->
 		<div class="banner banner5">
 			<div class="container">
 				<h2>Live Streaming</h2>
 			</div>
 		</div>
-		<!--header-->
-		<!-- gallery -->
-		<div class="gallery">
-			<!-- Page Starts Here -->
+		<div class="gallery" style="width: 1349px;">
 			<div>
-				<form method="get" action="" style="margin-left: 990px">
-					<input type="text" class="box" name="s" id="s" class="inputText"
-						placeholder="搜一搜" x-webkit-speech> <input type="button"
-						value="搜索">
+				<form method="post" action="room/findRoom.do"
+					style="margin-left: 990px">
+					<input type="text" name="searchName" value="${searchName}"
+						placeholder="输入课程名"> <input type="submit" value="搜索"
+						onclick="doSearch()">
 				</form>
 			</div>
 			<div class="content">
-				<div class="container">
-					<div class="gallery">
-						<div class="gallery-top">
-							<div class="view view-tenth">
-								<img src="images/g1.jpg" alt="" />
-
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：Java与大数据<br />主讲教师:夏雨荷
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g2.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：php与云计算<br />主讲教师：俞敏洪
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g3.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：Html5<br />主讲教师：张雪峰
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g4.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：计算机导论<br />主讲教师：马云
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g5.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：数据库原理<br />主讲教师：亮亮
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g6.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：C++<br />主讲教师：小花
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g7.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：Java与移动智能设备<br />主讲教师：大圣
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g8.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：数据结构<br />主讲教师：天蓬
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g9.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：计算机组成原理<br />主讲教师：小草
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g10.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：算法分析<br />主讲教师：嫦娥
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g11.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：R语言<br />主讲教师：玉兔
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="view view-tenth">
-								<img src="images/g12.jpg" alt="" />
-								<div class="mask">
-									<h3>课程简介</h3>
-									<p>
-										课程：软件测试基础<br />主讲教师：花木兰
-									</p>
-									<br /> <a href="about.jsp">
-										<p>进入课程</p>
-									</a>
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
+				<div class="container" style="width: 1200px; align: center;">
+					<div class="gallery" style="width: 1200px; align: center;">
+						<c:if test="${not empty rooms}">
+							<c:forEach var="room" items="${page.list}">
+								<c:if test="${room.status=='1'}">
+									<div class="view view-tenth"
+										style="width: 270px; height: 182px">
+										<img src="${room.user.headImg}" alt="" />
+										<div class="mask" style="width: 249px; height: 163px">
+											<h3>课程简介</h3>
+											<p>
+												课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
+											</p>
+											<br /> <a href="about.jsp">
+												<p>进入课程</p>
+											</a>
+										</div>
+									</div>
+									&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${room.status=='0'}">
+									<div class="view view-tenth"
+										style="width: 270px; height: 182px">
+										<img src="${basePath }images/miao.jpg" alt="" />
+										<div class="mask" style="width: 249px; height: 163px">
+											<h3>课程简介</h3>
+											<p>
+												课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
+											</p>
+											<br />
+											<p>休息中...</p>
+										</div>
+									</div>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty rooms }">
+							<tr align="center" class="TableDetail1">
+								<td colspan="6">没有查到直播间信息&nbsp;</td>
+							</tr>
+						</c:if>
+						<table width="97%" class="pageDown" border="0" cellspacing="0"
+							cellpadding="0">
+							<tr>
+								<td align="right">共${page.totalCount }条记录，第
+									${page.currentPageNum } 页，共 ${page.totalPageNum } 页
+									&nbsp;&nbsp; <a
+									href="room/findRoom.do?currentPage=${page.prePageNum }">上一页</a>&nbsp;&nbsp;
+									<a href="room/findRoom.do?currentPage=${page.nextPageNum }">下一页</a>&nbsp;&nbsp;
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
-			<!-- Page Ends Here -->
 		</div>
-		<!-- //gallery -->
-		<!--footer-->
 		<div class="footer" style="height: 230px">
-			<!-- container -->
 			<div class="container">
 				<div class="col-md-6 footer-left" style="margin-top: -10px">
 					<ul>
-						<li><a href="gallery.jsp">视频直播</a></li>
+						<li><a href="${basePath}/room/findRoom">视频直播</a></li>
 						<li><a href="myinfo.jsp">个人信息</a></li>
 					</ul>
 					<form>
@@ -356,12 +291,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
-			<!-- //container -->
 		</div>
-		<!--/footer-->
-		<!--copy-rights-->
 		<div class="copyright">
-			<!-- container -->
 			<div class="container">
 				<div class="copyright-left">
 					<p>© 2016 米奥视频直播 | Design by 咖啡知音</p>
@@ -377,20 +308,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="clearfix"></div>
-
 			</div>
-			<!-- //container -->
-			<!---->
 			<script type="text/javascript">
 				$(document).ready(function() {
-					/*
-					var defaults = {
-					containerID: 'toTop', // fading element id
-					containerHoverID: 'toTopHover', // fading element hover id
-					scrollSpeed: 1200,
-					easingType: 'linear' 
-					};
-					 */
 					$().UItoTop({
 						easingType : 'easeOutQuart'
 					});
@@ -398,9 +318,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</script>
 			<a href="#to-top" id="toTop" style="display: block;"> <span
 				id="toTopHover" style="opacity: 1;"> </span></a>
-			<!---->
 		</div>
-		<!--/copy-rights-->
 	</body>
 </div>
 </html>
