@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -64,7 +65,7 @@
 					<td>${stu.count }&nbsp;</td>
 					<td>${room.user.userName }&nbsp;</td>
 					<td>${room.roomName }&nbsp;</td>
-					<td>${room.beginDate }&nbsp;</td>
+					<td><fmt:formatDate value="${room.beginDate }" dateStyle="default"/>&nbsp;</td>
 	                <td>${room.status }&nbsp;</td>
 					<td>${room.url }&nbsp;</td>
 					<td>

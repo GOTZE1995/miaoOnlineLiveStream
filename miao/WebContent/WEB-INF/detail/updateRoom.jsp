@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -55,12 +56,21 @@
 						</tr>
 						<tr>
 							<td width="80px">房间日期</td>
-							<td>${roomInfo.beginDate }</td>
+							<td><fmt:formatDate value="${roomInfo.beginDate }" dateStyle="default"/></td>
 						</tr>
 						<tr>
 							<td>状态</td>
-							<td><input type="radio" name="status" value="0"  />关闭
-							<input type="radio" name="status" value="1"  />打开</td>
+							<td>
+							<c:if test="${roomInfo.status == 1 }">
+								<input type="radio" name="status" value="0"  />关闭
+								<input type="radio" name="status" value="1" checked="checked"  />打开
+							</c:if>
+							<c:if test="${roomInfo.status == 0 }">
+								<input type="radio" name="status" value="0"  />关闭
+								<input type="radio" name="status" value="1" checked="checked"  />打开
+							</c:if>
+							
+							</td>
 						</tr>
                         <tr>
 							<td>url</td>
