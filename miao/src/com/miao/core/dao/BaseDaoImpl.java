@@ -29,6 +29,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 
 	@Override
 	public void deleteById(Serializable id) {
+		// 先查找再删除，防止报错
 		T t = findById(id);
 		if (t != null) {
 			getHibernateTemplate().delete(t);

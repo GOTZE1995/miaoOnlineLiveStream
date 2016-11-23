@@ -13,20 +13,20 @@ import com.miao.role.dao.RoleDao;
 
 /**
  * 角色业务逻辑层实现
- * @author 程菊飞
- * 2016/11/17
+ * 
+ * @author 程菊飞 2016/11/17
  */
 @Service("roleService")
-public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService{
+public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 
 	private RoleDao roleDao;
-	
+
 	@Resource
-	public void setRoleDao(RoleDao roleDao){
+	public void setRoleDao(RoleDao roleDao) {
 		super.setBaseDao(roleDao);
 		this.roleDao = roleDao;
 	}
-	
+
 	@Override
 	public List<Role> pageList(Integer currentPage, int i) {
 		return roleDao.pageList(currentPage, i);
@@ -39,22 +39,15 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
 	@Override
 	public Page<Role> createPage(List list, Integer currentPage, int i) {
-		Page<Role> page = new Page<Role>(currentPage,i);
-		if(list != null){
+		Page<Role> page = new Page<Role>(currentPage, i);
+		if (list != null) {
 			page.setTotalCount(list.size());
 			page.setList(list);
 			return page;
 		}
 		list = findAll();
 		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage,i));
+		page.setList(pageList(currentPage, i));
 		return page;
 	}
 }
-
-
-
-
-
-
-

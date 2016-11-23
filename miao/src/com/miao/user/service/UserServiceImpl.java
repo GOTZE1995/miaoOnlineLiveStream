@@ -13,20 +13,21 @@ import com.miao.user.dao.UserDao;
 
 /**
  * 用户逻辑层实现
+ * 
  * @author sunlanyun/chengjufei/fengxin
  *
  */
 @Service("userService")
-public class UserServiceImpl extends BaseServiceImpl<User> implements UserService{
-	
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+
 	private UserDao userDao;
-	
+
 	@Resource
-	public void setUserDao(UserDao userDao){
+	public void setUserDao(UserDao userDao) {
 		super.setBaseDao(userDao);
 		this.userDao = userDao;
 	}
-	
+
 	@Override
 	public User login(String name, String password) {
 		return userDao.findByAccountAndPass(name, password);
@@ -59,32 +60,27 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
 	@Override
 	public Page<User> createPage(List list, Integer currentPage, int i) {
-		Page<User> page = new Page<User>(currentPage,i);
-		if(list != null){
+		Page<User> page = new Page<User>(currentPage, i);
+		if (list != null) {
 			page.setTotalCount(list.size());
 			page.setList(list);
 			return page;
 		}
 		list = findAll();
 		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage,i));
+		page.setList(pageList(currentPage, i));
 		return page;
 	}
 
 	@Override
-	public void updateUser(String userName,String newEmail,String newNickName){
-		userDao.updateUser(userName, newEmail, newNickName);;
+	public void updateUser(String userName, String newEmail, String newNickName) {
+		userDao.updateUser(userName, newEmail, newNickName);
+		;
 	}
-	
+
 	@Override
 	public void updatePwd(String userName, String newPwd) {
 		// TODO Auto-generated method stub
 		userDao.updatePwd(userName, newPwd);
 	}
 }
-
-
-
-
-
-

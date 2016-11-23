@@ -13,15 +13,16 @@ import com.miao.room.dao.RoomDao;
 
 /**
  * 直播间业务逻辑层实现
+ * 
  * @author songyulong
  */
 @Service("roomService")
-public class RoomServiceImpl extends BaseServiceImpl<Room> implements RoomService{
-	
+public class RoomServiceImpl extends BaseServiceImpl<Room> implements RoomService {
+
 	private RoomDao roomDao;
-	
+
 	@Resource
-	public void setRoomDao(RoomDao roomDao){
+	public void setRoomDao(RoomDao roomDao) {
 		super.setBaseDao(roomDao);
 		this.roomDao = roomDao;
 	}
@@ -38,15 +39,15 @@ public class RoomServiceImpl extends BaseServiceImpl<Room> implements RoomServic
 
 	@Override
 	public Page<Room> createPage(List list, Integer currentPage, int i) {
-		Page<Room> page = new Page<Room>(currentPage,i);
-		if(list != null){
+		Page<Room> page = new Page<Room>(currentPage, i);
+		if (list != null) {
 			page.setTotalCount(list.size());
 			page.setList(list);
 			return page;
 		}
 		list = findAll();
 		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage,i));
+		page.setList(pageList(currentPage, i));
 		return page;
 	}
 }

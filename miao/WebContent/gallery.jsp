@@ -78,7 +78,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script type="application/x-javascript">
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 </script>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
@@ -119,7 +123,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
-							<li><a href="${basePath }room/findRoom"><span data-hover="About">视频直播</span></a></li>
+							<li><a href="${basePath }room/findRoom"><span
+									data-hover="About">视频直播</span></a></li>
 							<li><a href="${basePath }room/findRoom" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
 						</ul>
