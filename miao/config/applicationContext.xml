@@ -11,13 +11,18 @@
          http://www.springframework.org/schema/aop/spring-aop.xsd
          http://www.springframework.org/schema/tx
      	 http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 自动扫描注入 --> 	 
 	<context:component-scan base-package="com.miao"></context:component-scan>
+	
+	<!-- 加载数据库配置文件 --> 
 	<context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+	
 	<!-- springmvc 文件上传 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		p:defaultEncoding="utf-8" />
-
+		
+	<!-- boneCP dataSource -->
 	<bean name="dataSource" class="com.jolbox.bonecp.BoneCPDataSource">
 		<property name="driverClass" value="${bonecp.driveClass}" />
 		<property name="jdbcUrl" value="${bonecp.jdbcUrl}" />
@@ -50,6 +55,7 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
+	<!-- 事务增强 --> 
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="find*" read-only="true"></tx:method>

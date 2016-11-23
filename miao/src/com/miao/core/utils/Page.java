@@ -8,12 +8,19 @@ import java.util.List;
  * @author sunlanyun 2016/11/17
  */
 public class Page<T> {
+	//保存当前页的对象
 	private List<T> list;
+	//当前页号
 	private int currentPageNum;
+	//当前页容量
 	private int pageSize = 4;
+	//前一页页码
 	private int prePageNum;
+	//下一页页码
 	private int nextPageNum;
+	//总页数
 	private int totalPageNum;
+	//总记录数
 	private int totalCount;
 
 	public Page() {
@@ -68,6 +75,10 @@ public class Page<T> {
 		return totalCount;
 	}
 
+	/**
+	 * 设置总记录数，总页数，当前页码，前一页页码，下一页页码
+	 * @param totalCount
+	 */
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		if (totalCount % pageSize == 0)

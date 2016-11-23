@@ -43,6 +43,10 @@ public class Room implements Serializable {
 	public static String ROOM_STATUS_VAILD = "1";
 	public static String ROOM_STATUS_INVAILD = "0";
 
+	/**
+	 * 主键引用user的主键
+	 * @return
+	 */
 	@Id
 	@GenericGenerator(name = "foreignkey", strategy = "foreign", parameters = @Parameter(value = "user", name = "property"))
 	@GeneratedValue(generator = "foreignkey")

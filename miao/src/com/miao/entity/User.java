@@ -42,6 +42,10 @@ public class User implements Serializable {
 	// 用户与角色，多对一
 	private Role role;
 
+	/**
+	 * 主键自增
+	 * @return
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
@@ -96,6 +100,10 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	/**
+	 * 级联更新，修改，删除，关闭了懒加载
+	 * @return
+	 */
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	public Room getRoom() {

@@ -41,7 +41,7 @@ public class UserController {
 	/**
 	 * 登录方法
 	 * 
-	 * @param u
+	 * @param user
 	 * @param session
 	 * @return index页面
 	 * @author 孙兰云
@@ -175,7 +175,6 @@ public class UserController {
 	/**
 	 * 后台用户列表界面+查询功能
 	 * 
-	 * @author 宋禹龙
 	 * @param request
 	 * @return jsp页面 2016/11/16
 	 */
@@ -201,7 +200,6 @@ public class UserController {
 	/**
 	 * 用户更新界面
 	 * 
-	 * @author 宋禹龙
 	 * @param id
 	 * @param request
 	 * @return jsp页面 2016/11/16
@@ -220,7 +218,6 @@ public class UserController {
 	/**
 	 * 用户更新操作
 	 * 
-	 * @author 宋禹龙
 	 * @param user
 	 * @return jsp页面 2016/11/16
 	 */
@@ -255,7 +252,6 @@ public class UserController {
 	/**
 	 * 用户添加页面
 	 * 
-	 * @author 宋禹龙
 	 * @return jsp页面 2016/11/16
 	 */
 	@RequestMapping("/addUI")
@@ -268,7 +264,6 @@ public class UserController {
 	/**
 	 * 用户添加操作
 	 * 
-	 * @author 宋禹龙
 	 * @param user
 	 * @return jsp页面 2016/11/16
 	 */
@@ -303,7 +298,6 @@ public class UserController {
 	/**
 	 * 用户删除操作
 	 * 
-	 * @author 宋禹龙
 	 * @param id
 	 * @return jsp页面 2016/11/16
 	 */

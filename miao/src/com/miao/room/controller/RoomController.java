@@ -38,7 +38,6 @@ public class RoomController {
 	/**
 	 * 后台直播间列表界面+查询功能
 	 * 
-	 * @author 宋禹龙
 	 * @param request
 	 * @return jsp页面 2016/11/16
 	 */
@@ -64,7 +63,6 @@ public class RoomController {
 	/**
 	 * 后台更新界面
 	 * 
-	 * @author 宋禹龙
 	 * @param id
 	 * @param request
 	 * @return jsp页面 2016/11/16
@@ -80,7 +78,6 @@ public class RoomController {
 	/**
 	 * 后台更新操作
 	 * 
-	 * @author 宋禹龙
 	 * @param room
 	 * @return 2016/11/16
 	 */
@@ -95,7 +92,6 @@ public class RoomController {
 	/**
 	 * 后台添加界面
 	 * 
-	 * @author 宋禹龙
 	 * @return jsp页面 2016/11/16
 	 */
 	@RequestMapping("/addUI")
@@ -106,7 +102,6 @@ public class RoomController {
 	/**
 	 * 后台添加操作
 	 * 
-	 * @author 宋禹龙
 	 * @param room
 	 * @return 2016/11/16
 	 */
@@ -139,7 +134,6 @@ public class RoomController {
 	/**
 	 * 后台删除操作
 	 * 
-	 * @author 宋禹龙
 	 * @param id
 	 * @return 2016/11/16
 	 */

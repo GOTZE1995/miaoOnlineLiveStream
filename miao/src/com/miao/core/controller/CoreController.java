@@ -25,8 +25,6 @@ public class CoreController {
 
 	/**
 	 * 跳转到后台首页
-	 * 
-	 * @return
 	 */
 	@RequestMapping("/index")
 	public String index() {
@@ -35,8 +33,6 @@ public class CoreController {
 
 	/**
 	 * 后台系统左侧菜单栏
-	 * 
-	 * @return
 	 */
 	@RequestMapping("left")
 	public String leftUI() {
@@ -45,8 +41,6 @@ public class CoreController {
 
 	/**
 	 * 后台系统顶部
-	 * 
-	 * @return
 	 */
 	@RequestMapping("top")
 	public String topUI() {
@@ -55,8 +49,6 @@ public class CoreController {
 
 	/**
 	 * 后台系统底部
-	 * 
-	 * @return
 	 */
 	@RequestMapping("bottom")
 	public String bottomUI() {
@@ -84,7 +76,7 @@ public class CoreController {
 	}
 
 	/**
-	 * 后台系统登出
+	 * 后台系统注销
 	 * 
 	 * @param request
 	 * @return

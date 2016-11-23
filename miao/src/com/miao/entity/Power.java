@@ -28,6 +28,10 @@ public class Power implements Serializable {
 	// 权限与角色关系，多对多
 	private Set<Role> roles = new HashSet<Role>(0);
 
+	/**
+	 * 主键自增长
+	 * @return
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getPowerId() {

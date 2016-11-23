@@ -32,6 +32,10 @@ public class Role implements Serializable {
 	// 角色与权限，多对多
 	private Set<Power> powers = new HashSet<Power>(0);
 
+	/**
+	 * 主键自增长
+	 * @return
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getRoleId() {
@@ -50,6 +54,10 @@ public class Role implements Serializable {
 		this.roleName = roleName;
 	}
 
+	/**
+	 * 与权限的多对多关系，级联更新
+	 * @return
+	 */
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "rolepowerall", joinColumns = { @JoinColumn(name = "roleId") }, inverseJoinColumns = {
 			@JoinColumn(name = "powerId") })
