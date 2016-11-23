@@ -6,9 +6,9 @@ import java.util.List;
 import com.miao.core.dao.BaseDao;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
-	
+
 	private BaseDao<T> baseDao;
-	
+
 	public void setBaseDao(BaseDao<T> baseDao) {
 		this.baseDao = baseDao;
 	}

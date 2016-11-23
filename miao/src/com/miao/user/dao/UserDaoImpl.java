@@ -50,6 +50,28 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 		query.setParameter(0, "%"+searchName+"%");
 		return query.getResultList();
 	}
+
+	@Override
+	public void updateUser(String userName,String newEmail,String newNickName){
+		String hql="from User where userName=?";
+		Query query=currentSession().createQuery(hql);
+		query.setParameter(0, userName);
+		User user=(User) query.uniqueResult();
+		user.setEmail(newEmail);
+		user.setNickName(newNickName);
+		this.update(user);
+	}
+	
+	@Override
+	public void updatePwd(String userName, String newPwd) {
+		// TODO Auto-generated method stub
+		String hql="from User where userName=?";
+		Query query=currentSession().createQuery(hql);
+		query.setParameter(0, userName);
+		User user=(User) query.uniqueResult();
+		user.setPassword(newPwd);
+		this.update(user);
+	}
 }
 
 

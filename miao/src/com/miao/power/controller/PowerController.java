@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.miao.core.utils.Page;
@@ -28,7 +29,7 @@ public class PowerController {
 	/**
 	 * 权限列表界面+查询功能
 	 * @author 孙兰云
-	 * @param request
+	 * @param request 
 	 * @return jsp页面
 	 * 2016/11/17
 	 */
@@ -36,6 +37,7 @@ public class PowerController {
 	public String listUI(@RequestParam(required=false,defaultValue="1") Integer currentPage , HttpServletRequest request,
 			String searchName){
 		Page<Power> page ;
+		
 		//用户输入了搜索数据
 		if (searchName !=null &&  !"".equals(searchName)) {
 			List<Power> list = powerService.doSearch(searchName);
@@ -46,15 +48,17 @@ public class PowerController {
 		else{
 			page = powerService.createPage(null, currentPage, 8);
 		}
+		
 		request.setAttribute("page", page);
 		request.setAttribute("powerList", powerService.findAll());
+		
 		return "WEB-INF/detail/listPower";
 	}
 	
 	/**
 	 * 权限更新界面
 	 * @author 孙兰云
-	 * @param id
+	 * @param id 
 	 * @param request
 	 * @return jsp页面
 	 * 2016/11/17
@@ -70,11 +74,11 @@ public class PowerController {
 	/**
 	 * 权限更新操作
 	 * @author 孙兰云
-	 * @param power
+	 * @param power 
 	 * @return
 	 * 2016/11/17
 	 */
-	@RequestMapping("/update")
+	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public String update(Power power){
 		if(power != null && power.getPowerId() != null){
 			powerService.update(power);
@@ -100,11 +104,10 @@ public class PowerController {
 	 * @return
 	 * 2016/11/17
 	 */
-	@RequestMapping("/add")
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(Power power){
 		if(power != null){
 			powerService.save(power);
-			System.out.println(power.getPowerName());
 		}
 		return "redirect:/power/listUI.do";
 	}

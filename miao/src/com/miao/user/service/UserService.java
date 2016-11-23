@@ -8,7 +8,7 @@ import com.miao.entity.User;
 
 /**
  * 用户业务逻辑层接口
- * @author songyulong/sunlanyun/chengjufei
+ * @author songyulong/sunlanyun/chengjufei/fengxin
  *
  */
 public interface UserService extends BaseService<User>{
@@ -57,6 +57,18 @@ public interface UserService extends BaseService<User>{
 		
 	/**封装页面*/
 	public Page<User> createPage(List<?> list, Integer currentPage, int i);
+	
+	/**修改用户信息*/
+	public void updateUser(String userName,String newEmail,String newNickName);
+	
+	/**
+	 * 修改密码
+	 * @param password
+	 * @author fengxin
+	 * 2016/11/21
+	 */
+	/**修改用户密码*/
+	public void updatePwd(String userName, String newPwd);
 }
 
 

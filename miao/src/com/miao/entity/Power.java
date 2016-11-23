@@ -13,22 +13,23 @@ import javax.persistence.Table;
 
 /**
  * 权限实体
+ * 
  * @author Jupiter
  *
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name="power")
-public class Power implements Serializable{
-	//权限id
+@Table(name = "power")
+public class Power implements Serializable {
+	// 权限id
 	private Integer powerId;
-	//权限名
+	// 权限名
 	private String powerName;
-	//权限与角色关系，多对多
-	private Set<Role> roles=new HashSet<Role>(0);
+	// 权限与角色关系，多对多
+	private Set<Role> roles = new HashSet<Role>(0);
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getPowerId() {
 		return powerId;
 	}
@@ -37,7 +38,6 @@ public class Power implements Serializable{
 		this.powerId = powerId;
 	}
 
-	
 	public String getPowerName() {
 		return powerName;
 	}
@@ -46,7 +46,7 @@ public class Power implements Serializable{
 		this.powerName = powerName;
 	}
 
-	@ManyToMany(mappedBy="powers")
+	@ManyToMany(mappedBy = "powers")
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -58,6 +58,5 @@ public class Power implements Serializable{
 	public Power() {
 		super();
 	}
-
 
 }

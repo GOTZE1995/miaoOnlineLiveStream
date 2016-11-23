@@ -37,6 +37,16 @@ public interface UserDao extends BaseDao<User>{
 		
 	/**模糊查询*/
 	public List<User> findBysearchName(String searchName);
+
+	public void updateUser(String userName, String newEmail, String newNickName);
+	
+	/**
+	 * 修改密码
+	 * @param password
+	 * 2016/11/21
+	 */
+	/** 修改用户密码*/
+	public void updatePwd(String userName, String newPwd);
 }
 
 

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     	 http://www.springframework.org/schema/beans/spring-beans.xsd
      	 http://www.springframework.org/schema/context
@@ -15,11 +13,11 @@
      	 http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<context:component-scan base-package="com.miao"></context:component-scan>
 	<context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
-		<!-- springmvc 文件上传 -->
+	<!-- springmvc 文件上传 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		p:defaultEncoding="utf-8" />
-		
+
 	<bean name="dataSource" class="com.jolbox.bonecp.BoneCPDataSource">
 		<property name="driverClass" value="${bonecp.driveClass}" />
 		<property name="jdbcUrl" value="${bonecp.jdbcUrl}" />
@@ -33,10 +31,11 @@
 		<property name="acquireIncrement" value="${bonecp.acquireIncrement}" />
 		<property name="releaseHelperThreads" value="${bonecp.releaseHelperThreads}" />
 	</bean>
-	
-	<bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+	<bean name="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="packagesToScan" value="com.miao.entity" ></property>
+		<property name="packagesToScan" value="com.miao.entity"></property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -46,28 +45,29 @@
 		</property>
 	</bean>
 	<!-- 配置hibernate事务管理器 -->
-	<bean name="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	<bean name="txManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="find*" read-only="true"></tx:method>
 			<tx:method name="*" read-only="false"></tx:method>
-			<tx:method name="*" rollback-for="Throwable"/>
+			<tx:method name="*" rollback-for="Throwable" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<aop:config>
-		<aop:pointcut id="serviceOperation" expression="bean(*Service)"/>
+		<aop:pointcut id="serviceOperation" expression="bean(*Service)" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"></aop:advisor>
 	</aop:config>
-	<!--关于mapping报错：访问注入-->
+	<!--关于mapping报错：访问注入 -->
 	<bean id="userDao" parent="baseDao" class="com.miao.user.dao.UserDaoImpl"></bean>
 	<bean id="roomDao" parent="baseDao" class="com.miao.room.dao.RoomDaoImpl"></bean>
 	<bean id="powerDao" parent="baseDao" class="com.miao.power.dao.PowerDaoImpl"></bean>
 	<bean id="roleDao" parent="baseDao" class="com.miao.role.dao.RoleDaoImpl"></bean>
 	<bean id="baseDao" abstract="true">
-    	<property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

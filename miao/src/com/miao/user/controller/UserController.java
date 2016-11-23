@@ -20,6 +20,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.miao.core.utils.Page;
 import com.miao.entity.User;
+import com.miao.role.service.RoleService;
 import com.miao.user.service.UserService;
 
 /**
@@ -34,6 +35,8 @@ public class UserController {
 	
 	@Resource
 	private UserService userService;
+	@Resource
+	private RoleService roleService;
 	
 	/**
 	 * 登录方法
@@ -43,14 +46,13 @@ public class UserController {
 	 * @author 孙兰云
 	 */
 	@RequestMapping("login")
-	public String login(User u,HttpSession session){
-		u = userService.login(u.getUserName(),u.getPassword());
+	public String login(User user,HttpSession session){
+		user = userService.login(user.getUserName(),user.getPassword());
 		
 		//数据库中查到用户，将用户存到session域中
-		if(u!=null){
-			session.setAttribute("myName", u.getUserName()); 
-			session.setAttribute("user", u);
-			LogFactory.getLog(getClass()).info("用户"+u.getUserName()+"登录了");
+		if(user!=null){
+			session.setAttribute("user", user);
+			LogFactory.getLog(getClass()).info("用户"+user.getUserName()+"登录了");
 		}
 		return "index";
 	}
@@ -192,6 +194,7 @@ public class UserController {
 	
 	/**
 	 * 用户更新界面
+	 * @author 宋禹龙
 	 * @param id
 	 * @param request
 	 * @return jsp页面
@@ -199,6 +202,8 @@ public class UserController {
 	 */
 	@RequestMapping("/updateUI")
 	public String updateUI(Integer id,HttpServletRequest request){
+		//添加角色列表
+		request.setAttribute("roleList", roleService.findAll());
 		if (id != null){
 			//在request中设置要回显的数据
 			request.setAttribute("userInfo", userService.findById(id));
@@ -214,9 +219,13 @@ public class UserController {
 	 * 2016/11/16
 	 */
 	@RequestMapping("/update")
-	public String update(User user,@RequestParam(name="file",required=false)CommonsMultipartFile file,HttpServletRequest request){
+	public String update(User user,Integer roleId,@RequestParam(name="file",required=false)CommonsMultipartFile file,HttpServletRequest request){
 		try {
 			if (user!=null&&user.getId()!= null) {
+				if (roleId != null) {
+					//根据id查询角色添加到用户
+					user.setRole(roleService.findById(roleId));
+				}
 				if (!file.isEmpty()) {
 					//获得文件名并重命名
 					String fileName = UUID.randomUUID().toString()+file.getOriginalFilename();
@@ -243,7 +252,9 @@ public class UserController {
 	 * 2016/11/16
 	 */
 	@RequestMapping("/addUI")
-	public String addUI(){
+	public String addUI(HttpServletRequest request){
+		//添加角色列表
+		request.setAttribute("roleList", roleService.findAll());
 		return "WEB-INF/detail/saveUser";
 	}
 	
@@ -255,9 +266,13 @@ public class UserController {
 	 * 2016/11/16
 	 */
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String add(User user,@RequestParam(name="file")CommonsMultipartFile file,HttpServletRequest request){
+	public String add(User user,Integer roleId,@RequestParam(name="file")CommonsMultipartFile file,HttpServletRequest request){
 		try {
 			if (user != null) {
+				if (roleId != null) {
+					//根据id查询角色添加到用户
+					user.setRole(roleService.findById(roleId));
+				}
 				if (!file.isEmpty()) {
 					//获得文件名并重命名
 					String fileName = UUID.randomUUID().toString()+file.getOriginalFilename();
@@ -296,6 +311,99 @@ public class UserController {
 		}
 		return "redirect:/user/listUI.do";
 	}
+	
+	/**
+	 * 用户信息修改
+	 * @param email
+	 * @param nickName
+	 * @param session
+	 * @author 程菊飞
+	 */
+	@RequestMapping("/edit")
+	public String edit(@RequestParam("email")String email,@RequestParam("nickName")String nickName,HttpSession session){
+		User user=(User) session.getAttribute("user");
+		user.setEmail(email);
+		user.setNickName(nickName);
+		userService.update(user);
+		return "myinfo";
+	}
+	
+	/**
+	 * 修改用户信息时邮箱校验
+	 * @param newEmail
+	 * @param response
+	 * @param session
+	 * @author 程菊飞
+	 */
+	@RequestMapping("/checkNewEmail")
+	public void checkNewEmail(String newEmail,HttpServletResponse response,HttpSession session){
+		String result="";
+		User u=(User) session.getAttribute("user");
+		String oldEmail=u.getEmail();
+		try{
+			if(newEmail==""){
+				result="null";
+			}else if(newEmail.equals(oldEmail)){
+				result="same";
+			}else{
+				List<User> users=userService.findAllUsersByEmail(newEmail);
+				if(users!=null&&users.size()>0){
+					result="repeat";
+				}
+			}
+			//向页面返回数据
+			ServletOutputStream outputStream = response.getOutputStream();
+			outputStream.write(result.getBytes());
+			outputStream.close();
+		}catch(Exception e){
+			throw new RuntimeException(e);
+		}
+	}
+	
+	/**
+	 * 用户密码修改
+	 * @param newPwd
+	 * @param session
+	 * @author 冯鑫
+	 */
+	@RequestMapping("/editPwd")
+	public String edit(@RequestParam("newPwd")String password,HttpSession session){
+		//获得当前登录
+		User user=(User) session.getAttribute("user");
+		//修改用户信息
+		user.setPassword(password);
+		userService.update(user);
+		return "myinfo";
+	}
+	/**
+	 * 修改用户密码时原密码校验
+	 * @param nowPwd
+	 * @param response
+	 * @param session
+	 * @author 冯鑫
+	 */
+	@RequestMapping("/checkNowPwd")
+	public void checkNowPwd(String nowPwd,HttpServletResponse response,HttpSession session){
+		String result="";
+		User u=(User) session.getAttribute("user");
+		String oldPwd=u.getPassword();
+		try{
+			if(nowPwd==""){
+				result="null";
+			}else if(nowPwd.equals(oldPwd)){
+				result="same";
+			}else{	
+					result="false";
+			}
+			//向页面返回数据
+			ServletOutputStream outputStream = response.getOutputStream();
+			outputStream.write(result.getBytes());
+			outputStream.close();
+		}catch(Exception e){
+			throw new RuntimeException(e);
+		}
+	}
+	
 }
 
 

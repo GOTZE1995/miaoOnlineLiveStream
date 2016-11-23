@@ -13,7 +13,7 @@ import com.miao.user.dao.UserDao;
 
 /**
  * 用户逻辑层实现
- * @author sunlanyun/chengjufei
+ * @author sunlanyun/chengjufei/fengxin
  *
  */
 @Service("userService")
@@ -69,6 +69,17 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		page.setTotalCount(list.size());
 		page.setList(pageList(currentPage,i));
 		return page;
+	}
+
+	@Override
+	public void updateUser(String userName,String newEmail,String newNickName){
+		userDao.updateUser(userName, newEmail, newNickName);;
+	}
+	
+	@Override
+	public void updatePwd(String userName, String newPwd) {
+		// TODO Auto-generated method stub
+		userDao.updatePwd(userName, newPwd);
 	}
 }
 

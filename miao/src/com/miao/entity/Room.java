@@ -15,6 +15,7 @@ import org.hibernate.annotations.Parameter;
 
 /**
  * 直播间实体
+ * 
  * @author Jupiter
  *
  */
@@ -22,36 +23,37 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name = "room")
 public class Room implements Serializable {
-	//房间id
+	// 房间id
 	private Integer id;
-	//房间名
+	// 房间名
 	private String roomName;
-	//房间描述
-	private String memo;   
-	//创建日期
+	// 房间描述
+	private String memo;
+	// 创建日期
 	private Date beginDate;
-	//房间状态
+	// 房间状态
 	private String status;
-	//房间所属人电话
+	// 房间所属人电话
 	private String phone;
-	//该房间url
+	// 该房间url
 	private String url;
-	//房间与用户关系，一对一
+	// 房间与用户关系，一对一
 	private User user;
 
 	public static String ROOM_STATUS_VAILD = "1";
 	public static String ROOM_STATUS_INVAILD = "0";
+
 	@Id
-	@GenericGenerator(name = "foreignkey", strategy = "foreign", parameters = @Parameter(value = "user", name = "property") )
+	@GenericGenerator(name = "foreignkey", strategy = "foreign", parameters = @Parameter(value = "user", name = "property"))
 	@GeneratedValue(generator = "foreignkey")
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	public User getUser() {
@@ -113,5 +115,5 @@ public class Room implements Serializable {
 	public Room() {
 		super();
 	}
-	
+
 }
