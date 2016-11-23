@@ -49,38 +49,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public List<User> pageList(Integer currentPage, int i) {
-		return userDao.pageList(currentPage, i);
-	}
-
-	@Override
 	public List<User> doSearch(String searchName) {
 		return userDao.findBysearchName(searchName);
 	}
 
-	@Override
-	public Page<User> createPage(List list, Integer currentPage, int i) {
-		Page<User> page = new Page<User>(currentPage, i);
-		if (list != null) {
-			page.setTotalCount(list.size());
-			page.setList(list);
-			return page;
-		}
-		list = findAll();
-		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage, i));
-		return page;
-	}
 
-	@Override
-	public void updateUser(String userName, String newEmail, String newNickName) {
-		userDao.updateUser(userName, newEmail, newNickName);
-		;
-	}
-
-	@Override
-	public void updatePwd(String userName, String newPwd) {
-		// TODO Auto-generated method stub
-		userDao.updatePwd(userName, newPwd);
-	}
 }

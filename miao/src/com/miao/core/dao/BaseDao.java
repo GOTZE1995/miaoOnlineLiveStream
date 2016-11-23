@@ -3,6 +3,8 @@ package com.miao.core.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.miao.entity.User;
+
 /**
  * 通用Dao
  * 
@@ -44,4 +46,13 @@ public interface BaseDao<T> {
 	 * @param id
 	 */
 	public T findById(Serializable id);
+	
+	/**
+	 * 分页查询
+	 * @param currentPage
+	 * @param i
+	 * @return
+	 */
+	public List<T> pageList(Integer currentPage, int i);
+
 }

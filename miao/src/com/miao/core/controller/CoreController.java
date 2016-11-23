@@ -54,6 +54,14 @@ public class CoreController {
 	public String bottomUI() {
 		return "WEB-INF/detail/bottom";
 	}
+	
+	/**
+	 * 后台系统底部
+	 */
+	@RequestMapping("right")
+	public String rightUI() {
+		return "WEB-INF/detail/right";
+	}
 
 	/**
 	 * 后台系统登录

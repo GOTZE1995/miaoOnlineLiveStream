@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
+import com.miao.entity.Power;
 
 public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
@@ -47,4 +50,15 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	public T findById(Serializable id) {
 		return getHibernateTemplate().get(clazz, id);
 	}
+	
+	@Override
+	public List<T> pageList(Integer currentPage, int i) {
+		String hql = "from "+clazz.getSimpleName();
+		Query query = currentSession().createQuery(hql);
+		query.setFirstResult((currentPage-1)*i);
+		query.setMaxResults(i);
+		return query.getResultList();
+	}
+
+	
 }

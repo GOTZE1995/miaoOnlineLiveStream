@@ -9,14 +9,6 @@ import com.miao.entity.Role;
 
 public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
 
-	@Override
-	public List<Role> pageList(Integer currentPage, int i) {
-		String hql = "from Role";
-		Query query = currentSession().createQuery(hql);
-		query.setFirstResult((currentPage - 1) * i);
-		query.setMaxResults(i);
-		return query.getResultList();
-	}
 
 	@Override
 	public List<Role> findBysearchName(String searchName) {

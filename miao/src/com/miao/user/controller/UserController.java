@@ -343,8 +343,8 @@ public class UserController {
 	@RequestMapping("/checkNewEmail")
 	public void checkNewEmail(String newEmail, HttpServletResponse response, HttpSession session) {
 		String result = "";
-		User u = (User) session.getAttribute("user");
-		String oldEmail = u.getEmail();
+		User user = (User) session.getAttribute("user");
+		String oldEmail = user.getEmail();
 		try {
 			if (newEmail == "") {
 				result = "null";

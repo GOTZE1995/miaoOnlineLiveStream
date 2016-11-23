@@ -13,12 +13,8 @@ import com.miao.entity.Role;
  */
 public interface RoleService extends BaseService<Role> {
 
-	// 分页数据
-	public List<Role> pageList(Integer currentPage, int i);
 
 	// 根据关键字搜索
 	public List<Role> doSearch(String searchName);
 
-	// 封装页面
-	public Page<Role> createPage(List<?> list, Integer currentPage, int i);
 }

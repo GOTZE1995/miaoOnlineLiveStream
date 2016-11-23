@@ -28,26 +28,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 
 	@Override
-	public List<Role> pageList(Integer currentPage, int i) {
-		return roleDao.pageList(currentPage, i);
-	}
-
-	@Override
 	public List<Role> doSearch(String searchName) {
 		return roleDao.findBysearchName(searchName);
 	}
 
-	@Override
-	public Page<Role> createPage(List list, Integer currentPage, int i) {
-		Page<Role> page = new Page<Role>(currentPage, i);
-		if (list != null) {
-			page.setTotalCount(list.size());
-			page.setList(list);
-			return page;
-		}
-		list = findAll();
-		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage, i));
-		return page;
-	}
 }

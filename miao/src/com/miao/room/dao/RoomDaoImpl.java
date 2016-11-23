@@ -14,14 +14,6 @@ import com.miao.entity.Room;
  */
 public class RoomDaoImpl extends BaseDaoImpl<Room> implements RoomDao {
 
-	@Override
-	public List<Room> pageList(Integer currentPage, int i) {
-		String hql = "from Room";
-		Query query = currentSession().createQuery(hql);
-		query.setFirstResult((currentPage - 1) * i);
-		query.setMaxResults(i);
-		return query.getResultList();
-	}
 
 	@Override
 	public List<Room> findBysearchName(String searchName) {

@@ -34,14 +34,6 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		return query.getResultList();
 	}
 
-	@Override
-	public List<User> pageList(Integer currentPage, int i) {
-		String hql = "from User";
-		Query query = currentSession().createQuery(hql);
-		query.setFirstResult((currentPage - 1) * i);
-		query.setMaxResults(i);
-		return query.getResultList();
-	}
 
 	@Override
 	public List<User> findBysearchName(String searchName) {
@@ -51,24 +43,4 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		return query.getResultList();
 	}
 
-	@Override
-	public void updateUser(String userName, String newEmail, String newNickName) {
-		String hql = "from User where userName=?";
-		Query query = currentSession().createQuery(hql);
-		query.setParameter(0, userName);
-		User user = (User) query.uniqueResult();
-		user.setEmail(newEmail);
-		user.setNickName(newNickName);
-		this.update(user);
-	}
-
-	@Override
-	public void updatePwd(String userName, String newPwd) {
-		String hql = "from User where userName=?";
-		Query query = currentSession().createQuery(hql);
-		query.setParameter(0, userName);
-		User user = (User) query.uniqueResult();
-		user.setPassword(newPwd);
-		this.update(user);
-	}
 }

@@ -6,6 +6,7 @@ import org.hibernate.query.Query;
 
 import com.miao.core.dao.BaseDaoImpl;
 import com.miao.entity.Power;
+import com.miao.entity.User;
 
 /**
  * 权限数据访问层实现
@@ -14,14 +15,6 @@ import com.miao.entity.Power;
  */
 public class PowerDaoImpl extends BaseDaoImpl<Power> implements PowerDao{
 
-	@Override
-	public List<Power> pageList(Integer currentPage, int i) {
-		String hql = "from Power";
-		Query query = currentSession().createQuery(hql);
-		query.setFirstResult((currentPage-1)*i);
-		query.setMaxResults(i);
-		return query.getResultList();
-	}
 
 	@Override
 	public List<Power> findBysearchName(String searchName) {
@@ -30,4 +23,5 @@ public class PowerDaoImpl extends BaseDaoImpl<Power> implements PowerDao{
 		query.setParameter(0, "%"+searchName+"%");
 		return query.getResultList();
 	}
+
 }

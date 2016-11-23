@@ -50,23 +50,9 @@ public interface UserService extends BaseService<User> {
 	 */
 	public List<User> findAllUsersByEmail(String email);
 
-	/** 分页数据 */
-	public List<User> pageList(Integer currentPage, int i);
 
 	/** 根据关键字搜索 */
 	public List<User> doSearch(String searchName);
 
-	/** 封装页面 */
-	public Page<User> createPage(List<?> list, Integer currentPage, int i);
 
-	/** 修改用户信息 */
-	public void updateUser(String userName, String newEmail, String newNickName);
-
-	/**
-	 * 修改密码
-	 * 
-	 * @param password
-	 * @author fengxin 2016/11/21
-	 */
-	public void updatePwd(String userName, String newPwd);
 }

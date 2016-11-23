@@ -28,26 +28,8 @@ public class PowerServiceImpl extends BaseServiceImpl<Power> implements PowerSer
 	}
 
 	@Override
-	public List<Power> pageList(Integer currentPage, int i) {
-		return powerDao.pageList(currentPage, i);
-	}
-
-	@Override
 	public List<Power> doSearch(String searchName) {
 		return powerDao.findBysearchName(searchName);
 	}
 
-	@Override
-	public Page<Power> createPage(List list, Integer currentPage, int i) {
-		Page<Power> page = new Page<Power>(currentPage, i);
-		if (list != null) {
-			page.setTotalCount(list.size());
-			page.setList(list);
-			return page;
-		}
-		list = findAll();
-		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage, i));
-		return page;
-	}
 }

@@ -27,27 +27,10 @@ public class RoomServiceImpl extends BaseServiceImpl<Room> implements RoomServic
 		this.roomDao = roomDao;
 	}
 
-	@Override
-	public List<Room> pageList(Integer currentPage, int i) {
-		return roomDao.pageList(currentPage, i);
-	}
 
 	@Override
 	public List<Room> doSearch(String searchName) {
 		return roomDao.findBysearchName(searchName);
 	}
 
-	@Override
-	public Page<Room> createPage(List list, Integer currentPage, int i) {
-		Page<Room> page = new Page<Room>(currentPage, i);
-		if (list != null) {
-			page.setTotalCount(list.size());
-			page.setList(list);
-			return page;
-		}
-		list = findAll();
-		page.setTotalCount(list.size());
-		page.setList(pageList(currentPage, i));
-		return page;
-	}
 }

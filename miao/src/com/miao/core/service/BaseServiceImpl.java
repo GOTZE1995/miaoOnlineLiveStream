@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.miao.core.dao.BaseDao;
+import com.miao.core.utils.Page;
+import com.miao.entity.Power;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 
@@ -36,5 +38,24 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Override
 	public List<T> findAll() {
 		return baseDao.findAll();
+	}
+	
+	@Override
+	public Page<T> createPage(List list, Integer currentPage, int i) {
+		Page<T> page = new Page<T>(currentPage, i);
+		if (list != null) {
+			page.setTotalCount(list.size());
+			page.setList(list);
+			return page;
+		}
+		list = findAll();
+		page.setTotalCount(list.size());
+		page.setList(pageList(currentPage, i));
+		return page;
+	}
+
+	@Override
+	public List<T> pageList(Integer currentPage, int i) {
+		return baseDao.pageList(currentPage, i);
 	}
 }
