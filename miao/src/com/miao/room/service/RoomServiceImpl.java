@@ -28,9 +28,4 @@ public class RoomServiceImpl extends BaseServiceImpl<Room> implements RoomServic
 	}
 
 
-	@Override
-	public List<Room> doSearch(String searchName) {
-		return roomDao.findBysearchName(searchName);
-	}
-
 }

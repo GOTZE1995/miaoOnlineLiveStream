@@ -12,6 +12,4 @@ import com.miao.entity.Room;
  */
 public interface RoomDao extends BaseDao<Room> {
 
-	// 模糊查询
-	public List<Room> findBysearchName(String searchName);
 }

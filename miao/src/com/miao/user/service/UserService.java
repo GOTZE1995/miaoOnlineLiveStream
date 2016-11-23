@@ -50,9 +50,4 @@ public interface UserService extends BaseService<User> {
 	 */
 	public List<User> findAllUsersByEmail(String email);
 
-
-	/** 根据关键字搜索 */
-	public List<User> doSearch(String searchName);
-
-
 }

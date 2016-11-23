@@ -48,10 +48,5 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userDao.findAllUsersByEmail(email);
 	}
 
-	@Override
-	public List<User> doSearch(String searchName) {
-		return userDao.findBysearchName(searchName);
-	}
-
 
 }

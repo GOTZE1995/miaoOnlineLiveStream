@@ -13,6 +13,5 @@ import com.miao.entity.Room;
  */
 public interface RoomService extends BaseService<Room> {
 
-	// 根据关键字搜索
-	public List<Room> doSearch(String searchName);
+
 }

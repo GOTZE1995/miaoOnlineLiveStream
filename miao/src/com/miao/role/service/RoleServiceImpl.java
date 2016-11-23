@@ -1,13 +1,10 @@
 package com.miao.role.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.miao.core.service.BaseServiceImpl;
-import com.miao.core.utils.Page;
 import com.miao.entity.Role;
 import com.miao.role.dao.RoleDao;
 
@@ -27,9 +24,5 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		this.roleDao = roleDao;
 	}
 
-	@Override
-	public List<Role> doSearch(String searchName) {
-		return roleDao.findBysearchName(searchName);
-	}
 
 }

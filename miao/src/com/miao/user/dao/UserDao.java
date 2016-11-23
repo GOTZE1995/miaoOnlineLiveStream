@@ -38,7 +38,4 @@ public interface UserDao extends BaseDao<User> {
 	public List<User> findAllUsersByEmail(String email);
 
 
-	/** 模糊查询 */
-	public List<User> findBysearchName(String searchName);
-	
 }

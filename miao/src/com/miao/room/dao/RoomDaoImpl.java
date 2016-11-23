@@ -15,11 +15,4 @@ import com.miao.entity.Room;
 public class RoomDaoImpl extends BaseDaoImpl<Room> implements RoomDao {
 
 
-	@Override
-	public List<Room> findBysearchName(String searchName) {
-		String hql = "from Room where roomName like ?";
-		Query query = currentSession().createQuery(hql);
-		query.setParameter(0, "%" + searchName + "%");
-		return query.getResultList();
-	}
 }

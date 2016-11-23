@@ -7,7 +7,9 @@ import java.util.List;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import com.miao.core.utils.TransferString;
 import com.miao.entity.Power;
+import com.miao.entity.Room;
 
 public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
@@ -59,6 +61,15 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		query.setMaxResults(i);
 		return query.getResultList();
 	}
-
+	
+	@Override
+	public List<T> findBysearchName(String searchName) {
+		String entity = clazz.getSimpleName();
+		String hql = "from "+entity+" where "+TransferString.toLowerCaseFirstOne(entity)+"Name like ?";
+		Query query = currentSession().createQuery(hql);
+		query.setParameter(0, "%" + searchName + "%");
+		return query.getResultList();
+	}
+	
 	
 }

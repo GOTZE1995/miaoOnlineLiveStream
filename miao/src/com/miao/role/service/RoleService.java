@@ -1,9 +1,6 @@
 package com.miao.role.service;
 
-import java.util.List;
-
 import com.miao.core.service.BaseService;
-import com.miao.core.utils.Page;
 import com.miao.entity.Role;
 
 /**
@@ -13,8 +10,5 @@ import com.miao.entity.Role;
  */
 public interface RoleService extends BaseService<Role> {
 
-
-	// 根据关键字搜索
-	public List<Role> doSearch(String searchName);
 
 }

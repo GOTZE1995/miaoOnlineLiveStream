@@ -1,9 +1,6 @@
 package com.miao.power.service;
 
-import java.util.List;
-
 import com.miao.core.service.BaseService;
-import com.miao.core.utils.Page;
 import com.miao.entity.Power;
 
 /**
@@ -13,7 +10,4 @@ import com.miao.entity.Power;
  */
 public interface PowerService extends BaseService<Power> {
 
-	// 根据关键字搜索
-	public List<Power> doSearch(String searchName);
-	
 }

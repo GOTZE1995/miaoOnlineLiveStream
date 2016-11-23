@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.miao.core.utils.Page;
 import com.miao.entity.Power;
+import com.miao.entity.Room;
 
 public interface BaseService<T> {
 
@@ -57,4 +58,11 @@ public interface BaseService<T> {
 	 * @return
 	 */
 	public Page<T> createPage(List<?> list, Integer currentPage, int i);
+	
+	/**
+	 * 搜索
+	 * @param searchName
+	 * @return
+	 */
+	public List<T> doSearch(String searchName);
 }

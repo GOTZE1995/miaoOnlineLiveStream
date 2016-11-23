@@ -1,7 +1,5 @@
 package com.miao.role.dao;
 
-import java.util.List;
-
 import com.miao.core.dao.BaseDao;
 import com.miao.entity.Role;
 
@@ -12,6 +10,4 @@ import com.miao.entity.Role;
  */
 public interface RoleDao extends BaseDao<Role> {
 
-	// 模糊查询
-	public List<Role> findBysearchName(String searchName);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.miao.core.dao.BaseDao;
 import com.miao.core.utils.Page;
 import com.miao.entity.Power;
+import com.miao.entity.Room;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 
@@ -58,4 +59,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	public List<T> pageList(Integer currentPage, int i) {
 		return baseDao.pageList(currentPage, i);
 	}
+	
+	@Override
+	public List<T> doSearch(String searchName) {
+		return baseDao.findBysearchName(searchName);
+	}
+
 }

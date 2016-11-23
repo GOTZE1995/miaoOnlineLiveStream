@@ -1,13 +1,10 @@
 package com.miao.power.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.miao.core.service.BaseServiceImpl;
-import com.miao.core.utils.Page;
 import com.miao.entity.Power;
 import com.miao.power.dao.PowerDao;
 
@@ -27,9 +24,5 @@ public class PowerServiceImpl extends BaseServiceImpl<Power> implements PowerSer
 		this.powerDao = powerDao;
 	}
 
-	@Override
-	public List<Power> doSearch(String searchName) {
-		return powerDao.findBysearchName(searchName);
-	}
 
 }

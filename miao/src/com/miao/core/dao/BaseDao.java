@@ -3,6 +3,7 @@ package com.miao.core.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.miao.entity.Room;
 import com.miao.entity.User;
 
 /**
@@ -54,5 +55,13 @@ public interface BaseDao<T> {
 	 * @return
 	 */
 	public List<T> pageList(Integer currentPage, int i);
+	
+	/**
+	 * 模糊查询
+	 * @param searchName
+	 * @return
+	 */
+	public List<T> findBysearchName(String searchName);
+	
 
 }

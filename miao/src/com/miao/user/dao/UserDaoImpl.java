@@ -35,12 +35,5 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	}
 
 
-	@Override
-	public List<User> findBysearchName(String searchName) {
-		String hql = "from User where userName like ?";
-		Query query = currentSession().createQuery(hql);
-		query.setParameter(0, "%" + searchName + "%");
-		return query.getResultList();
-	}
 
 }
