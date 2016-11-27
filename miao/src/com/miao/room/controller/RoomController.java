@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.miao.core.utils.Page;
-import com.miao.entity.Role;
 import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.room.service.RoomService;
@@ -54,7 +53,7 @@ public class RoomController {
 		}
 		// 将list放到分页对象中，若没有数据，默认为第一页
 		page = roomService.createPage(list, currentPage, 8);
-		
+
 		request.setAttribute("page", page);
 		request.setAttribute("roomList", roomService.findAll());
 		return "WEB-INF/detail/listRoom";

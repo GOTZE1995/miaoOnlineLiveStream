@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result != "pass") {
-					alert("用户名与密码不匹配");
+					alert("用户名与密码不匹配"+result);
 				}
 			}
 		})

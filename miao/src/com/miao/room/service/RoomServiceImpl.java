@@ -1,13 +1,10 @@
 package com.miao.room.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.miao.core.service.BaseServiceImpl;
-import com.miao.core.utils.Page;
 import com.miao.entity.Room;
 import com.miao.room.dao.RoomDao;
 

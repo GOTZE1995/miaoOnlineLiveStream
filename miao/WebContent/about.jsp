@@ -225,13 +225,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<param name='bgcolor' value='#000000' />
 							<param name='allowfullscreen' value='true' />
 							<param name='flashvars'
-								value='&src=rtmp://10.7.89.37/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' />
+								value='&src=rtmp://10.7.89.87/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' />
 							<embed src='swfs/StrobeMediaPlayback.swf' width='640'
 								height='377' id='StrobeMediaPlayback' quality='high'
 								bgcolor='#000000' name='StrobeMediaPlayback'
 								allowfullscreen='true'
 								pluginspage='http://www.adobe.com/go/getflashplayer'
-								flashvars='&src=rtmp://10.7.89.37/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true'
+								flashvars='&src=rtmp://10.7.89.87/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true'
 								type='application/x-shockwave-flash'>
 							</embed>
 						</object>

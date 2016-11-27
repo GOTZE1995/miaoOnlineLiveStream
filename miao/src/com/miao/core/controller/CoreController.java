@@ -74,8 +74,8 @@ public class CoreController {
 	public String login_back(User user, HttpSession session) {
 		user = userService.login(user.getUserName(), user.getPassword());
 
-		// 数据库中查到用户，将用户存到session域中
 		if (user != null) {
+			// 数据库中查到用户，将用户存到session中
 			session.setAttribute("user", user);
 			return "WEB-INF/detail/right";
 		} else {

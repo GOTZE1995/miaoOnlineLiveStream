@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.miao.core.dao.BaseDao;
 import com.miao.core.utils.Page;
-import com.miao.entity.Power;
-import com.miao.entity.Room;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 
