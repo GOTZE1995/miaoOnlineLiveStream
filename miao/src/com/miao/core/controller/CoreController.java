@@ -13,7 +13,7 @@ import com.miao.user.service.UserService;
 /**
  * 后台系统控制器
  * 
- * @author Jupiter
+ * @author songyulong
  *
  */
 @Controller
@@ -72,17 +72,25 @@ public class CoreController {
 	 */
 	@RequestMapping("login_back")
 	public String login_back(User user, HttpSession session) {
+		String result=null;//用于存返回的字符串
 		user = userService.login(user.getUserName(), user.getPassword());
-
+		
+		// 数据库中查到用户，将用户存到session域中
 		if (user != null) {
-			// 数据库中查到用户，将用户存到session中
-			session.setAttribute("user", user);
-			return "WEB-INF/detail/right";
+			String roleName=user.getRole().getRoleName().trim();
+			if(roleName.equals("管理员")){
+				session.setAttribute("AdminUser", user);
+				result= "WEB-INF/detail/right";
+			}else{
+				result="WEB-INF/detail/login_back";
+			}
 		} else {
-			return "WEB-INF/detail/login_back";
+			result="WEB-INF/detail/login_back";
 		}
+		System.out.println(result);
+		return result;
 	}
-
+	
 	/**
 	 * 后台系统注销
 	 * 
@@ -90,12 +98,11 @@ public class CoreController {
 	 * @return
 	 */
 	@RequestMapping("logout_back")
-	public String logout_back(HttpServletRequest request) {
+	public void logout_back(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
 		if (session != null) {
-			session.removeAttribute("user");
+			session.removeAttribute("AdminUser");
 		}
-		return "redirect:/sys/login_back.do";
 	}
 }

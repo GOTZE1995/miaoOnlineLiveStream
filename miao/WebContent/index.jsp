@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result != "pass") {
-					alert("用户名与密码不匹配"+result);
+					alert("用户名与密码不匹配");
 				}
 			}
 		})
@@ -126,7 +126,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	style="width: 1349px; MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
 	<body style="width: 1349px">
 		<div class="header" id="home">
-			<nav class="navbar navbar-default"> <c:if test="${user==null}">
+			<nav class="navbar navbar-default"> 
+			<c:if test="${user==null || user.userName==null || user.password==null || user.userName=='' || user.password==''}">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -141,7 +142,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 						</h1>
 					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
@@ -182,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<script src="js/menu_jquery.js"></script>
 				</div>
-			</c:if> <c:if test="${user!=null}">
+			</c:if> <c:if test="${user!=null && user.userName!=null && user.userName!='' && user.password!=null && user.password!=''}">
 				<div class="container" style="width: 1300px">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">

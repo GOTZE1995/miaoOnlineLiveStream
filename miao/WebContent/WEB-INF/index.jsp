@@ -7,13 +7,21 @@
 <%@include file="/common/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>米奥课堂后台管理</title>
+<script type="text/javascript">
+
+//解决子框架嵌套的问题
+if(window != window.parent){
+	window.parent.location.reload(true);
+}
+
+</script>
 </head>
 <frameset rows="100px,*,19px" framespacing="0" border="0"
 	frameborder="0">
 	<frame src="sys/top.do" scrolling="no" noresize />
 	<frameset cols="178px,*">
 		<frame noresize src="sys/left.do" scrolling="yes" />
-		<frame noresize name="right" src="sys/right.do" scrolling="yes" />
+		<frame noresize name="right" src="sys/login_back.do" scrolling="yes" />
 	</frameset>
 	<frame noresize name="status_bar" scrolling="no" src="sys/bottom.do" />
 </frameset>

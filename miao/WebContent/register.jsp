@@ -19,10 +19,6 @@ span {
 	display: block;
 }
 </style>
-<script src="assets/js/jquery-1.8.2.min.js"></script>
-<script src="assets/js/supersized.3.2.7.min.js"></script>
-<script src="assets/js/supersized-init.js"></script>
-<script src="assets/js/scripts.js"></script>
 <script>
 	function renewUsernameState() {
 		document.getElementById("userSpan").innerHTML = "";
@@ -35,12 +31,12 @@ span {
 		var username = $('#username').val();
 		$
 				.ajax({
-					url : 'user/checkUsername',
+					url : 'user/checkUsername.do',
 					data : {
 						'username' : username
 					},
 					type : 'post',
-					dataType :'html',
+					async : false,
 					success : function(result) {
 						if (result != "pass") {
 							document.getElementById("userSpan").innerHTML = "该用户名已经被注册";
@@ -54,12 +50,12 @@ span {
 		var email = $('#email').val();
 		$
 				.ajax({
-					url : 'user/checkEmail',
+					url : 'user/checkEmail.do',
 					data : {
 						'email' : email
 					},
 					type : 'post',
-					dataType :'html',
+					async : false,
 					success : function(result) {
 						if (result != "pass") {
 							document.getElementById("emailSpan").innerHTML = "该邮箱已经被注册";
@@ -112,5 +108,9 @@ span {
 			<br /> <br /> <br /> <br /> <br /> <br />
 		</div>
 	</div>
+	<script src="assets/js/jquery-1.8.2.min.js"></script>
+	<script src="assets/js/supersized.3.2.7.min.js"></script>
+	<script src="assets/js/supersized-init.js"></script>
+	<script src="assets/js/scripts.js"></script>
 </body>
 </html>
