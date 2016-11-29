@@ -26,7 +26,7 @@ public class PreLoginFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-
+		System.out.println("进入到前台过滤器了");
 		HttpServletRequest request = (HttpServletRequest)req;
 		HttpServletResponse response = (HttpServletResponse)resp;
 		
@@ -35,14 +35,18 @@ public class PreLoginFilter implements Filter {
 		//过滤非登录方法
 		if (!uri.contains("login")) {
 			Object object = request.getSession().getAttribute("user");
-			
-			//已登录，放行
-			if (object != null){
-				chain.doFilter(request, response);
-			}
-			//未登录，跳转到登录页面
-			else{ 
-				response.sendRedirect(request.getContextPath()+"/index.jsp");
+			if(uri.contains("UI")||uri.contains("delete")||uri.contains("add")||uri.contains("update")){
+				//如果是后台的请求则放行
+				chain.doFilter(request,response);
+			}else{//前台的请求
+				//已登录，放行
+				if (object != null||uri.contains("check")||uri.contains("regist")){
+					chain.doFilter(request, response);
+				}
+				//未登录，跳转到登录页面
+				else{ 
+					response.sendRedirect(request.getContextPath()+"/index.jsp");
+				}
 			}
 		}   
 		//登录方法，放行

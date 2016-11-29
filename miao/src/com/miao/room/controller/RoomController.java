@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.miao.core.utils.Page;
+import com.miao.entity.Role;
 import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.room.service.RoomService;
@@ -181,7 +182,6 @@ public class RoomController {
 
 	/**
 	 * 功能：注册直播间
-	 * 
 	 * @author 程菊飞
 	 * @param room
 	 * @param session
@@ -236,7 +236,7 @@ public class RoomController {
 	 * @param session
 	 * @return 2016/11/22
 	 */
-	@RequestMapping("/updateRoomState")
+	@RequestMapping("/editRoomState")
 	public String updateRoomStatus(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		Room room = user.getRoom();
@@ -262,7 +262,7 @@ public class RoomController {
 	 * @param session
 	 * @return 2016/11/22
 	 */
-	@RequestMapping("/updateMyRoom")
+	@RequestMapping("/editMyRoom")
 	public String addRoom(@RequestParam("roomName") String roomName, @RequestParam("memo") String memo,
 			HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -281,7 +281,7 @@ public class RoomController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/updateMyphoe")
+	@RequestMapping("/editMyphoe")
 	public String updateMyphone(@RequestParam("phone") String phone, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		Room room = user.getRoom();

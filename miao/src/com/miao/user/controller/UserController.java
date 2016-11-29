@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.miao.core.utils.Page;
+import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.role.service.RoleService;
 import com.miao.user.service.UserService;
@@ -48,7 +49,6 @@ public class UserController {
 	@RequestMapping("login")
 	public String login(User user, HttpSession session) {
 		user = userService.login(user.getUserName(), user.getPassword());
-
 		// 数据库中查到用户，将用户存到session域中
 		if (user != null) {
 			session.setAttribute("user", user);
@@ -110,7 +110,7 @@ public class UserController {
 	 * 
 	 * @param user
 	 * @param session
-	 * @return index页面
+	 * @return index页面vvvvvvgg
 	 * @author 程菊飞
 	 */
 	@RequestMapping("regist")
@@ -130,6 +130,7 @@ public class UserController {
 	@RequestMapping("/checkUsername")
 	public void checkUsername(String username, HttpServletResponse response) {
 		try {
+			System.out.println(username);
 			String result = "pass";
 			// 查询重复的用户名
 			List<User> users = userService.findAllUsersByName(username);

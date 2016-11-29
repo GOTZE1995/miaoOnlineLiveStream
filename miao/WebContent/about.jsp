@@ -120,6 +120,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
+							<c:if test="${user.userName=='教师'}">
+							<li><a href="${basePath}attendence/Check"><span 
+									data-hover="Attendence">电子点名</span></a></li>
+							</c:if>
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
 							<li><a href="about.jsp" onclick="check()"><span

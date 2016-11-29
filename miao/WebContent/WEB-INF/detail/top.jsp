@@ -106,6 +106,18 @@ margin-left: 10px;
 }
 -->
 	</style>
+	<script type="text/javascript">
+		function doQuit(){
+			$
+				.ajax({
+					url:"sys/logout_back.do",
+					async:false,
+					success:function(result){
+						window.parent.location.reload(true);
+					}
+				})
+		}
+	</script>
 </head>
 
 <body>
@@ -126,7 +138,7 @@ margin-left: 10px;
 			<a target="right" href="javascript:void(0)">
 				<img width="78" height="20" src="style/images/help2.gif" />
 			</a>
-			<a href="sys/logout_back">
+			<a href="javascript:void(0)" onclick="doQuit()">
 				<img width="78" height="20" src="style/images/logout.gif" />
 			</a>
 		</div>

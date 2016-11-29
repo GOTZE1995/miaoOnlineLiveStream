@@ -1,7 +1,11 @@
 package com.miao.core.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -97,12 +101,20 @@ public class CoreController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("logout_back")
-	public void logout_back(HttpServletRequest request) {
+	@RequestMapping("/logout_back")
+	public void logout_back(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
 
 		if (session != null) {
 			session.removeAttribute("AdminUser");
+		}
+		String result = "success";
+		try {
+			ServletOutputStream outputStream = response.getOutputStream();
+			outputStream.write(result.getBytes());
+			outputStream.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 }

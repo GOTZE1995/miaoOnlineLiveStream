@@ -15,14 +15,19 @@ import javax.servlet.http.HttpSession;
 /**
  * 后台登录过滤器
  * @author 程菊飞
- * 2016/11/26
+ *
  */
 public class LoginFilter implements Filter {
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+
+	}
 
 	@Override
 	public void doFilter(ServletRequest serveletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("进入到过滤器了。");
+		System.out.println("进入到后台过滤器了。");
 		HttpServletRequest request=(HttpServletRequest)serveletRequest;
 		HttpServletResponse response=(HttpServletResponse)servletResponse;
 		HttpSession session=request.getSession();
@@ -30,32 +35,30 @@ public class LoginFilter implements Filter {
 		//判断当前请求是否是登陆的请求地址
 		if(!uri.contains("login_back")){
 			//不是后台的登录请求
-			if(uri.contains("UI")||uri.contains("delete")){
+			if(uri.contains("UI")||uri.contains("delete")||uri.contains("add")||uri.contains("update")){
 				//是后台的请求
 				if(session.getAttribute("AdminUser")!=null){
 					chain.doFilter(request, response);
 					//已经登录，让其继续执行
 				}else{
 					//没有登陆，跳转到后台登录页面
-					response.sendRedirect(request.getContextPath()+"/sys/index.do");
+					response.sendRedirect(request.getContextPath()+"/sys/login_back.do");
 				}
 			}else{
 				//不是关于后台的请求
 				chain.doFilter(request, response);
 			}
+	
 		}else{
 			//是后台的登陆请求
 			chain.doFilter(request, response);
 		}
+	
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		
 	}
-	
-	@Override
-	public void destroy() {
 
-	}
 }

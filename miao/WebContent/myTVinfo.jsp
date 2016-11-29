@@ -159,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="profile-content">
 											<h3>${user.userName }</h3>
 											<form
-												action="${pageContext.request.contextPath}/room/updateMyRoom.do"
+												action="${pageContext.request.contextPath}/room/editMyRoom.do"
 												method="post">
 												<h4>房间名称</h4>
 												<div class="phone-group">
@@ -213,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="profile-content">
 											<h3>${user.userName }</h3>
 											<form
-												action="${pageContext.request.contextPath}/room/updateMyphoe"
+												action="${pageContext.request.contextPath}/room/editMyphoe"
 												method="post">
 												<h4>联系方式</h4>
 												<div class="email-group">

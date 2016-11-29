@@ -379,7 +379,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</a> <br /> <br />
 											<div style="margin-left: 30px;">
 												<form
-													action="${pageContext.request.contextPath}/room/updateRoomState.do"
+													action="${pageContext.request.contextPath}/room/editRoomState.do"
 													method="post">
 													<c:if test="${user.room.status=='0'}">
 														<input type="submit" value="开始直播" />
