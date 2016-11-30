@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.miao.core.utils.Page;
-import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.role.service.RoleService;
 import com.miao.user.service.UserService;

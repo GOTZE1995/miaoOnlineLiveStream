@@ -20,14 +20,12 @@ import javax.servlet.http.HttpSession;
 public class LoginFilter implements Filter {
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void doFilter(ServletRequest serveletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("进入到后台过滤器了。");
 		HttpServletRequest request=(HttpServletRequest)serveletRequest;
 		HttpServletResponse response=(HttpServletResponse)servletResponse;
 		HttpSession session=request.getSession();

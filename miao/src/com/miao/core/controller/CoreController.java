@@ -91,7 +91,6 @@ public class CoreController {
 		} else {
 			result="WEB-INF/detail/login_back";
 		}
-		System.out.println(result);
 		return result;
 	}
 	

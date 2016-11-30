@@ -12,7 +12,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	@SuppressWarnings("deprecation")
 	@Override
 	public User findByAccountAndPass(String name, String password) {
-		String hql = "from User where userName = ? and password = ?";
+		String hql = "from User t where t.userName = ?0 and t.password = ?1";
 		Query query = currentSession().createQuery(hql);
 		query.setParameter(0, name);
 		query.setParameter(1, password);
