@@ -80,7 +80,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -228,13 +230,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<p>
 												课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
 											</p>
-											<br /> <a href="about.jsp">
+											<br /> <a href="room/viewRoom?url=${room.url }">
 												<p>进入课程</p>
 											</a>
 										</div>
 									</div>
 									&nbsp;&nbsp;
 								</c:if>
+							</c:forEach>
+							<c:forEach var="room" items="${page.list}">
 								<c:if test="${room.status=='0'}">
 									<div class="view view-tenth"
 										style="width: 270px; height: 182px">

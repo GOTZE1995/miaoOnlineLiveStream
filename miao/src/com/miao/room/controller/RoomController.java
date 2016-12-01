@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.miao.core.utils.Page;
-import com.miao.entity.Role;
 import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.room.service.RoomService;
@@ -289,5 +288,13 @@ public class RoomController {
 		roomService.update(room);
 		return "myTVinfo";
 	}
+	
+	@RequestMapping("/viewRoom")
+	public String viewRoom(@RequestParam("url") String url, HttpServletRequest request) {
+		request.setAttribute("url", url);
+		return "about";
+	}
+	
+	
 
 }

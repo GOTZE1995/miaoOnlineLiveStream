@@ -39,6 +39,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		return baseDao.findAll();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Page<T> createPage(List list, Integer currentPage, int i) {
 		Page<T> page = new Page<T>(currentPage, i);

@@ -3,7 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head>s
+<%@include file="/common/header.jsp"%>	
 <title>Education Tutorial a Educational Category Flat Bootstrap
 	Responsive Website Template | About :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -229,13 +230,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<param name='bgcolor' value='#000000' />
 							<param name='allowfullscreen' value='true' />
 							<param name='flashvars'
-								value='&src=rtmp://10.7.89.37/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' />
+								value='&src=rtmp://10.7.89.87${url }&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' />
 							<embed src='swfs/StrobeMediaPlayback.swf' width='640'
 								height='377' id='StrobeMediaPlayback' quality='high'
 								bgcolor='#000000' name='StrobeMediaPlayback'
 								allowfullscreen='true'
 								pluginspage='http://www.adobe.com/go/getflashplayer'
-								flashvars='&src=rtmp://10.7.89.37/hls/test&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true'
+								flashvars='&src=rtmp://10.7.89.87${url }&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true'
 								type='application/x-shockwave-flash'>
 							</embed>
 						</object>
