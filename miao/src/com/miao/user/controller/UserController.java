@@ -43,10 +43,10 @@ public class UserController {
 	 * @param user
 	 * @param session
 	 * @return index页面
-	 * @author 孙兰云
+	 * @author 孙兰云、冯鑫
 	 */
 	@RequestMapping("login")
-	public String login(User user, HttpSession session) {
+	public String login(User user, HttpSession session,HttpServletRequest request) {
 		user = userService.login(user.getUserName(), user.getPassword());
 		// 数据库中查到用户，将用户存到session域中
 		if (user != null) {
@@ -54,6 +54,9 @@ public class UserController {
 			//记录***登陆了
 			LogFactory.getLog(getClass()).info("用户" + user.getUserName() + "登录了");
 		}
+		//把用户对象放入到session中，将会触发LoginListenner中的attributeAdded事件
+		request.getSession().setAttribute("loginuser", user);
+
 		return "index";
 	}
 	
@@ -113,10 +116,10 @@ public class UserController {
 	 * @author 程菊飞
 	 */
 	@RequestMapping("regist")
-	public String regist(User user, HttpSession session) {
+	public String regist(User user, HttpSession session,HttpServletRequest request) {
 		userService.regist(user);
 		//注册成功直接登录
-		return login(user, session);
+		return login(user, session,request);
 	}
 
 	/**
@@ -183,15 +186,37 @@ public class UserController {
 	 * @param email
 	 * @param nickName
 	 * @param session
-	 * @author 程菊飞
+	 * @author 程菊飞、冯鑫
 	 */
 	@RequestMapping("/edit")
 	public String edit(@RequestParam("email") String email, @RequestParam("nickName") String nickName,
+			@RequestParam(name = "file") CommonsMultipartFile file, HttpServletRequest request,
 			HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		user.setEmail(email);
-		user.setNickName(nickName);
-		userService.update(user);
+		try {
+			User user = (User) session.getAttribute("user");
+			user.setEmail(email);
+			user.setNickName(nickName);
+				if (!file.isEmpty()) {
+					// 获得文件名并重命名
+					String fileName = UUID.randomUUID().toString() + file.getOriginalFilename();
+					// 获取完整路径
+					String filePath = request.getSession().getServletContext().getRealPath("/upload") + "\\" + fileName;
+					//获取图片扩展名
+					String type = fileName.substring(fileName.lastIndexOf(".") + 1);
+					//判断是否为要求的格式
+					if (type.equals("png") ||type.equals("bmp") || type.equals("jpg") || type.equals("jpeg") || type.equals("gif") || type.equals("JPG") || type.equals("JPEG")|| type.equals("PNG") ||type.equals("BMP")|| type.equals("GIF"))
+					{
+						// 保存头像到upload目录
+						file.transferTo(new File(filePath));
+						// 将头像相对路径设置到user中
+						user.setHeadImg("upload/" + fileName);
+					}
+				}
+			userService.update(user);
+		} catch (IllegalStateException | IOException e) {
+			LogFactory.getLog(getClass()).equals("头像保存失败：" + e.getMessage());
+			throw new RuntimeException(e);
+		}
 		return "myinfo";
 	}
 
@@ -416,5 +441,4 @@ public class UserController {
 		}
 		return "redirect:/user/listUI.do";
 	}
-
 }
