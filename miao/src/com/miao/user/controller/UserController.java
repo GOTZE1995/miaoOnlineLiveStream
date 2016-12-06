@@ -234,7 +234,7 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		String oldEmail = user.getEmail();
 		try {
-			if (newEmail == "") {
+			if (newEmail == ""||newEmail == null) {
 				result = "null";
 			} else if (newEmail.equals(oldEmail)) {
 				result = "same";
@@ -279,12 +279,12 @@ public class UserController {
 	 * @author 冯鑫
 	 */
 	@RequestMapping("/checkNowPwd")
-	public void checkNowPwd(String nowPwd, HttpServletResponse response, HttpSession session) {
+	public void checkNowPwd( String nowPwd, HttpServletResponse response, HttpSession session) {
 		String result = "";
 		User user = (User) session.getAttribute("user");
 		String oldPwd = user.getPassword();
 		try {
-			if (nowPwd == "") {
+			if (nowPwd == null||nowPwd=="") {
 				result = "null";
 			} else if (nowPwd.equals(oldPwd)) {
 				result = "same";
@@ -297,7 +297,7 @@ public class UserController {
 			outputStream.close();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		}
+		}  
 	}
 	
 	/**
