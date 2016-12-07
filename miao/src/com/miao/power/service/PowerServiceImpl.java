@@ -16,6 +16,7 @@ import com.miao.power.dao.PowerDao;
 @Service("powerService")
 public class PowerServiceImpl extends BaseServiceImpl<Power> implements PowerService {
 
+	@SuppressWarnings("unused")
 	private PowerDao powerDao;
 
 	@Resource

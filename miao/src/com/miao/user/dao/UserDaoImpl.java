@@ -9,17 +9,16 @@ import com.miao.entity.User;
 
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "rawtypes" })
 	@Override
 	public User findByAccountAndPass(String name, String password) {
-		String hql = "from User t where t.userName = ?0 and t.password = ?1";
+		String hql = "from User where userName = ?0 and password = ?1";
 		Query query = currentSession().createQuery(hql);
 		query.setParameter(0, name);
 		query.setParameter(1, password);
 		return (User) query.uniqueResult();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<User> findAllUserByName(String userName) {
 		String hql = "from User where userName=?";
@@ -28,7 +27,6 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		return query.getResultList();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List<User> findAllUsersByEmail(String email) {
 		String hql = "from User where email=?";
@@ -36,7 +34,4 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		query.setParameter(0, email);
 		return query.getResultList();
 	}
-
-
-
 }

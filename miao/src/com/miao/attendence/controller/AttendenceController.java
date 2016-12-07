@@ -6,12 +6,12 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.miao.attendence.service.AttendenceService;
 import com.miao.entity.User;
-import com.miao.user.service.UserService;
 
 /**
  * 电子点名
@@ -31,6 +31,7 @@ public class AttendenceController {
 		session.setAttribute("stus", users);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/getStudent")
 	public void getStudent(String k, HttpServletResponse response,HttpSession session){
 		int i=Integer.parseInt(k);

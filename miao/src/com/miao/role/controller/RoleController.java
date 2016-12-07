@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.miao.core.utils.Page;
 import com.miao.entity.Power;
 import com.miao.entity.Role;
 import com.miao.power.service.PowerService;
 import com.miao.role.service.RoleService;
+import com.miao.utils.Page;
 
 /**
  * 角色控制器

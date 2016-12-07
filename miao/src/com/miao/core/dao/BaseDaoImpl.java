@@ -7,7 +7,7 @@ import java.util.List;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
-import com.miao.core.utils.TransferString;
+import com.miao.utils.TransferString;
 
 public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
@@ -51,6 +51,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		return getHibernateTemplate().get(clazz, id);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<T> pageList(Integer currentPage, int i) {
 		String hql = "from " + clazz.getSimpleName();
@@ -60,6 +61,7 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		return query.getResultList();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List<T> findBysearchName(String searchName) {
 		String entity = clazz.getSimpleName();

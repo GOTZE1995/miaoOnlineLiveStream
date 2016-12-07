@@ -1,4 +1,4 @@
-package com.miao.core.utils;
+package com.miao.utils;
 
 /**
  * 将字符串首字母大小写转换

@@ -16,6 +16,7 @@ import com.miao.role.dao.RoleDao;
 @Service("roleService")
 public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 
+	@SuppressWarnings("unused")
 	private RoleDao roleDao;
 
 	@Resource

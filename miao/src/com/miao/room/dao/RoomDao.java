@@ -1,5 +1,7 @@
 package com.miao.room.dao;
 
+import java.util.List;
+
 import com.miao.core.dao.BaseDao;
 import com.miao.entity.Room;
 
@@ -9,5 +11,7 @@ import com.miao.entity.Room;
  * @author 宋禹龙 2016/11/16
  */
 public interface RoomDao extends BaseDao<Room> {
+
+	public List<Room> pageListByStatus(Integer currentPage, int i);
 
 }

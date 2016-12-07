@@ -13,11 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.miao.core.utils.Page;
 import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.room.service.RoomService;
 import com.miao.user.service.UserService;
+import com.miao.utils.Page;
 
 /**
  * 直播间控制器
@@ -165,17 +165,15 @@ public class RoomController {
 		// 用户输入了搜索数据
 		if (searchName != null && !"".equals(searchName)) {
 			List<Room> list = roomService.doSearch(searchName);
-			page = roomService.createPage(list, currentPage, 12);
+			page = roomService.pageListRoom(list, currentPage, 12);
 			request.setAttribute("searchName", searchName);
 		}
 		// 用户没有输入搜索数据
 		else {
-			page = roomService.createPage(null, currentPage, 12);
+			page = roomService.pageListRoom(null, currentPage, 12);
 		}
 
 		request.setAttribute("page", page);
-		request.setAttribute("rooms", roomService.findAll());
-
 		return "gallery";
 	}
 
@@ -290,8 +288,11 @@ public class RoomController {
 	}
 	
 	@RequestMapping("/viewRoom")
-	public String viewRoom(@RequestParam("url") String url, HttpServletRequest request) {
+	public String viewRoom(@RequestParam("url") String url,String ip,HttpServletRequest request) {
 		request.setAttribute("url", url);
+	
+		request.setAttribute("ip",ip==null?"192.168.200.128":ip);
+		
 		return "about";
 	}
 	

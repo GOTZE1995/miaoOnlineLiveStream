@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.miao.core.utils.Page;
 import com.miao.entity.User;
 import com.miao.role.service.RoleService;
 import com.miao.user.service.UserService;
+import com.miao.utils.Page;
 
 /**
  * 用户控制器 实现用户登录，注册，用户信息增删改查
@@ -234,7 +234,7 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		String oldEmail = user.getEmail();
 		try {
-			if (newEmail == ""||newEmail == null) {
+			if (newEmail == "") {
 				result = "null";
 			} else if (newEmail.equals(oldEmail)) {
 				result = "same";
@@ -279,12 +279,12 @@ public class UserController {
 	 * @author 冯鑫
 	 */
 	@RequestMapping("/checkNowPwd")
-	public void checkNowPwd( String nowPwd, HttpServletResponse response, HttpSession session) {
+	public void checkNowPwd(String nowPwd, HttpServletResponse response, HttpSession session) {
 		String result = "";
 		User user = (User) session.getAttribute("user");
 		String oldPwd = user.getPassword();
 		try {
-			if (nowPwd == null||nowPwd=="") {
+			if (nowPwd == "") {
 				result = "null";
 			} else if (nowPwd.equals(oldPwd)) {
 				result = "same";
@@ -297,7 +297,7 @@ public class UserController {
 			outputStream.close();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		}  
+		}
 	}
 	
 	/**
