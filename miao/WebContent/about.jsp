@@ -1,12 +1,51 @@
+<%@page import="com.miao.chat.controller.ChatServer"%>
+<%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	request.setAttribute("basePath", basePath);
+%>
+<!DOCTYPE html>
 <html>
-<head>s
-<%@include file="/common/header.jsp"%>	
-<title>Education Tutorial a Educational Category Flat Bootstrap
-	Responsive Website Template | About :: w3layouts</title>
+<head>
+<base href="<%=basePath%>" />
+<title>直播间</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- Set render engine for 360 browser -->
+<meta name="renderer" content="webkit">
+
+<!-- No Baidu Siteapp-->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="alternate icon" href="assets/i/favicon.png">
+<link rel="stylesheet" href="assets/css/amazeui.min.css">
+<link rel="stylesheet" href="assets/css/app.css">
+
+<!-- umeditor css -->
+<link href="umeditor/themes/default/css/umeditor.css" rel="stylesheet">
+
+<style>
+.title {
+	text-align: center;
+}
+
+.chat-content-container {
+	height: 29rem;
+	overflow-y: scroll;
+	border: 1px solid silver;
+}
+</style>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
@@ -63,6 +102,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			alert("用户名或密码不能为空");
 		}
 	}
+	
+	function openNewWindow(){
+		window.open("check.jsp", "newwindow", "height=380, width=400,top=80,left=200")
+		$.ajax({
+			url : 'attendence/checkAttendentce.do',
+			data : {},
+			type : 'post',
+			async : false,
+		})
+	}
 </script>
 
 <script type="text/javascript">
@@ -72,7 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
@@ -98,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <div id="main"
-	style="width: 1349px; height: 686px; MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
+	style="width: 1349px; height: 886px; MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
 	<body>
 		<!--header-->
 		<div class="header" id="home">
@@ -121,10 +172,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
-							<c:if test="${user.userName=='教师'}">
-							<li><a href="${basePath}attendence/Check"><span 
-									data-hover="Attendence">电子点名</span></a></li>
-							</c:if>
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
 							<li><a href="about.jsp" onclick="check()"><span
@@ -181,6 +228,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						id="bs-example-navbar-collapse-1"
 						style="width: 780px; margin-left: 60px">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
+							<c:if test="${user.role.roleName=='教师'}">
+							<li onclick="openNewWindow()"><a><span>电子点名</span></a></li>
+							</c:if>
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
@@ -188,8 +238,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<!-- /.navbar-collapse -->
-					<!-- /.container-fluid -->
 					<p
 						style="font-size: 16px; color: #6B4226; font-family: YouYuan; margin-top: 27px; width: 1160px; margin-right: 140px">欢迎,${user.userName}</p>
 					<div class="login-pop"
@@ -220,9 +268,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="about">
 			<div class="container">
 				<div class="">
+				
 					<div class="col-md-5 abt-pic">
 						<h3>直播间</h3>
-						<object width='640' height='377' id='StrobeMediaPlayback'
+						<object width='650' height='530' id='StrobeMediaPlayback'
 							name='StrobeMediaPlayback' type='application/x-shockwave-flash'
 							classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000'>
 							<param name='movie' value='swfs/StrobeMediaPlayback.swf' />
@@ -230,9 +279,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<param name='bgcolor' value='#000000' />
 							<param name='allowfullscreen' value='true' />
 							<param name='flashvars'
-								value='&src=rtmp://10.7.89.87${url }&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' />
-							<embed src='swfs/StrobeMediaPlayback.swf' width='640'
-								height='377' id='StrobeMediaPlayback' quality='high'
+								value='&src=rtmp://10.7.89.87${url}&autoHideControlBar=true&streamType=live&autoPlay=true&verbose=true' />
+							<embed src='swfs/StrobeMediaPlayback.swf' width='650'
+								height='530' id='StrobeMediaPlayback' quality='high'
 								bgcolor='#000000' name='StrobeMediaPlayback'
 								allowfullscreen='true'
 								pluginspage='http://www.adobe.com/go/getflashplayer'
@@ -243,32 +292,139 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 
 					<div class="text1" style="float: none; margin-right: 10px;">
-						<h3>聊天室</h3>
-						<table width="369" height="360" border="3" border-color="red">
-							<tr>
-								<td height="20">在线人数：</td>
-							</tr>
-							<tr>
-								<td height="300"></td>
-							</tr>
-							<tr>
-								<td width="320">
-									<form action="#">
-										&nbsp;<input type="text" style="width: 298px;" /> <input
-											type="submit" value="发送" />
-									</form>
-								</td>
-							</tr>
+						<div class="title">
+							<div class="am-g am-g-fixed">
+								<div class="am-u-sm-12" style="width:350px">
+									<h3 style="width:270px;">聊天室</h3>
+									<div class="chat-content" style="width: 350px; margin-left: 500px">
+									<div class="am-g am-g-fixed chat-content-container"
+										 style="height: 366px;margin-right:400px;margin-left:-400px;margin-top:0px">
+									<div class="am-u-sm-12">
+									<ul id="message-list"
+										class="am-comments-list am-comments-list-flip">
+									</ul>
+								</div>
+							</div>
+						</div>
 
-						</table>
+						<div class="message-input am-margin-top" style="margin-top: 0px">
+							<div class="am-g am-g-fixed">
+								<div class="am-u-sm-12">
+									<form class="am-form">
+										<div class="am-form-group" style="width: 350px; margin-left: 100px">
+											<script type="text/plain" id="myEditor" style="width: 350px; height: 6rem;"></script>
+										</div>
+									</form>
+								</div>
+							</div>
+							
+							<div class="am-g am-g-fixed am-margin-top">
+								<c:if test="${user==null}">
+									<input id="nickname" value="游客<%=(int) (Math.random() * 100)%>" type="hidden" />
+								</c:if>
+								<c:if test="${user!=null}">
+									<input id="nickname" value="${user.userName}" type="hidden" />
+								</c:if>
+								<div class="am-u-sm-6"
+									style="width: 113px; margin-left: 321px; margin-top: -50px;">
+									<button id="send" type="button" style="width:352px;height:35px;margin-left:-222px">
+										<i class="am-icon-send"></i>发送
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				  </div>
+				</div>
+
+				<script src="assets/js/jquery.min.js"></script>
+
+				<script charset="utf-8" src="umeditor/umeditor.config.js"></script>
+				<script charset="utf-8" src="umeditor/umeditor.min.js"></script>
+				<script src="umeditor/lang/zh-cn/zh-cn.js"></script>
+
+				<script>
+					$(function() {
+
+						// 初始化消息输入框
+						var um = UM.getEditor('myEditor');
+						// 使昵称框获取焦点
+						
+						// 新建WebSocket对象，最后的/chatroom跟服务器端的@ServerEndpoint("/chatroom")对应
+						var socket = new WebSocket(
+								'ws://${pageContext.request.getServerName()}:${pageContext.request.getServerPort()}${pageContext.request.contextPath}/chatroom');
+						// 处理服务器端发送的数据
+						socket.onmessage = function(event) {
+							addMessage(event.data);
+						};
+						// 点击Send按钮时的操作
+						$('#send')
+								.on(
+										'click',
+										function() {
+											var nickname = $(
+													'#nickname').val();
+											if (!um.hasContents()) { // 判断消息输入框是否为空
+												// 消息输入框获取焦点
+												um.focus();
+												// 添加抖动效果
+												$('.edui-container')
+														.addClass(
+																'am-animation-shake');
+												setTimeout(
+														"$('.edui-container').removeClass('am-animation-shake')",
+														1000);
+											} else {
+												// 发送消息
+												socket
+														.send(JSON
+																.stringify({
+																	content : um.getContent(),
+																	nickname : nickname
+																}));
+												// 清空消息输入框
+												um.setContent('');
+												// 消息输入框获取焦点
+												um.focus();
+											}
+										});
+
+						// 把消息添加到聊天内容中
+						function addMessage(message) {
+							message = JSON.parse(message);
+							
+							
+							var messageItem = '<li class="am-comment '
+									+ (message.isSelf ? 'am-comment'
+											: 'am-comment')
+									+ '">'
+									+ '<a href="javascript:void(0)" ><img src="images/miao.jpg" alt="" class="am-comment-avatar" width="48" height="48"/></a>'
+									+ '<div class="am-comment-main"><header class="am-comment-hd"><div class="am-comment-meta">'
+									+ '<a href="javascript:void(0)" class="am-comment-author">'
+									+ message.nickname + '</a> <time>'
+									+ message.date
+									+ '</time></div></header>'
+									+ '<div class="am-comment-bd">'
+									+ message.content
+									+ '</div></div></li>';
+								
+									
+							$(messageItem).appendTo('#message-list');
+							// 把滚动条滚动到底部
+							$(".chat-content-container")
+									.scrollTop(
+											$(".chat-content-container")[0].scrollHeight);
+						}
+					});
+				</script>
+
 					</div>
 
 				</div>
 			</div>
 		</div>
 </div>
-<!-- /About -->
-<!--footer-->
+
 <div class="footer" style="height: 230px">
 	<!-- container -->
 	<div class="container">
@@ -318,18 +474,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"></div>
 
 	</div>
-	<!-- //container -->
-	<!---->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			/*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear' 
-			};
-			 */
 			$().UItoTop({
 				easingType : 'easeOutQuart'
 			});
@@ -337,9 +483,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<a href="#to-top" id="toTop" style="display: block;"> <span
 		id="toTopHover" style="opacity: 1;"> </span></a>
-	<!---->
 </div>
-<!--/copy-rights-->
 </body>
 </div>
 </html>
