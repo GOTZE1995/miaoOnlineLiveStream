@@ -7,6 +7,11 @@
 <%@include file="/common/header.jsp"%>	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<script type="text/javascript">
+	window.onload=function(){
+		self.parent.frames[1].document.location.href="sys/left.do";
+	}
+</script>
 </head>
 	<body>
 		<center>
