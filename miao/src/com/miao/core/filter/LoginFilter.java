@@ -18,14 +18,17 @@ import javax.servlet.http.HttpSession;
  *
  */
 public class LoginFilter implements Filter {
+
 	@Override
 	public void destroy() {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void doFilter(ServletRequest serveletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
+		System.out.println("进入到后台过滤器了。");
 		HttpServletRequest request=(HttpServletRequest)serveletRequest;
 		HttpServletResponse response=(HttpServletResponse)servletResponse;
 		HttpSession session=request.getSession();
@@ -40,7 +43,7 @@ public class LoginFilter implements Filter {
 					//已经登录，让其继续执行
 				}else{
 					//没有登陆，跳转到后台登录页面
-					response.sendRedirect(request.getContextPath()+"/sys/login_back.do");
+					response.sendRedirect(request.getContextPath()+"/sys/index.do");
 				}
 			}else{
 				//不是关于后台的请求
