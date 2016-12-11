@@ -6,12 +6,12 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.miao.attendence.service.AttendenceService;
 import com.miao.entity.User;
+import com.miao.user.service.UserService;
 
 /**
  * 电子点名
@@ -31,14 +31,14 @@ public class AttendenceController {
 		session.setAttribute("stus", users);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping("/getStudent")
-	public void getStudent(String k, HttpServletResponse response,HttpSession session){
-		int i=Integer.parseInt(k);
+	public void getStudent(HttpServletResponse response,HttpSession session){
+		List<User> users=(List<User>) session.getAttribute("stus");
+		int n=users.size();
+		int k=(int) Math.floor(Math.random()*n);
 		try{
-			List<User> users=(List<User>) session.getAttribute("stus");
-			String userName=users.get(i).getUserName();
-			String headImg=users.get(i).getHeadImg();
+			String userName=users.get(k).getUserName();
+			String headImg=users.get(k).getHeadImg();
 			String result=userName+"|"+headImg;
 			//向页面返回用户名和头像
 			ServletOutputStream outputStream = response.getOutputStream();
