@@ -32,11 +32,9 @@
 	}
 	
 	function showNum(){
-		var n='${fn:length(sessionScope.stus)}';
-		var k=Math.floor(Math.random()*n);
 		$.ajax({
 			url :'attendence/getStudent.do',
-			data : {'k':k},
+			data : {},
 			type : 'post',
 			async : false,
 			success : function(result) {
