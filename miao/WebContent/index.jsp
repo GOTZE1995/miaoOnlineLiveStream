@@ -7,7 +7,7 @@
 			+ path + "/";
 	request.setAttribute("basePath", basePath);
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>" />
@@ -147,7 +147,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<!-- <li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li> -->
+							<li><a href="${basePath }movie/listUI"><span
+									data-hover="About">网络影院</span></a></li>
 							<li><a href="" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
 						</ul>
@@ -197,20 +198,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 						</h1>
 					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1"
 						style="width: 780px; margin-left: 60px">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
+							<li><a href="${basePath }movie/listUI"><span
+									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
 						</ul>
 						<div class="clearfix"></div>
 					</div>
-					<!-- /.navbar-collapse -->
-					<!-- /.container-fluid -->
 					<p
 						style="font-size: 16px; color: #6B4226; font-family: YouYuan; margin-top: 27px; width: 1160px; margin-right: 140px">欢迎,${user.userName}</p>
 					<div class="login-pop"
@@ -325,7 +325,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="border3" style="margin-left: 1200px">
-				<span class="texts"><a href="movie.jsp">更多</a></span>
+				<span class="texts"><a href="movie/listUI">更多</a></span>
 			</div>
 			<div class="border4">
 				<p>----------------------------------------------------------------------------------------------------------------------------------------------</p>
@@ -358,12 +358,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
-			<!-- //container -->
 		</div>
-		<!--/footer-->
-		<!--copy-rights-->
 		<div class="copyright">
-			<!-- container -->
 			<div class="container">
 				<div class="copyright-left">
 					<p>© 2016 米奥视频直播 | Design by 咖啡知音</p>
@@ -381,18 +377,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 
 			</div>
-			<!-- //container -->
-			<!---->
 			<script type="text/javascript">
 				$(document).ready(function() {
-					/*
-					var defaults = {
-					containerID: 'toTop', // fading element id
-					containerHoverID: 'toTopHover', // fading element hover id
-					scrollSpeed: 1200,
-					easingType: 'linear' 
-					};
-					 */
 					$().UItoTop({
 						easingType : 'easeOutQuart'
 					});
@@ -400,9 +386,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</script>
 			<a href="#to-top" id="toTop" style="display: block;"> <span
 				id="toTopHover" style="opacity: 1;"> </span></a>
-			<!---->
 		</div>
-		<!--/copy-rights-->
 	</body>
 </div>
 </html>

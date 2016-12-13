@@ -26,6 +26,7 @@ public class PreLoginFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+		System.out.println("进入到前台过滤器了");
 		HttpServletRequest request = (HttpServletRequest)req;
 		HttpServletResponse response = (HttpServletResponse)resp;
 		

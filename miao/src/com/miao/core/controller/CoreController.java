@@ -1,11 +1,7 @@
 package com.miao.core.controller;
 
-import java.io.IOException;
-
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -91,6 +87,7 @@ public class CoreController {
 		} else {
 			result="WEB-INF/detail/login_back";
 		}
+		System.out.println(result);
 		return result;
 	}
 	
@@ -100,20 +97,13 @@ public class CoreController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/logout_back")
-	public void logout_back(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping("logout_back")
+	public String logout_back(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
 		if (session != null) {
 			session.removeAttribute("AdminUser");
 		}
-		String result = "success";
-		try {
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		return "redirect:/sys/login_back.do";
 	}
 }

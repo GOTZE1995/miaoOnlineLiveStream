@@ -9,7 +9,6 @@ import com.miao.entity.User;
 
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
-	@SuppressWarnings({ "deprecation", "rawtypes" })
 	@Override
 	public User findByAccountAndPass(String name, String password) {
 		String hql = "from User where userName = ?0 and password = ?1";

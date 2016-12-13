@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.miao.core.dao.BaseDao;
-import com.miao.utils.Page;
+import com.miao.core.utils.Page;
+import com.miao.entity.Power;
+import com.miao.entity.Room;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
 
@@ -39,7 +41,6 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		return baseDao.findAll();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Page<T> createPage(List list, Integer currentPage, int i) {
 		Page<T> page = new Page<T>(currentPage, i);

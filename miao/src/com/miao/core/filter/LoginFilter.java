@@ -43,7 +43,7 @@ public class LoginFilter implements Filter {
 					//已经登录，让其继续执行
 				}else{
 					//没有登陆，跳转到后台登录页面
-					response.sendRedirect(request.getContextPath()+"/sys/index.do");
+					response.sendRedirect(request.getContextPath()+"/sys/login_back.do");
 				}
 			}else{
 				//不是关于后台的请求

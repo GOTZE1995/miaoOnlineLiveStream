@@ -3,7 +3,9 @@ package com.miao.core.service;
 import java.io.Serializable;
 import java.util.List;
 
-import com.miao.utils.Page;
+import com.miao.core.utils.Page;
+import com.miao.entity.Power;
+import com.miao.entity.Room;
 
 public interface BaseService<T> {
 

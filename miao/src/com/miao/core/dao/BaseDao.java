@@ -3,6 +3,9 @@ package com.miao.core.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import com.miao.entity.Room;
+import com.miao.entity.User;
+
 /**
  * 通用Dao
  * 

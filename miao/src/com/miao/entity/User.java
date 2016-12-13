@@ -104,7 +104,7 @@ public class User implements Serializable {
 	 * 级联更新，修改，删除，关闭了懒加载
 	 * @return
 	 */
-	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	public Room getRoom() {
 		return room;
@@ -127,5 +127,4 @@ public class User implements Serializable {
 	public User() {
 		super();
 	}
-
 }

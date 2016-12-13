@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.miao.core.utils.Page;
 import com.miao.entity.User;
 import com.miao.role.service.RoleService;
 import com.miao.user.service.UserService;
-import com.miao.utils.Page;
 
 /**
  * 用户控制器 实现用户登录，注册，用户信息增删改查
