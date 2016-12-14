@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,12 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.miao.core.utils.Page;
 import com.miao.entity.Room;
 import com.miao.entity.User;
 import com.miao.room.service.RoomService;
 import com.miao.user.service.UserService;
-import com.miao.utils.Page;
 
 /**
  * 直播间控制器
@@ -187,7 +187,6 @@ public class RoomController {
 	@RequestMapping("/registMyRoom")
 	public String registMyRoom(Room room, HttpSession session) {
 		if (room != null) {
-			String userName = room.getUser().getUserName();
 			// 默认直播间状态为无效
 			room.setStatus(Room.ROOM_STATUS_INVAILD);
 			// 设置直播间创建时间
@@ -208,8 +207,8 @@ public class RoomController {
 	 * @param response
 	 */
 	@RequestMapping("/checkRoom")
-	public void checkRoom(HttpSession session, HttpServletResponse response) {
-		try {
+	@ResponseBody
+	public String checkRoom(HttpSession session, HttpServletResponse response) {
 			String result = "true";
 			// 检查该用户是否已经注册直播间
 			User user = (User) session.getAttribute("user");
@@ -217,13 +216,7 @@ public class RoomController {
 			if (room != null) {
 				result = "false";
 			}
-			// 向页面返回数据
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+			return result;
 	}
 
 	/**

@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.miao.core.utils.Page;
@@ -46,20 +45,20 @@ public class UserController {
 	 * @author 孙兰云、冯鑫
 	 */
 	@RequestMapping("login")
-	public String login(User user, HttpSession session,HttpServletRequest request) {
+	public String login(User user, HttpSession session, HttpServletRequest request) {
 		user = userService.login(user.getUserName(), user.getPassword());
 		// 数据库中查到用户，将用户存到session域中
 		if (user != null) {
 			session.setAttribute("user", user);
-			//记录***登陆了
+			// 记录***登陆了
 			LogFactory.getLog(getClass()).info("用户" + user.getUserName() + "登录了");
 		}
-		//把用户对象放入到session中，将会触发LoginListenner中的attributeAdded事件
+		// 把用户对象放入到session中，将会触发LoginListenner中的attributeAdded事件
 		request.getSession().setAttribute("loginuser", user);
 
 		return "index";
 	}
-	
+
 	/**
 	 * 检查登录时用户名与密码是否匹配
 	 * 
@@ -69,23 +68,18 @@ public class UserController {
 	 * @author 孙兰云
 	 */
 	@RequestMapping("/loginCheckUserNameAndPwd")
-	public void loginCheckUserNameAndPwd(String username, String password, HttpServletResponse response) {
-		try {
-			String result = " not pass";
-			User user = userService.login(username, password);
+	@ResponseBody
+	public String loginCheckUserNameAndPwd(String username, String password) {
+		String result = " not pass";
+		User user = userService.login(username, password);
 
-			// 数据库中查到用户，将用户存到session域中
-			if (user != null) {
-				result = "pass";
-			}
-
-			// 向页面返回数据
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		// 数据库中查到用户，将用户存到session域中
+		if (user != null) {
+			result = "pass";
 		}
+
+		// 向页面返回数据
+		return result;
 	}
 
 	/**
@@ -101,7 +95,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 
 		if (session != null) {
-			//移除session的用户信息
+			// 移除session的用户信息
 			session.removeAttribute("user");
 		}
 		return "index";
@@ -112,14 +106,14 @@ public class UserController {
 	 * 
 	 * @param user
 	 * @param session
-	 * @return index页面vvvvvvgg
+	 * @return index页面
 	 * @author 程菊飞
 	 */
 	@RequestMapping("regist")
-	public String regist(User user, HttpSession session,HttpServletRequest request) {
+	public String regist(User user, HttpSession session, HttpServletRequest request) {
 		userService.regist(user);
-		//注册成功直接登录
-		return login(user, session,request);
+		// 注册成功直接登录
+		return login(user, session, request);
 	}
 
 	/**
@@ -130,25 +124,17 @@ public class UserController {
 	 * @author 程菊飞
 	 */
 	@RequestMapping("/checkUsername")
-	public void checkUsername(String username, HttpServletResponse response) {
-		try {
-			System.out.println(username);
-			String result = "pass";
-			// 查询重复的用户名
-			List<User> users = userService.findAllUsersByName(username);
-			if (users != null && users.size() > 0) {
-				result = "repeat";
-			}
-			// 向页面返回数据
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+	@ResponseBody
+	public String checkUsername(String username) {
+		String result = "pass";
+		// 查询重复的用户名
+		List<User> users = userService.findAllUsersByName(username);
+		if (users != null && users.size() > 0) {
+			result = "repeat";
 		}
+		// 向页面返回数据
+		return result;
 	}
-
-	
 
 	/**
 	 * 检测注册时邮箱是否重复
@@ -158,27 +144,17 @@ public class UserController {
 	 * @author 程菊飞
 	 */
 	@RequestMapping("/checkEmail")
-	public void checkEmail(String email, HttpServletResponse response) {
-		try {
-			String result = "pass";
-
-			// 查询重复的邮箱
-			List<User> users = userService.findAllUsersByEmail(email);
-
-			if (users != null && users.size() > 0) {
-				result = "repeat";
-			}
-
-			// 向页面返回结果
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+	@ResponseBody
+	public String checkEmail(String email) {
+		String result = "pass";
+		// 查询重复的邮箱
+		List<User> users = userService.findAllUsersByEmail(email);
+		if (users != null && users.size() > 0) {
+			result = "repeat";
 		}
+		// 向页面返回结果
+		return result;
 	}
-
-	
 
 	/**
 	 * 用户信息修改
@@ -190,28 +166,28 @@ public class UserController {
 	 */
 	@RequestMapping("/edit")
 	public String edit(@RequestParam("email") String email, @RequestParam("nickName") String nickName,
-			@RequestParam(name = "file") CommonsMultipartFile file, HttpServletRequest request,
-			HttpSession session) {
+			@RequestParam(name = "file") CommonsMultipartFile file, HttpServletRequest request, HttpSession session) {
 		try {
 			User user = (User) session.getAttribute("user");
 			user.setEmail(email);
 			user.setNickName(nickName);
-				if (!file.isEmpty()) {
-					// 获得文件名并重命名
-					String fileName = UUID.randomUUID().toString() + file.getOriginalFilename();
-					// 获取完整路径
-					String filePath = request.getSession().getServletContext().getRealPath("/upload") + "\\" + fileName;
-					//获取图片扩展名
-					String type = fileName.substring(fileName.lastIndexOf(".") + 1);
-					//判断是否为要求的格式
-					if (type.equals("png") ||type.equals("bmp") || type.equals("jpg") || type.equals("jpeg") || type.equals("gif") || type.equals("JPG") || type.equals("JPEG")|| type.equals("PNG") ||type.equals("BMP")|| type.equals("GIF"))
-					{
-						// 保存头像到upload目录
-						file.transferTo(new File(filePath));
-						// 将头像相对路径设置到user中
-						user.setHeadImg("upload/" + fileName);
-					}
+			if (!file.isEmpty()) {
+				// 获得文件名并重命名
+				String fileName = UUID.randomUUID().toString() + file.getOriginalFilename();
+				// 获取完整路径
+				String filePath = request.getSession().getServletContext().getRealPath("/upload") + "\\" + fileName;
+				// 获取图片扩展名
+				String type = fileName.substring(fileName.lastIndexOf(".") + 1);
+				// 判断是否为要求的格式
+				if (type.equals("png") || type.equals("bmp") || type.equals("jpg") || type.equals("jpeg")
+						|| type.equals("gif") || type.equals("JPG") || type.equals("JPEG") || type.equals("PNG")
+						|| type.equals("BMP") || type.equals("GIF")) {
+					// 保存头像到upload目录
+					file.transferTo(new File(filePath));
+					// 将头像相对路径设置到user中
+					user.setHeadImg("upload/" + fileName);
 				}
+			}
 			userService.update(user);
 		} catch (IllegalStateException | IOException e) {
 			LogFactory.getLog(getClass()).equals("头像保存失败：" + e.getMessage());
@@ -229,28 +205,23 @@ public class UserController {
 	 * @author 程菊飞
 	 */
 	@RequestMapping("/checkNewEmail")
-	public void checkNewEmail(String newEmail, HttpServletResponse response, HttpSession session) {
+	@ResponseBody
+	public String checkNewEmail(String newEmail, HttpSession session) {
 		String result = "";
 		User user = (User) session.getAttribute("user");
 		String oldEmail = user.getEmail();
-		try {
-			if (newEmail == "") {
-				result = "null";
-			} else if (newEmail.equals(oldEmail)) {
-				result = "same";
-			} else {
-				List<User> users = userService.findAllUsersByEmail(newEmail);
-				if (users != null && users.size() > 0) {
-					result = "repeat";
-				}
+		if (newEmail == "") {
+			result = "null";
+		} else if (newEmail.equals(oldEmail)) {
+			result = "same";
+		} else {
+			List<User> users = userService.findAllUsersByEmail(newEmail);
+			if (users != null && users.size() > 0) {
+				result = "repeat";
 			}
-			// 向页面返回数据
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
 		}
+		// 向页面返回数据
+		return result;
 	}
 
 	/**
@@ -279,27 +250,22 @@ public class UserController {
 	 * @author 冯鑫
 	 */
 	@RequestMapping("/checkNowPwd")
-	public void checkNowPwd(String nowPwd, HttpServletResponse response, HttpSession session) {
+	@ResponseBody
+	public String checkNowPwd(String nowPwd, HttpSession session) {
 		String result = "";
 		User user = (User) session.getAttribute("user");
 		String oldPwd = user.getPassword();
-		try {
-			if (nowPwd == "") {
-				result = "null";
-			} else if (nowPwd.equals(oldPwd)) {
-				result = "same";
-			} else {
-				result = "false";
-			}
-			// 向页面返回数据
-			ServletOutputStream outputStream = response.getOutputStream();
-			outputStream.write(result.getBytes());
-			outputStream.close();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		if (nowPwd == "") {
+			result = "null";
+		} else if (nowPwd.equals(oldPwd)) {
+			result = "same";
+		} else {
+			result = "false";
 		}
+		// 向页面返回数据
+		return result;
 	}
-	
+
 	/**
 	 * 后台用户列表界面+查询功能
 	 * 

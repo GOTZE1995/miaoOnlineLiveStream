@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.miao.core.utils.Page;
 import com.miao.entity.Power;
 import com.miao.power.service.PowerService;
-import com.miao.utils.Page;
 
 /**
  * 权限控制器

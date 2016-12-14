@@ -3,8 +3,8 @@ package com.miao.room.service;
 import java.util.List;
 
 import com.miao.core.service.BaseService;
+import com.miao.core.utils.Page;
 import com.miao.entity.Room;
-import com.miao.utils.Page;
 
 /**
  * 直播间业务逻辑层接口
