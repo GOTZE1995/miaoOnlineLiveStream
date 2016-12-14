@@ -91,13 +91,6 @@
 		<listener-class>com.miao.core.listener.LoginListener</listener-class>
 	</listener>
 	
-	<servlet>
-		<servlet-name>LoadOnStartServlet</servlet-name>
-		<servlet-class>com.miao.core.utils.LoadOnStartServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-		<!-- load-on-startup标记容器是否在启动的时候就加载这个servlet。当大于0或者等于0时，表示加载。值越小，优先级越低 -->
-	</servlet>
-	
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>

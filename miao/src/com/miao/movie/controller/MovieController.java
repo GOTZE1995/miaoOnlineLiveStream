@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.miao.entity.Category;
 import com.miao.entity.Configure;
 import com.miao.entity.Video;
 import com.miao.entity.Videostate;
+import com.miao.movie.listener.RawVideo;
 import com.miao.movie.service.MovieService;
 
 /**
@@ -146,7 +148,7 @@ public class MovieController {
 	 * @throws Exception 
 	 */
 	@RequestMapping("add")
-	public String add(HttpServletRequest request,@RequestParam(name = "file") CommonsMultipartFile file,@RequestParam String name,@RequestParam String intro) throws Exception{
+	public String add(HttpServletRequest request,HttpSession session,@RequestParam(name = "file") CommonsMultipartFile file,@RequestParam String name,@RequestParam String intro) throws Exception{
 		
 		Video video = new Video();
 		video.setEdittime(new Timestamp(new Date().getTime()));
@@ -201,6 +203,8 @@ public class MovieController {
 			
 			//对视频进行更新操作
 			movieService.update(video);
+			
+			session.setAttribute("RawVideo", new RawVideo(video));
 		}
 		
 		return "redirect:/movie/findMovie";
