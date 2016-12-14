@@ -70,8 +70,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function check() {
 		alert("请您先登录");
 	}
+	
+	function renewUsernameState() {
+		document.getElementById("userSpan").innerHTML = "";
+		document.getElementById("submitSpan").innerHTML = "";
+	}
+	
 
-	function loginCheckUserName() {
+	 function loginCheckUserName() {
 		var username = $('#username').val();
 		$.ajax({
 			url : 'user/checkUsername.do',
@@ -82,7 +88,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result == "pass") {
-					alert("该用户不存在");
+					document.getElementById("userSpan").innerHTML = "该用户名不存在";
+					document.getElementById("username").value = "";
 				}
 			}
 		})
@@ -101,18 +108,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result != "pass") {
-					alert("用户名与密码不匹配");
+					document.getElementById("submitSpan").innerHTML = "用户名与密码不匹配";
+					document.getElementById("username").value = "";
+					document.getElementById("password").value = "";
 				}
 			}
 		})
-	}
-
-	function doSubmit() {
-		if ($('#username').val() != "" && $('#password').val() != "") {
-			document.forms[0].submit();
-		} else {
-			alert("用户名或密码不能为空");
-		}
 	}
 
 	function openNewWindow() {
@@ -125,6 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 		})
 	}
+	
 </script>
 
 <script type="text/javascript">
@@ -181,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 						</h1>
 					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
+
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
@@ -205,16 +207,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<fieldset>
 											<label for="email">用户名</label> <input type="text"
 												name="userName" class="username" id="username"
-												placeholder="用户名" onblur="loginCheckUserName()" />
+												placeholder="用户名" onblur="loginCheckUserName()" 
+												onfocus="renewUsernameState()"/>
+												<span id="userSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
 										<fieldset>
 											<label for="password">密码</label> <input type="password"
 												id="password" class="password" placeholder="密码"
 												onblur="loginCheckUserNameAndPwd()" name="password">
+											<span id="submitSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
-										<input type="submit" id="login" value="登录"
-											onclick="doSubmit()"> <label for="checkbox"><input
-											type="checkbox" id="checkbox"> <i>记住密码</i> </label>
+										<input type="submit" id="login" value="登录"> 
+										<label for="checkbox"><input
+											type="checkbox" id="checkbox"> <i>记住密码</i></label>
 									</fieldset>
 									<span><a href="register.jsp">点我快速注册</a></span>
 								</form>
@@ -270,8 +275,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<script src="js/menu_jquery.js"></script>
 				</div>
-			</c:if> </nav>
-			<!--/script-->
+			</c:if> 
+			</nav>
 			<div class="clearfix"></div>
 		</div>
 		<!-- Top Navigation -->
@@ -371,7 +376,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 							// 初始化消息输入框
 							var um = UM.getEditor('myEditor');
-							// 使昵称框获取焦点
 							
 							// 新建WebSocket对象，最后的/chatroom跟服务器端的@ServerEndpoint("/chatroom")对应
 							var socket = new WebSocket(
@@ -392,17 +396,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													um.focus();
 									
 													// 添加抖动效果
-													$('.edui-container')
-															.addClass(
-																	'am-animation-shake');
-													setTimeout(
-															"$('.edui-container').removeClass('am-animation-shake')",
-															1000);
+													$('.edui-container').addClass('am-animation-shake');
 												}else{
 													// 发送消息
-													socket
-															.send(JSON
-																	.stringify({
+													socket.send(JSON.stringify({
 																		content : um.getContent(),
 																		nickname : nickname,
 																		headImg : '${user.headImg}'
@@ -419,10 +416,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								message = JSON.parse(message);
 								
 								
-								var messageItem = '<li class="am-comment '
-										+ (message.isSelf ? 'am-comment'
-												: 'am-comment')
-										+ '">'
+								var messageItem = '<li class="am-comment">'
 										+ '<a href="javascript:void(0)" ><img src=" '+message.headImg+' " alt="" class="am-comment-avatar" width="48" height="48"/></a>'
 										+ '<div class="am-comment-main"><header class="am-comment-hd"><div class="am-comment-meta">'
 										+ '<a href="javascript:void(0)" class="am-comment-author">'
@@ -450,7 +444,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 							// 初始化消息输入框
 							var um = UM.getEditor('myEditor');
-							// 使昵称框获取焦点
 							
 							// 新建WebSocket对象，最后的/chatroom跟服务器端的@ServerEndpoint("/chatroom")对应
 							var socket = new WebSocket(
@@ -471,17 +464,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													um.focus();
 									
 													// 添加抖动效果
-													$('.edui-container')
-															.addClass(
-																	'am-animation-shake');
-													setTimeout(
-															"$('.edui-container').removeClass('am-animation-shake')",
-															1000);
+													$('.edui-container').addClass('am-animation-shake');
 												}else{
 													// 发送消息
-													socket
-															.send(JSON
-																	.stringify({
+													socket.send(JSON.stringify({
 																		content : um.getContent(),
 																		nickname : nickname,
 																		headImg : 'images/miao.jpg'
@@ -497,11 +483,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							function addMessage(message) {
 								message = JSON.parse(message);
 								
-								
-								var messageItem = '<li class="am-comment '
-										+ (message.isSelf ? 'am-comment'
-												: 'am-comment')
-										+ '">'
+								var messageItem = '<li class="am-comment">'
 										+ '<a href="javascript:void(0)" ><img src=" '+message.headImg+' " alt="" class="am-comment-avatar" width="48" height="48"/></a>'
 										+ '<div class="am-comment-main"><header class="am-comment-hd"><div class="am-comment-meta">'
 										+ '<a href="javascript:void(0)" class="am-comment-author">'
@@ -512,7 +494,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										+ message.content
 										+ '</div></div></li>';
 									
-										
 								$(messageItem).appendTo('#message-list');
 								// 把滚动条滚动到底部
 								$(".chat-content-container")

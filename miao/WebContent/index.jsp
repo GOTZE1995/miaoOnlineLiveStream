@@ -22,6 +22,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function check() {
 		alert("请您先登录");
 	}
+	
+	function renewUsernameState() {
+		document.getElementById("userSpan").innerHTML = "";
+		document.getElementById("submitSpan").innerHTML = "";
+	}
+	
 
 	 function loginCheckUserName() {
 		var username = $('#username').val();
@@ -34,7 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result == "pass") {
-					alert("该用户不存在");
+					document.getElementById("userSpan").innerHTML = "该用户名不存在";
+					document.getElementById("username").value = "";
 				}
 			}
 		})
@@ -53,35 +60,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result != "pass") {
-					alert("用户名与密码不匹配");
-					window.location.href="index.jsp";
+					document.getElementById("submitSpan").innerHTML = "用户名与密码不匹配";
+					document.getElementById("username").value = "";
+					document.getElementById("password").value = "";
 				}
 			}
 		})
 	}
-
-	function doSubmit() {
-		if ($('#username').val() != "" && $('#password').val() != "") {
-			document.forms[0].submit();
-		} else {
-			alert("用户名或密码不能为空");
-		}
-	}
 	
-	$(function(){
-		document.onkeydown = function(e){
-		    var ev = document.all ? window.event : e;
-		    if(ev.keyCode==13) {
-		           $('#login').submit();//处理事件
-		     }
-		}
-	});   
 	
-	$('#login').keydown(function(e){
-		if(e.keyCode==13){
-		   $('#login').submit(); //处理事件
-		}
-	}); 
 </script>
 
 <script type="application/x-javascript">
@@ -181,15 +168,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<fieldset>
 											<label for="email">用户名</label> <input type="text"
 												name="userName" class="username" id="username"
-												placeholder="用户名" onblur="loginCheckUserName()" />
+												placeholder="用户名" onblur="loginCheckUserName()" 
+												onfocus="renewUsernameState()"/>
+												<span id="userSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
 										<fieldset>
 											<label for="password">密码</label> <input type="password"
 												id="password" class="password" placeholder="密码"
 												onblur="loginCheckUserNameAndPwd()" name="password">
+											<span id="submitSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
-										<input type="submit" id="login" value="登录"
-											onclick="doSubmit()"> <label for="checkbox"><input
+										<input type="submit" id="login" value="登录"> 
+										<label for="checkbox"><input
 											type="checkbox" id="checkbox"> <i>记住密码</i></label>
 									</fieldset>
 									<span><a href="register.jsp">点我快速注册</a></span>
@@ -220,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="${basePath }movie/findMovie"><span
+							<li><a href="${basePath }movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 

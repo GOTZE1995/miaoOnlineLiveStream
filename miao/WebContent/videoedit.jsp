@@ -38,6 +38,55 @@
 $(document).ready(function(){
 	$("#videoform1").validationEngine();
 });
+
+function check() {
+	alert("请您先登录");
+}
+
+function renewUsernameState() {
+	document.getElementById("userSpan").innerHTML = "";
+	document.getElementById("submitSpan").innerHTML = "";
+}
+
+
+ function loginCheckUserName() {
+	var username = $('#username').val();
+	$.ajax({
+		url : 'user/checkUsername.do',
+		data : {
+			'username' : username
+		},
+		type : 'post',
+		async : false,
+		success : function(result) {
+			if (result == "pass") {
+				document.getElementById("userSpan").innerHTML = "该用户名不存在";
+				document.getElementById("username").value = "";
+			}
+		}
+	})
+}
+
+function loginCheckUserNameAndPwd() {
+	var username = $('#username').val();
+	var password = $('#password').val();
+	$.ajax({
+		url : 'user/loginCheckUserNameAndPwd.do',
+		data : {
+			'password' : password,
+			'username' : username
+		},
+		type : 'post',
+		async : false,
+		success : function(result) {
+			if (result != "pass") {
+				document.getElementById("submitSpan").innerHTML = "用户名与密码不匹配";
+				document.getElementById("username").value = "";
+				document.getElementById("password").value = "";
+			}
+		}
+	})
+}
 </script> 
 
 </head>
@@ -84,16 +133,19 @@ $(document).ready(function(){
 										<fieldset>
 											<label for="email">用户名</label> <input type="text"
 												name="userName" class="username" id="username"
-												placeholder="用户名" onblur="loginCheckUserName()" />
+												placeholder="用户名" onblur="loginCheckUserName()" 
+												onfocus="renewUsernameState()"/>
+												<span id="userSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
 										<fieldset>
 											<label for="password">密码</label> <input type="password"
 												id="password" class="password" placeholder="密码"
 												onblur="loginCheckUserNameAndPwd()" name="password">
+											<span id="submitSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
-										<input type="submit" id="login" value="登录"
-											onclick="doSubmit()"> <label for="checkbox"><input
-											type="checkbox" id="checkbox"> <i>记住密码</i> </label>
+										<input type="submit" id="login" value="登录"> 
+										<label for="checkbox"><input
+											type="checkbox" id="checkbox"> <i>记住密码</i></label>
 									</fieldset>
 									<span><a href="register.jsp">点我快速注册</a></span>
 								</form>
