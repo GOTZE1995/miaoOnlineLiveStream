@@ -36,7 +36,8 @@ public class User implements Serializable {
 	private String email;
 	// 头像地址
 	private String headImg;
-
+	//班级名
+	private String className;
 	// 用户与直播间，一对一
 	private Room room;
 	// 用户与角色，多对一
@@ -123,7 +124,13 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	public String getClassName() {
+		return className;
+	}
 
+	public void setClassName(String className) {
+		this.className = className;
+	}
 	public User() {
 		super();
 	}
