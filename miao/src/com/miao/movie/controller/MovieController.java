@@ -57,18 +57,9 @@ public class MovieController {
 			page=movieService.pageListMovie(null, currentPage,12);
 		}
 		request.setAttribute("page", page);
-		return new ModelAndView("videolist1");
-	}
-	
-	/**
-	 * 进入点播list页面
-	 * @return
-	 */
-	@RequestMapping("listUI")
-	public ModelAndView listUI() {
 		return new ModelAndView("videolist1", "resultvideo", movieService.ReadByProperty("Video", "islive", 0));
 	}
-
+	
 	/**
 	 * 进入id为*的视频页面
 	 * @param id
@@ -104,7 +95,7 @@ public class MovieController {
 			preVideo.setIntro(intro);
 			preVideo.setName(name);
 			movieService.update(preVideo);
-		return new ModelAndView("redirect:/movie/listUI");
+		return new ModelAndView("redirect:/movie/findMovie");
 	}
 
 	/**
@@ -145,7 +136,7 @@ public class MovieController {
 		video.getCategory().getVideos().remove(video);
 		video.getVideostate().getVideos().remove(video);
 		movieService.deleteById(id);
-		return "redirect:/movie/listUI";
+		return "redirect:/movie/findMovie";
 	}
 	
 	/**
@@ -203,8 +194,6 @@ public class MovieController {
 			
 			//获取目标文件并上传
 			file.transferTo(new File(realfileoriPath));
-//			File targetFile=new File(realfileoriPath);
-//			upLoadFile(videofile,targetFile);
 
 			//获取视频状态并保存
 			videostate=(Videostate) movieService.ReadSingle("Videostate", "order", 2);
@@ -214,7 +203,7 @@ public class MovieController {
 			movieService.update(video);
 		}
 		
-		return "redirect:/movie/listUI";
+		return "redirect:/movie/findMovie";
 	}
 
 }

@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					style="width: 780px; margin-left: 60px">
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
-						<li><a href="movie/listUI"><span
+						<li><a href="movie/findMovie"><span
 									data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
