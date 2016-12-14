@@ -26,8 +26,15 @@ public class AttendenceController {
 	
 	@RequestMapping("/checkAttendentce")
 	public void checkAttendence(HttpSession session){
+		//获取当前的班级
+		User teacher=(User) session.getAttribute("user");
+		String className=teacher.getClassName();
 		//获取当前班级的所有同学,存入session中
-		List<User> users = attendenceService.findAllStudents();
+		List<User> users = attendenceService.findAllStudentsByClassName(className);
+		for(int i=0;i<users.size();i++){
+			System.out.println("学生"+i+"的名字"+users.get(i).getUserName());
+		}
+		
 		session.setAttribute("stus", users);
 	}
 	

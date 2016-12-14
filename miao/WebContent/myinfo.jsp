@@ -34,9 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/bootstrap.js"></script>
 <!-- /js -->
 <!--fonts-->
-<link
-	href='//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,600italic,700,700italic,800,800italic'
-	rel='stylesheet' type='text/css'>
+
 <!--/fonts-->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
@@ -185,6 +183,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="${basePath }room/findRoom"><span
 								data-hover="About">视频直播</span></a></li>
+						<li><a href="movie/listUI"><span
+									data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
 					</ul>
@@ -252,9 +252,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<style>
 .fileInputContainer {
 	height: 250px;
-	background: url(images-info/2.png);
+	background: url(${user.headImg });
 	position: relative;
 	width: 270px;
+	background-size:100% 100%;
+	background-repeat: no-repeat;
 }
 
 .fileInput {
@@ -288,7 +290,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<h3>${user.userName}</h3>
 											<form
 												action="${pageContext.request.contextPath}/user/edit.do"
-												method="post" id="editMyInfo">
+												method="post" id="editMyInfo" enctype="multipart/form-data">
 												<h4>邮箱账号</h4>
 												<div class="email-group">
 													<div class="email-form">
@@ -308,17 +310,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													</div>
 													<div class="clear"></div>
 												</div>
-
-												<h4>所属班级</h4>
+												<h4>上传头像</h4>
 												<div class="phone-group">
 													<div class="cell-form">
-														<input type="text" name="classId" value="四班"
-															onfocus="this.value = '';"
-															onblur="if (this.value == '') {this.value = '四班';}">
+														<input type="file" name="file" /> 
+														<img src="${user.headImg }" widht='100' height='90'  style='display:none'/>
 													</div>
 												</div>
-												<br /> <br /> <br /> <input type="button" value="更新"
+												<br/>
+												<div style="margin-top:30px;">
+												 <input type="button" value="更新"
 													onclick="doSubmit()" /> <span id="submitSpan"></span>
+												</div>
 											</form>
 										</div>
 										<div class="clear"></div>
@@ -337,7 +340,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 													<h4>当前密码：</h4>
 													<div class="cell-form" style="width: 446px">
-														<input type="text" id="password" name="nowPwd"
+														<input type="password" id="password" name="nowPwd"
 															onblur="checkNowPwd()" onfocus="renewPwdState()" /><span
 															id="spanPassword"></span>
 													</div>
@@ -346,7 +349,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 													<h4>新的密码：</h4>
 													<div class="cell-form" style="width: 446px">
-														<input type="text" name="newPwd" />
+														<input type="password" name="newPwd" />
 													</div>
 
 													<div class="nulls"></div>

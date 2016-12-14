@@ -12,6 +12,6 @@ public interface AttendenceDao extends BaseDao<User> {
 	 * @param username
 	 * @return 查询到的对象
 	 */
-	public List<User> findAllStudents();
+	public List<User> findAllStudentsByClassName(String className);
 
 }

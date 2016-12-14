@@ -48,6 +48,7 @@
             <div class="ItemBlock">
 				<div class="ItemBlock2">
 					<table cellpadding="0" cellspacing="0" class="mainForm">
+					
                     <tr>
 							<td width="80px">房间名</td>
 							<td><input type="text" name="roomName" class="InputStyle" value="${roomInfo.roomName }"/>
@@ -56,7 +57,9 @@
 						</tr>
 						<tr>
 							<td width="80px">房间日期</td>
-							<td><fmt:formatDate value="${roomInfo.beginDate }" dateStyle="default"/></td>
+							<td>
+							<input type="hidden" name="beginDate" value="${roomInfo.beginDate }" />
+							<fmt:formatDate value="${roomInfo.beginDate }" dateStyle="default"/></td>
 						</tr>
 						<tr>
 							<td>状态</td>
@@ -66,8 +69,8 @@
 								<input type="radio" name="status" value="1" checked="checked"  />打开
 							</c:if>
 							<c:if test="${roomInfo.status == 0 }">
-								<input type="radio" name="status" value="0"  />关闭
-								<input type="radio" name="status" value="1" checked="checked"  />打开
+								<input type="radio" name="status" value="0" checked="checked"  />关闭
+								<input type="radio" name="status" value="1"  />打开
 							</c:if>
 							
 							</td>

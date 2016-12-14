@@ -52,6 +52,7 @@
 				<td>昵称</td>
 				<td>邮箱</td>
                 <td>角色</td>
+                <td>班级</td>
 				<td>操作</td>
 			</tr>
 		</thead>	
@@ -65,6 +66,7 @@
 				<td>${user.nickName }&nbsp;</td>
 				<td>${user.email }&nbsp;</td>
                 <td>${user.role.roleName }&nbsp;</td>
+                <td>${user.className }&nbsp;</td>
 				<td>
 					<a href="user/updateUI.do?id=${user.id }"  class="FunctionButton">更新</a>				
 					<a href="user/delete.do?id=${user.id }" onClick="return delConfirm();" class="FunctionButton">删除</a>				

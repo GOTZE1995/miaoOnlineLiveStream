@@ -73,6 +73,10 @@
 						</tr>
 						
 						<tr>
+							<td>班级</td>
+							<td><input type="text" name="className" class="InputStyle" value="${userInfo.className }"/> *</td>
+						</tr>
+						<tr>
 							<td>直播间</td>
 							<td>${userInfo.room.roomName }</td>
 						</tr>

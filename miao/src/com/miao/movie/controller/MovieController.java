@@ -3,7 +3,6 @@ package com.miao.movie.controller;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -16,17 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.miao.core.utils.Page;
 import com.miao.entity.Category;
 import com.miao.entity.Configure;
-import com.miao.entity.Room;
 import com.miao.entity.Video;
 import com.miao.entity.Videostate;
 import com.miao.movie.service.MovieService;
 
 /**
  * 视频点播页面的跳转
- * 
  * @author Jupiter
  * 2016/12/11
  */
@@ -36,16 +32,6 @@ public class MovieController {
 
 	@Resource
 	private MovieService movieService;
-	
-	@RequestMapping("/findMovie")
-	public String findRoom(
-			HttpServletRequest request, String searchName) {
-		
-			request.setAttribute("searchName", searchName);
-		// 用户没有输入搜索数据
-
-		return "videolist1";
-	}
 
 	/**
 	 * 进入点播list页面
@@ -131,7 +117,7 @@ public class MovieController {
 		// 删除视频对象
 		video.getCategory().getVideos().remove(video);
 		video.getVideostate().getVideos().remove(video);
-		movieService.delete(video);
+		movieService.deleteById(id);
 		return "redirect:/movie/listUI";
 	}
 	

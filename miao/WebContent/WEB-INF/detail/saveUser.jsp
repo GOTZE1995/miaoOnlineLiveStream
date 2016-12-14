@@ -64,7 +64,11 @@
 						<tr>
 							<td>邮箱</td>
 							<td><input type="text" name="email" class="InputStyle" /> *</td>
-						</tr>			
+						</tr>	
+						<tr>
+							<td>班级</td>
+							<td><input type="text" name="className" class="InputStyle"/> *</td>
+						</tr>		
 						<tr>
 							<td>角色</td>
 							<td>
