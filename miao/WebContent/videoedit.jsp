@@ -10,6 +10,29 @@
 <meta name="description" content="The simplest video website based on JavaEE and FFmpeg" />
 
 <title>视频编辑</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<script src="js/modernizr.custom.js"></script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+
+
+<link href="css/svw_style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="js/showhide.js"></script>  
+<script type="text/JavaScript" src="js/jquery.mousewheel.js"></script> 
+
+<!-- validationEngine -->
+<link rel="stylesheet" href="css/validationEngine.jquery.css" type="text/css"/>
+<script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){

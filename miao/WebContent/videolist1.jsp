@@ -8,20 +8,32 @@
 <meta name="keywords" content="Video, FFmpeg, JavaEE" />
 <meta name="author" content="Lei Xiaohua" />
 <meta name="description" content="The simplest video website based on JavaEE and FFmpeg" />
-
 <title>网络影院</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<script src="js/modernizr.custom.js"></script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<link href="css/svw_style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="js/showhide.js"></script> 
+<link rel="stylesheet" href="css/slimbox2.css" type="text/css" media="screen" /> 
+<script type="text/JavaScript" src="js/jquery.mousewheel.js"></script> 
 <script type="text/JavaScript" src="js/slimbox2.js"></script> 
 <script type="text/javascript">
-	function doSearch() {
-		document.forms[0].action = "movie/findMovie.do";
-		document.forms[0].submit();
-	}
+function doSearch() {
+	document.forms[2].action = "movie/findMovie.do";
+	document.forms[2].submit();
+}
 </script>
 </head>
 
 <body id="subpage">
-
-
 	<div class="header" id="home">
 			<nav class="navbar navbar-default"> 
 			<c:if test="${user==null || user.userName==null || user.password==null || user.userName=='' || user.password==''}">
@@ -67,11 +79,11 @@
 										<fieldset>
 											<label for="password">密码</label> <input type="password"
 												id="password" class="password" placeholder="密码"
-												onblur="loginCheckUserNameAndPwd()" name="password">
+												onblur="loginCheckUserNameAndPwd()" name="password"/>
 										</fieldset>
 										<input type="submit" id="login" value="登录"
-											onclick="doSubmit()"> <label for="checkbox"><input
-											type="checkbox" id="checkbox"> <i>记住密码</i></label>
+											onclick="doSubmit()"/> <label for="checkbox"><input
+											type="checkbox" id="checkbox"/> <i>记住密码</i></label>
 									</fieldset>
 									<span><a href="register.jsp">点我快速注册</a></span>
 								</form>
@@ -146,11 +158,14 @@
 		            <span>
 		            	<b>视频管理</b>
 		            </span>
+		            <c:if test="${user.role.roleName=='教师'||user.role.roleName=='管理员'}">
 		            <span class="add">
 		            	<a href="movie/editUI/0">添加</a>
 		            </span>
+		            </c:if>
 		         </div> 
 	         </div>
+	         
 	         <div>
 				<form method="post" action="movie/findMovie.do"
 					style="margin-left: 735px">
@@ -161,13 +176,13 @@
 			</div>
 	         
 	         <!-- 没有视频的提示信息 -->
-	         <c:if test="${empty resultvideo}">
+	         <c:if test="${empty page}">
 	         	<p>还没有视频哦，快来点击添加按钮进行视频上传吧</p>
 	         	<div style="height:300px;"></div>
 	         </c:if>
 	         
 	         <!-- 点播视频列表的循环显示  -->
-	         <c:forEach items="${resultvideo}" var="video">
+	         <c:forEach items="${page.list}" var="video">
 			 	<div class="col one_fourth gallery_box" style="${video.videostate.cssstyle}">
 			        <a href="movie/viewRoom/${video.id}">
 			        	<img src="${video.thumbnailurl}" alt="thumbnail" class="image_frame"/>
@@ -178,26 +193,36 @@
 			        <p>
 			        	编辑时间:${video.edittime}
 			        </p>
+			        <c:if test="${user.role.roleName=='教师'||user.role.roleName=='管理员'}">
 			        <p>
 				        <a href="movie/editUI/${video.id}">编辑</a>|
-				        <a href="javascript:if(confirm('Are you sure to Delete?'))location='movie/delete/${video.id}'">删除</a>
+				        <a href="javascript:if(confirm('Are you sure to Delete?'))location='${pageContext.request.contextPath}/movie/delete/${video.id}'">删除</a>
 				    </p>
+				    </c:if>
+				    <c:if test="${user.role.roleName=='学生'||user.role.roleName=='游客'}">
+				    <p>
+				    	欢迎观看视频！
+				    </p>
+				    </c:if>
 				 </div>
 	          </c:forEach>
-	          
-	          <table width="97%" class="pageDown" border="0" cellspacing="0" cellpadding="0">
-			  	<tr>
-					<td align="right">共${page.totalCount }条记录，第${page.currentPageNum } 页，共 ${page.totalPageNum } 页&nbsp;&nbsp; 
-						<a href="room/findRoom.do?currentPage=${page.prePageNum }">上一页</a>&nbsp;&nbsp;
-						<a href="room/findRoom.do?currentPage=${page.nextPageNum }">下一页</a>&nbsp;&nbsp;
-					</td>
-				</tr>
-			 </table>
             
               <!-- 点播列表实现核心代码结束  -->
    		 <div class="cleaner"></div>
+   		 <div style="font-size:18px;">
+   		 <table width="97%" class="pageDown" border="0" cellspacing="0"
+							cellpadding="0">
+			<tr>
+				<td align="right">共${page.totalCount }条记录，第
+									${page.currentPageNum } 页，共 ${page.totalPageNum } 页
+									&nbsp;&nbsp; 
+					<a href="movie/findMovie.do?currentPage=${page.prePageNum }">上一页</a>&nbsp;&nbsp;
+					<a href="movie/findMovie.do?currentPage=${page.nextPageNum }">下一页</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+		</table>
+		</div>
 	</div> <!-- END of svw_main -->
-
  <div class="footer" style="height: 230px">
 			<div class="container">
 				<div class="col-md-6 footer-left" style="margin-top: -10px">
@@ -241,13 +266,6 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$().UItoTop({
-						easingType : 'easeOutQuart'
-					});
-				});
-			</script>
 		</div>
 	</body>
 </div>

@@ -3,6 +3,7 @@ package com.miao.movie.controller;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.miao.core.utils.Page;
 import com.miao.entity.Category;
 import com.miao.entity.Configure;
 import com.miao.entity.Video;
@@ -32,7 +34,32 @@ public class MovieController {
 
 	@Resource
 	private MovieService movieService;
-
+	
+	/**
+	 * 前台动态获取视频，并进行分页显示
+	 * @author 程菊飞
+	 * @param request
+	 * @param searchName
+	 * @return
+	 */
+	@RequestMapping("findMovie")
+	public ModelAndView findMovies(@RequestParam(required = false, defaultValue = "1") Integer currentPage,HttpServletRequest request, String searchName){
+		Page<Video> page;
+		//用户进行了搜索
+		if(searchName!=null&&!"".equals(searchName)){
+			//根据用户的输入信息进行搜索
+			List<Video> list=movieService.searchMovies(searchName);
+			page=movieService.pageListMovie(list,currentPage,12);
+			//将searchName设置成当前搜索的名称
+			request.setAttribute("searchName", searchName);
+		}else{
+			//用户没有输入搜索数据
+			page=movieService.pageListMovie(null, currentPage,12);
+		}
+		request.setAttribute("page", page);
+		return new ModelAndView("videolist1");
+	}
+	
 	/**
 	 * 进入点播list页面
 	 * @return
@@ -131,6 +158,7 @@ public class MovieController {
 	public String add(HttpServletRequest request,@RequestParam(name = "file") CommonsMultipartFile file,@RequestParam String name,@RequestParam String intro) throws Exception{
 		
 		Video video = new Video();
+		video.setEdittime(new Timestamp(new Date().getTime()));
 		video.setIntro(intro);
 		video.setName(name);
 		if (!file.isEmpty()) {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
@@ -88,7 +88,9 @@ span {
 			<input type="text" name="nickName" class="nickname" placeholder="昵称" />
 			<div>
 				<input type="password" name="password" class="password"
-					placeholder="密码" /> <input type="email" name="email" class="email"
+					placeholder="密码" /> 
+				<input type="text" name="className" placeholder="班级名  格式：2014级1班"/>
+				<input type="email" name="email" class="email"
 					id="email" placeholder="邮箱" onblur="checkEmail()"
 					onfocus="renewEmailState()" /> <span id="emailSpan"></span>
 			</div>

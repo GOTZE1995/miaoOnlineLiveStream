@@ -71,8 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 */
 	function checkNewEmail() {
 		var newEmail = $('#email').val();
-		$
-				.ajax({
+		$.ajax({
 					url : 'user/checkNewEmail.do',
 					data : {
 						'newEmail' : newEmail
@@ -121,20 +120,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function checkRoom() {
-		$
-				.ajax({
-					url : 'room/checkRoom.do',
-					data : {},
-					type : 'post',
-					async : false,
-					success : function(result) {
-						if (result == "true") {
-							window.location.href = "tv-register.jsp";
-						} else {
-							document.getElementById("spanRoom").innerHTML = "对不起,你已经注册了直播间";
-						}
+		var roleName="${user.role.roleName}";
+		if(roleName=="管理员"||roleName=="教师"){
+			$.ajax({
+				url : 'room/checkRoom.do',
+				data : {},
+				type : 'post',
+				async : false,
+				success : function(result) {
+					if (result == "true") {
+						window.location.href = "tv-register.jsp";
+					} else {
+						document.getElementById("spanRoom").innerHTML = "对不起,你已经注册了直播间";
 					}
-				})
+				}
+			})
+		}else{
+			document.getElementById("spanRoom").innerHTML="对不起，你没有该权限";
+		}
 	}
 </script>
 <script>

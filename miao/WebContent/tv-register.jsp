@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>注册直播间页面</title>
@@ -68,6 +68,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					style="width: 780px; margin-left: 60px">
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
+						<li><a href="VideoReadAll.action?islive=0"><span
+									data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
 					</ul>

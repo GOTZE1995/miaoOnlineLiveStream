@@ -57,6 +57,16 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 
 <script type="text/javascript">
+
+
+	function swapLine1() {
+		document.forms[0].action = "room/viewRoom?url=${url}&ip=192.168.200.129";
+		document.forms[0].submit();
+	}
+	function swapLine2() {
+		document.forms[0].action = "room/viewRoom?url=${url}&ip=192.168.200.128";
+		document.forms[0].submit();
+	}
 	function check() {
 		alert("请您先登录");
 	}
@@ -104,9 +114,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			alert("用户名或密码不能为空");
 		}
 	}
-	
-	function openNewWindow(){
-		window.open("check.jsp", "newwindow", "height=380, width=400,top=80,left=200")
+
+	function openNewWindow() {
+		window.open("check.jsp", "newwindow",
+				"height=380, width=400,top=80,left=200")
 		$.ajax({
 			url : 'attendence/checkAttendentce.do',
 			data : {},

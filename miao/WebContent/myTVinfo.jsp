@@ -6,7 +6,7 @@
 			+ path + "/";
 	request.setAttribute("basePath", basePath);
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>" />
@@ -76,6 +76,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					style="width: 780px; margin-left: 60px">
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
+						<li><a href="movie/listUI"><span
+									data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
 					</ul>
@@ -159,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="profile-content">
 											<h3>${user.userName }</h3>
 											<form
-												action="${pageContext.request.contextPath}/room/editMyRoom.do"
+												action="${pageContext.request.contextPath}/room/updateMyRoom.do"
 												method="post">
 												<h4>房间名称</h4>
 												<div class="phone-group">
@@ -213,7 +215,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="profile-content">
 											<h3>${user.userName }</h3>
 											<form
-												action="${pageContext.request.contextPath}/room/editMyphoe"
+												action="${pageContext.request.contextPath}/room/updateMyphone.do"
 												method="post">
 												<h4>联系方式</h4>
 												<div class="email-group">

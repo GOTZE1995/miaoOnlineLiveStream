@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -23,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		alert("请您先登录");
 	}
 
-	function loginCheckUserName() {
+	 function loginCheckUserName() {
 		var username = $('#username').val();
 		$.ajax({
 			url : 'user/checkUsername.do',
@@ -54,6 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			success : function(result) {
 				if (result != "pass") {
 					alert("用户名与密码不匹配");
+					window.location.href="index.jsp";
 				}
 			}
 		})
@@ -66,6 +67,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			alert("用户名或密码不能为空");
 		}
 	}
+	
+	$(function(){
+		document.onkeydown = function(e){
+		    var ev = document.all ? window.event : e;
+		    if(ev.keyCode==13) {
+		           $('#login').submit();//处理事件
+		     }
+		}
+	});   
+	
+	$('#login').keydown(function(e){
+		if(e.keyCode==13){
+		   $('#login').submit(); //处理事件
+		}
+	}); 
 </script>
 
 <script type="application/x-javascript">
@@ -147,7 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="${basePath }movie/listUI"><span
+							<li><a href="${basePath }movie/findMovie"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
@@ -204,7 +220,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="${basePath }movie/listUI"><span
+							<li><a href="${basePath }movie/findMovie"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
@@ -268,7 +284,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h3>网络影院</h3>
 								<p>随着Internet和Intranet向宽带、高速、多媒体化方向迅速发展，以计算机网络为基础的现代教育手段将得到广泛应用。要促进基于Internet的远程教育，需要一大批网络课程，开发高质量的网络课程，是当前现代教育技术工作的重要内容。</p>
 								<div class="readmore">
-									<a href="movie.jsp">马上体验<i
+									<a href="movie/listUI">马上体验<i
 										class="glyphicon glyphicon-menu-right"> </i></a>
 								</div>
 							</li>

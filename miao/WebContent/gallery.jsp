@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -78,12 +78,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script type="application/x-javascript">
-	
-	
-	
+
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
 
 </script>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
@@ -127,6 +123,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
+							<li><a href="movie/listUI"><span
+									data-hover="About">网络影院</span></a></li>
 							<li><a href="${basePath }room/findRoom" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
 						</ul>
@@ -180,6 +178,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
+							<li><a href="${basePath }movie/findMovie.do"><span
+									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 						</ul>
 						<div class="clearfix"></div>
@@ -219,47 +219,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="content">
 				<div class="container" style="width: 1200px; align: center;">
 					<div class="gallery" style="width: 1200px; align: center;">
-						<c:if test="${not empty rooms}">
-							<c:forEach var="room" items="${page.list}">
-								<c:if test="${room.status=='1'}">
-									<div class="view view-tenth"
-										style="width: 270px; height: 182px">
-										<img src="${room.user.headImg}" alt="" />
-										<div class="mask" style="width: 249px; height: 163px">
-											<h3>课程简介</h3>
-											<p>
-												课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
-											</p>
-											<br /> <a href="room/viewRoom?url=${room.url }">
-												<p>进入课程</p>
-											</a>
-										</div>
+						<c:forEach var="room" items="${page.list}">
+							<c:if test="${room.status=='0'}">
+								<div class="view view-tenth" style="width: 270px; height: 182px">
+									<img src="${basePath }images/miao.jpg" alt="" />
+									<div class="mask" style="width: 249px; height: 163px">
+										<h3>课程简介</h3>
+										<p>
+											课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
+										</p>
+										<br />
+										<p>休息中...</p>
 									</div>
+								</div>
+							</c:if>
+							<c:if test="${room.status=='1'}">
+								<div class="view view-tenth" style="width: 270px; height: 182px">
+									<img src="${room.user.headImg}" alt="" />
+									<div class="mask" style="width: 249px; height: 163px">
+										<h3>课程简介</h3>
+										<p>
+											课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
+										</p>
+										<br /> <a href="room/viewRoom?url=${room.url }">
+											<p>进入课程</p>
+										</a>
+									</div>
+								</div>
 									&nbsp;&nbsp;
-								</c:if>
-							</c:forEach>
-							<c:forEach var="room" items="${page.list}">
-								<c:if test="${room.status=='0'}">
-									<div class="view view-tenth"
-										style="width: 270px; height: 182px">
-										<img src="${basePath }images/miao.jpg" alt="" />
-										<div class="mask" style="width: 249px; height: 163px">
-											<h3>课程简介</h3>
-											<p>
-												课程：${room.roomName}<br /> 主讲教师:${room.user.userName}
-											</p>
-											<br />
-											<p>休息中...</p>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</c:if>
-						<c:if test="${empty rooms }">
-							<tr align="center" class="TableDetail1">
-								<td colspan="6">没有查到直播间信息&nbsp;</td>
-							</tr>
-						</c:if>
+									</c:if>
+						</c:forEach>
 						<table width="97%" class="pageDown" border="0" cellspacing="0"
 							cellpadding="0">
 							<tr>
