@@ -210,7 +210,7 @@ function loginCheckUserNameAndPwd() {
 		            <span>
 		            	<b>视频管理</b>
 		            </span>
-		            <c:if test="${user.role.roleName=='教师'||user.role.roleName=='管理员'}">
+		            <c:if test="${user.role.roleName=='管理员'||user.role.roleName=='教师'}">
 		            <span class="add">
 		            	<a href="movie/editUI/0">添加</a>
 		            </span>
@@ -245,7 +245,7 @@ function loginCheckUserNameAndPwd() {
 			        <p>
 			        	编辑时间:${video.edittime}
 			        </p>
-			        <c:if test="${user.role.roleName=='教师'||user.role.roleName=='管理员'}">
+			        <c:if test="${user.role.roleName=='管理员'||user.role.roleName=='教师'}">
 			        <p>
 				        <a href="movie/editUI/${video.id}">编辑</a>|
 				        <a href="javascript:if(confirm('Are you sure to Delete?'))location='${pageContext.request.contextPath}/movie/delete/${video.id}'">删除</a>
