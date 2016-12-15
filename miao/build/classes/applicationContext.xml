@@ -70,9 +70,9 @@
 	<bean id="powerDao" parent="baseDao" class="com.miao.power.dao.PowerDaoImpl"></bean>
 	<bean id="roleDao" parent="baseDao" class="com.miao.role.dao.RoleDaoImpl"></bean>
 	<bean id="attendenceDao" parent="baseDao" class="com.miao.attendence.dao.AttendenceDaoImpl"></bean>
-	
 	<bean id="movieDao" class="com.miao.movie.dao.MovieDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
+	
 	</bean>
 	
 	<bean id="baseDao" abstract="true">

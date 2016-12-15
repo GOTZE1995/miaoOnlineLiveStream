@@ -235,7 +235,7 @@ function loginCheckUserNameAndPwd() {
 	         
 	         <!-- 点播视频列表的循环显示  -->
 	         <c:forEach items="${page.list}" var="video">
-			 	<div class="col one_fourth gallery_box" style="${video.videostate.cssstyle}">
+			 	<div class="col one_fourth gallery_box">
 			        <a href="movie/viewRoom/${video.id}">
 			        	<img src="${video.thumbnailurl}" alt="thumbnail" class="image_frame"/>
 			        </a>

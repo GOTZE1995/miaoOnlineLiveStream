@@ -31,32 +31,4 @@ public class MovieDaoImpl extends BaseDaoImpl<Video> implements MovieDao{
 		return query.getResultList();
 	}
 	
-	@Override
-	public Object ReadSingle(final String targetName,final String propertyName, final Object value) {
-		return (Object) getHibernateTemplate().execute(new HibernateCallback<Object>() {
-
-			public Object doInHibernate(Session session)
-					throws HibernateException{
-				String hql = "from "+targetName+" as "+targetName+" where "+targetName+"." + propertyName + "=:value";
-				Query query = session.createQuery(hql);
-				query.setParameter("value", value);
-				return query.uniqueResult();
-			}
-		});
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Video> ReadByProperty(final String targetName, final String propertyName,
-			final int value) {
-		return (List<Video>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
-			public Object doInHibernate(Session session)
-					throws HibernateException{
-				String hql = "from "+targetName+" as "+targetName+" where "+targetName+"." + propertyName + "=:value";
-				Query query = session.createQuery(hql);
-				query.setParameter("value", value);
-				return query.list();
-			}
-		});
-	}
 }

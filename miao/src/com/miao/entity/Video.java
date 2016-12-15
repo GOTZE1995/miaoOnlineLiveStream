@@ -2,15 +2,13 @@ package com.miao.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,31 +17,31 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "video", catalog = "miao")
-public class Video implements java.io.Serializable {
+@Table(name="video")
+public class Video implements Serializable {
 
 
 	private Integer id;           //标识
-	private Videostate videostate;//状态  （外键）
 	private String name;          //视频名
 	private String intro;         //视频简介
 	private Timestamp edittime;   //视频编辑时间
-	private Integer islive;		  //判断视频的一个标志
 	private String url;           //处理后视频url
 	private String oriurl;        //上传视频url
 	private String thumbnailurl;  //缩略图url
+	private String state;         //视频状态
+	
+	public static String BEFORE_TRANS = "0"; 
+	public static String AFTER_TRANS = "1"; 
 
 	public Video() {
 	}
 
-	public Video(Videostate videostate, String name,
-			String intro, Timestamp edittime, Integer islive, String url,
+	public Video(String name,
+			String intro, Timestamp edittime,String url,
 			String oriurl, String thumbnailurl) {
-		this.videostate = videostate;
 		this.name = name;
 		this.intro = intro;
 		this.edittime = edittime;
-		this.islive = islive;
 		this.url = url;
 		this.oriurl = oriurl;
 		this.thumbnailurl = thumbnailurl;
@@ -59,17 +57,6 @@ public class Video implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "videostateid")
-	public Videostate getVideostate() {
-		return this.videostate;
-	}
-
-	public void setVideostate(Videostate videostate) {
-		this.videostate = videostate;
-	}
-
 
 	@Column(name = "name")
 	public String getName() {
@@ -98,15 +85,6 @@ public class Video implements java.io.Serializable {
 		this.edittime = edittime;
 	}
 
-	@Column(name = "islive")
-	public Integer getIslive() {
-		return this.islive;
-	}
-
-	public void setIslive(Integer islive) {
-		this.islive = islive;
-	}
-
 	@Column(name = "url")
 	public String getUrl() {
 		return this.url;
@@ -133,5 +111,14 @@ public class Video implements java.io.Serializable {
 	public void setThumbnailurl(String thumbnailurl) {
 		this.thumbnailurl = thumbnailurl;
 	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 
 }

@@ -48,21 +48,4 @@ public class MovieServiceImpl extends BaseServiceImpl<Video> implements MovieSer
 	public List<Video> pageListByTime(Integer currentPage, int i){
 		return movieDao.pageListByTime(currentPage, i);
 	}
-	
-	@Override
-	public Object ReadByID(String targetName,int id) {
-		return movieDao.ReadSingle(targetName,"id", id);
-	}
-
-	@Override
-	public List ReadByProperty(String targetName, String propertyName,
-			int propertyValue) {
-		return movieDao.ReadByProperty(targetName, propertyName, propertyValue);
-	}
-
-	@Override
-	public Object ReadSingle(String targetName, String propertyName,
-			Object propertyValue) {
-		return movieDao.ReadSingle(targetName, propertyName, propertyValue);
-	}
 }

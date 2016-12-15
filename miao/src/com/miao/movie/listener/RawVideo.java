@@ -14,7 +14,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.miao.entity.Video;
-import com.miao.entity.Videostate;
 import com.miao.movie.service.MovieService;
 
 public class RawVideo implements HttpSessionBindingListener {
@@ -57,9 +56,9 @@ public class RawVideo implements HttpSessionBindingListener {
 			checkAndCreate(realfileDirFile);
 
 			// 获得缩略图
-			this.getThumbnailImg(sc, movieService, realthumbnailDir, video);
+			this.getThumbnailImg(sc, realthumbnailDir, video);
 			// 视频转码
-			this.transferVideo(sc, videoConfig, movieService, watermarkFile, realwatermarkDirFile, video);
+			this.transferVideo(sc,videoConfig,movieService, watermarkFile, realwatermarkDirFile, video);
 			inputStream.close();
 		} catch (BeansException e) {
 			e.printStackTrace();
@@ -141,7 +140,8 @@ public class RawVideo implements HttpSessionBindingListener {
 		System.out.println(videotranscodecommand);
 		// 执行转码命令
 		Process process = Runtime.getRuntime().exec(videotranscodecommand, null, realwatermarkDirFile);
-		video.setVideostate((Videostate) movieService.ReadSingle("Videostate", "order", 4));
+//		video.setVideostate((Videostate) movieService.ReadSingle("Videostate", "order", 4));
+		video.setState(video.AFTER_TRANS);
 		movieService.update(video);
 	}
 
@@ -169,7 +169,7 @@ public class RawVideo implements HttpSessionBindingListener {
 	 * @param video
 	 * @throws IOException
 	 */
-	public void getThumbnailImg(ServletContext sc, MovieService movieService, String realthumbnailDir, Video video)
+	public void getThumbnailImg(ServletContext sc, String realthumbnailDir, Video video)
 			throws IOException {
 		String realfileoriPath = sc.getRealPath("/").replace('\\', '/') + video.getOriurl();
 		String realthumbnailPath = realthumbnailDir + "/" + video.getId() + ".jpg";
