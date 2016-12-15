@@ -18,7 +18,7 @@ public interface MovieService extends BaseService<Video>{
 	 * @param searchName
 	 * @return
 	 */
-	public List<Video> searchMovies(String searchName);
+	public List<Video> searchMovie(String searchName);
 	
 	/**
 	 * 对点播间列表分页显示

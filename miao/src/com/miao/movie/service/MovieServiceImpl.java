@@ -22,28 +22,30 @@ public class MovieServiceImpl extends BaseServiceImpl<Video> implements MovieSer
 		this.movieDao=movieDao;
 	}
 	@Override
-	public List<Video> searchMovies(String searchName){
-		return movieDao.searchMovies(searchName);
+	public List<Video> searchMovie(String searchName){
+		return movieDao.searchMovie(searchName);
 	}
 	
 	@Override
 	public Page<Video> pageListMovie(List list,Integer currentPage, int i){
 		Page<Video> page = new Page<Video>(currentPage, i);
 		if (list != null) {
-			//列表有数据
-			page.setTotalCount(list.size());
+			//列表有数据，表示用户输入了搜索信息
 			page.setList(list);
+			page.setTotalCount(list.size());
 			return page;
 		}else{
+		//列表中没有数据，直接查询所有的视频信息
 		list = findAll();
-		page.setTotalCount(list.size());
 		page.setList(pageListByTime(currentPage,i));
+		page.setTotalCount(list.size());
 		return page;
 		}
 	}
 	
 	@Override
 	public List<Video> pageListByTime(Integer currentPage, int i){
+		//根据添加的时间来获取视频
 		return movieDao.pageListByTime(currentPage, i);
 	}
 	

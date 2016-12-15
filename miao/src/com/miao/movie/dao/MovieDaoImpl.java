@@ -15,7 +15,8 @@ import com.miao.entity.Video;
 
 public class MovieDaoImpl extends BaseDaoImpl<Video> implements MovieDao{
 	
-	public List<Video> searchMovies(String searchName){
+	public List<Video> searchMovie(String searchName){
+		//根据搜索名获取视频
 		String hql = "FROM Video where name like ? ";
 		Query<Video> query = this.currentSession().createQuery(hql);
 		query.setParameter(0, "%"+searchName+"%");
@@ -24,10 +25,11 @@ public class MovieDaoImpl extends BaseDaoImpl<Video> implements MovieDao{
 	
 	@Override
 	public List<Video> pageListByTime(Integer currentPage, int i) {
+		//根据视频添加的事件顺序来得到视频
 		String hql = "FROM Video ORDER BY edittime desc ";
 		Query<Video> query = this.currentSession().createQuery(hql);
-		query.setFirstResult((currentPage-1)*i);
 		query.setMaxResults(i);
+		query.setFirstResult((currentPage-1)*i);
 		return query.getResultList();
 	}
 	

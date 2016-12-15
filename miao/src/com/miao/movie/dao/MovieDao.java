@@ -18,7 +18,7 @@ public interface MovieDao extends BaseDao<Video>{
 	 * @param searchName
 	 * @return
 	 */
-	public List<Video> searchMovies(String searchName);
+	public List<Video> searchMovie(String searchName);
 	
 	/**
 	 * 根据添加时间的先后来获取视频

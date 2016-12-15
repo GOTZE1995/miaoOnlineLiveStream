@@ -46,20 +46,19 @@ public class MovieController {
 	public ModelAndView findMovies(@RequestParam(required = false, defaultValue = "1") Integer currentPage,
 			String searchName) {
 		Page<Video> page;
-		ModelAndView modelAndView = new ModelAndView("videolist1");
-		// 用户进行了搜索
-		if (searchName == null || searchName.equals("")) {
-			// 用户没有输入搜索数据
-			page = movieService.pageListMovie(null, currentPage, 12);
-		} else {
-			// 根据用户的输入信息进行搜索
-			List<Video> list = movieService.searchMovies(searchName);
-			page = movieService.pageListMovie(list, currentPage, 12);
-			// 将searchName设置成当前搜索的名称
-			modelAndView.addObject("searchName", searchName);
+		//用户进行了搜索
+		if(searchName!=null&&!"".equals(searchName)){
+			//根据用户的输入信息进行搜索
+			List<Video> list=movieService.searchMovie(searchName);
+			page=movieService.pageListMovie(list,currentPage,12);
+			//将searchName设置成当前搜索的名称
+			request.setAttribute("searchName", searchName);
+		}else{
+			//用户没有输入搜索数据
+			page=movieService.pageListMovie(null, currentPage,12);
 		}
-		modelAndView.addObject("page",page);
-		return modelAndView;
+		request.setAttribute("page", page);
+		return new ModelAndView("videolist1");
 	}
 
 	/**
