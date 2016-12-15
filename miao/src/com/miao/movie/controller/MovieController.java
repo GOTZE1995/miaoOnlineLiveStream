@@ -18,7 +18,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.miao.core.utils.Page;
-import com.miao.entity.Configure;
 import com.miao.entity.Video;
 import com.miao.entity.Videostate;
 import com.miao.movie.listener.RawVideo;
@@ -26,7 +25,7 @@ import com.miao.movie.service.MovieService;
 
 /**
  * 视频点播页面的跳转
- * @author Jupiter
+ * @author songyulong
  * 2016/12/11
  */
 @Controller
@@ -155,12 +154,8 @@ public class MovieController {
 		if (!file.isEmpty()) {
 			String newFileName = UUID.randomUUID().toString()+file.getOriginalFilename();
 			
-			//获取视频配置信息
-			Configure folder_videoori_cfg=(Configure) movieService.ReadSingle("Configure", "name", "folder_videoori");
-			Configure folder_thumbnail_cfg=(Configure) movieService.ReadSingle("Configure", "name", "folder_thumbnail");
-			
 			//获取上传视频的URL并保存
-			String oriurl=folder_videoori_cfg.getVal()+"/"+newFileName;
+			String oriurl="videoori"+"/"+newFileName;
 			video.setOriurl(oriurl);
 			
 			
@@ -170,14 +165,14 @@ public class MovieController {
 			video.setIslive(0);
 			
 			//获取缩略图URL并保存
-			String defaultthumbnail=folder_thumbnail_cfg.getVal()+"/default.jpg";
+			String defaultthumbnail="videothumbnail/default.jpg";
 			video.setThumbnailurl(defaultthumbnail);
 			
 			//对视频进行保存操作
 			movieService.save(video);
 			
 			//获取处理后视频的路径
-			String realfileoriDir=request.getSession().getServletContext().getRealPath(folder_videoori_cfg.getVal()).replace('\\', '/');
+			String realfileoriDir=request.getSession().getServletContext().getRealPath("videothumbnail").replace('\\', '/');
 			
 			//判断如果不存在该路径则创建一个路径
 			File realfileoriDirFile =new File(realfileoriDir);
