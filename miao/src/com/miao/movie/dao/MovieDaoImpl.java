@@ -18,7 +18,7 @@ public class MovieDaoImpl extends BaseDaoImpl<Video> implements MovieDao{
 	public List<Video> searchMovies(String searchName){
 		String hql = "FROM Video where name like ? ";
 		Query<Video> query = this.currentSession().createQuery(hql);
-		query.setParameter(0, searchName);
+		query.setParameter(0, "%"+searchName+"%");
 		return query.getResultList();
 	}
 	
