@@ -7,9 +7,9 @@
 	<%@include file="/common/header.jsp"%>	
 	<title>Frame left</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="style/js/jquery.js"></script>
-	<script type="text/javascript" src="style/js/page_common.js"></script>
-    <link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="modify/style/js/jquery.js"></script>
+	<script type="text/javascript" src="modify/style/js/page_common.js"></script>
+    <link href="modify/style/css/common_style_blue.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
 		// 显示或隐藏二级菜单 
 		function menuClick( menuDiv ){
@@ -52,7 +52,7 @@ body {
 	  cursor: pointer;
 }
 #Menu .level1 .level1Style {
-  background: url("style/images/img/menu_btn_bg.gif") no-repeat scroll 0 0 transparent;
+  background: url("modify/style/images/img/menu_btn_bg.gif") no-repeat scroll 0 0 transparent;
     height: 23px;
     padding-left: 20px;
     padding-top: 5px;
@@ -76,7 +76,7 @@ body {
 	padding-left: 43px;
 	padding-top: 5px;
 	width: 112px;
-	background-image:url(style/images/img/menu_arrow_single.gif);
+	background-image:url(modify/style/images/img/menu_arrow_single.gif);
 	background-color: #8EC4E9;
 	background-repeat: no-repeat;
 	background-position: 29px center;
@@ -89,7 +89,7 @@ body {
     <ul id="Menu">
 	    <li class="level1">
             <div onClick="menuClick(this);" class="level1Style">
-				<img src="style/images/func20001.gif" class="Icon" /> 
+				<img src="modify/style/images/func20001.gif" class="Icon" /> 
 				系统菜单
 			</div>
 			<c:if test="${AdminUser!=null}">

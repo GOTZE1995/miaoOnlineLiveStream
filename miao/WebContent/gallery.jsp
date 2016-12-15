@@ -11,8 +11,7 @@
 <html>
 <head>
 <base href="<%=basePath%>" />
-<title>Education Tutorial a Educational Category Flat Bootstrap
-	Responsive Website Template | Gallery :: w3layouts</title>
+<title>直播展示页</title>
 
 <script type="text/javascript">
 	function doSearch() {
@@ -83,13 +82,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 
 </script>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script src="modify/js/bootstrap.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -124,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="movie/findMovie"><span
+							<li><a href="movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="${basePath }room/findRoom" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
@@ -160,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> <c:if test="${user!=null}">
 				<div class="container" style="width: 1300px">
@@ -182,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="movie/findMovie"><span
+							<li><a href="movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 						</ul>
@@ -201,7 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> </nav>
 			<div class="clearfix"></div>
@@ -323,5 +322,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</body>
 </div>
-
 </html>

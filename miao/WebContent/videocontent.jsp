@@ -4,31 +4,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<%@include file="/common/header.jsp"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setAttribute("basePath", basePath);
+%>
+<base href="<%= basePath %>"/>
+<script type="text/javascript" src="modify/js/jquery-1.11.0.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Video, FFmpeg, JavaEE" />
 <meta name="author" content="Lei Xiaohua" />
 <meta name="description"
 	content="The simplest video website based on JavaEE and FFmpeg" />
 	
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script src="modify/js/bootstrap.js"></script>
 
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<link rel="stylesheet" type="text/css" href="modify/css/default.css" />
+<link rel="stylesheet" type="text/css" href="modify/css/component.css" />
+<script src="modify/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
 
 
-<link href="css/svw_style.css" rel="stylesheet" type="text/css" />
+<link href="modify/css/svw_style.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> 
-<script type="text/javascript" src="js/jquery-ui.min.js"></script> 
-<script type="text/javascript" src="js/showhide.js"></script>  
-<script type="text/JavaScript" src="js/jquery.mousewheel.js"></script> 
+<script type="text/javascript" src="modify/js/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="modify/js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="modify/js/showhide.js"></script>  
+<script type="text/JavaScript" src="modify/js/jquery.mousewheel.js"></script> 
 	
 <script type="text/javascript">
 	function check() {
@@ -85,7 +91,7 @@
 <title>点播列表</title>
 	<!-- Flow Player -->
 	<script type="text/javascript"
-		src="videoplayer/flowplayer-3.2.8.min.js"></script>
+		src="modify/videoplayer/flowplayer-3.2.8.min.js"></script>
 </head>
 
 <body id="subpage">
@@ -112,7 +118,7 @@
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="${basePath }room/findRoom"><span
 								data-hover="About">视频直播</span></a></li>
-						<li><a href="movie/findMovie"><span
+						<li><a href="movie/listUI"><span
 								data-hover="About">网络影院</span></a></li>
 						<li><a href="" onclick="check()"><span
 								data-hover="Shortcodes">个人信息</span></a></li>
@@ -149,7 +155,7 @@
 							</div>
 						</div>
 				</div>
-				<script src="js/menu_jquery.js"></script>
+				<script src="modify/js/menu_jquery.js"></script>
 			</div>
 		</c:if> <c:if
 			test="${user!=null && user.userName!=null && user.userName!='' && user.password!=null && user.password!=''}">
@@ -173,7 +179,7 @@
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="${basePath }room/findRoom"><span
 								data-hover="About">视频直播</span></a></li>
-						<li><a href="movie/findMovie"><span
+						<li><a href="movie/listUI"><span
 								data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
@@ -193,7 +199,7 @@
 						</form>
 					</div>
 				</div>
-				<script src="js/menu_jquery.js"></script>
+				<script src="modify/js/menu_jquery.js"></script>
 			</div>
 		</c:if> </nav>
 		<div class="clearfix"></div>
@@ -251,7 +257,7 @@
 
 		<div id="sidebar">
 			<ul class="svw_list">
-				<li><a href="movie/findMovie">返回</a></li>
+				<li><a href="movie/listUI">返回</a></li>
 				<li><a href="movie/viewRoom/${video.id}">内容</a></li>
 				<li><a href="movie/editUI/${video.id}">编辑</a></li>
 				<li><a
@@ -259,12 +265,9 @@
 			</ul>
 			<div class="cleaner h30"></div>
 
-			<h3>最近上传</h3>
-			<ul class="recent_post">
-				<c:forEach items="${resultvideo}" var="video">
-			    	<li><a href="VideoReadByID.action?videoid=${video.id}">${video.name}</a><br/>${video.edittime}</li>
-			    </c:forEach>
-    		</ul>
+			<!-- 显示5条最近添加 	<s:action name="SidebarRecent" executeResult="true">
+				<s:param name="num">5</s:param>
+			</s:action>-->
 		
 		</div>
 		<div class="cleaner"></div>
@@ -316,13 +319,6 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$().UItoTop({
-					easingType : 'easeOutQuart'
-				});
-			});
-		</script>
 	</div>
 </body>
 </div>

@@ -12,10 +12,9 @@
 <base href="<%= basePath %>"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台登录页</title>
-<link href="./Wopop_files/style_log.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="Wopop_files/style.css">
-<link rel="stylesheet" type="text/css" href="Wopop_files/userpanel.css">
-<link rel="stylesheet" type="text/css" href="Wopop_files/jquery.ui.all.css">
+<link href="modify/Wopop_files/style_log.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="modify/Wopop_files/style.css">
+<link rel="stylesheet" type="text/css" href="modify/Wopop_files/userpanel.css">
 </head>
 <body class="login" mycollectionplug="bind">
 	<div class="login_m">	

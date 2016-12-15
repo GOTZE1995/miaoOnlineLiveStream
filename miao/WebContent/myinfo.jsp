@@ -21,23 +21,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!--bootstrap-->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!--coustom css-->
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css-info/style.css" rel="stylesheet" type="text/css"
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<link href="modify/css-info/style.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!--script-->
-<script src="js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="modify/js/jquery.min.js"></script>
 <!-- js -->
-<script src="js/bootstrap.js"></script>
+<script src="modify/js/bootstrap.js"></script>
 <!-- /js -->
 <!--fonts-->
 
 <!--/fonts-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
 <!--script-->
 <style>
 #spanEmail {
@@ -208,7 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</form>
 					</div>
 				</div>
-				<script src="js/menu_jquery.js"></script>
+				<script src="modify/js/menu_jquery.js"></script>
 			</div>
 			</nav>
 			<!--/script-->
@@ -227,7 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="sap_tabs">
 					<div id="horizontalTab"
 						style="display: block; width: 100%; margin: 0px;">
-						<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+						<script src="modify/js/easyResponsiveTabs.js" type="text/javascript"></script>
 						<script type="text/javascript">
 							$(document).ready(function() {
 								$('#horizontalTab').easyResponsiveTabs({

@@ -88,9 +88,7 @@ span {
 			<input type="text" name="nickName" class="nickname" placeholder="昵称" />
 			<div>
 				<input type="password" name="password" class="password"
-					placeholder="密码" /> 
-				<input type="text" name="className" placeholder="班级名  格式：2014级1班"/>
-				<input type="email" name="email" class="email"
+					placeholder="密码" /> <input type="email" name="email" class="email"
 					id="email" placeholder="邮箱" onblur="checkEmail()"
 					onfocus="renewEmailState()" /> <span id="emailSpan"></span>
 			</div>

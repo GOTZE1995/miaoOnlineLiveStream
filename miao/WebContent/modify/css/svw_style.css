@@ -14,14 +14,14 @@ body {
 	background-position: top;
 }
 
-#home { 
+/*#home { 
 	background-image: url(../images/svw_bg_homepage.jpg); 
 }
 
 #subpage { 
 	background-image: url(../images/svw_bg_subpage.jpg); 
 }
-
+  */
 a, a:link, a:visited { 
 	color: #7f0d0d; 
 	font-weight: normal; 

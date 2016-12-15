@@ -6,16 +6,16 @@
 <html>
 <head>
    <!-- 包含公共的JSP代码片段 -->
-<%@include file="/common/header.jsp"%>		
+<%@include file="/common/header.jsp"%>			
 <title>修改直播间</title>
 
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/page_common.js"></script>
-<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+<script type="text/javascript" src="modify/style/js/jquery.js"></script>
+<script type="text/javascript" src="modify/style/js/page_common.js"></script>
+<link href="modify/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="modify/style/css/index_1.css" />
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 		<div id="TitleArea_Title_Content">
 			
 				
-					<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 更新直播间
+					<img border="0" width="13" height="13" src="modify/style/images/title_arrow.gif"/> 更新直播间
 				
 				
 			
@@ -41,7 +41,7 @@
 	<form action="room/update.do" method="post">
 		<!-- 本段标题（分段标题） -->
 		<div class="ItemBlock_Title">
-        	<img width="4" height="7" border="0" src="style/images/item_point.gif"> 直播间信息&nbsp;
+        	<img width="4" height="7" border="0" src="modify/style/images/item_point.gif"> 直播间信息&nbsp;
         </div>
 		<!-- 本段表单字段 -->
         <div class="ItemBlockBorder">

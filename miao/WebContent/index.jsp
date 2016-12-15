@@ -76,17 +76,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 
 </script>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script src="modify/js/bootstrap.js"></script>
 
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<link rel="stylesheet" type="text/css" href="modify/css/default.css" />
+<link rel="stylesheet" type="text/css" href="modify/css/component.css" />
+<script src="modify/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -187,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> <c:if test="${user!=null && user.userName!=null && user.userName!='' && user.password!=null && user.password!=''}">
 				<div class="container" style="width: 1300px">
@@ -210,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="${basePath }movie/findMovie"><span
+							<li><a href="${basePath }movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
@@ -230,7 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> </nav>
 			<div class="clearfix"></div>
@@ -238,7 +238,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		<div class="banner">
 			<div class="container">
-				<script src="js/responsiveslides.min.js"></script>
+				<script src="modify/js/responsiveslides.min.js"></script>
 				<script>
 					$(function() {
 						$("#slider").responsiveSlides({
@@ -274,7 +274,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<h3>网络影院</h3>
 								<p>随着Internet和Intranet向宽带、高速、多媒体化方向迅速发展，以计算机网络为基础的现代教育手段将得到广泛应用。要促进基于Internet的远程教育，需要一大批网络课程，开发高质量的网络课程，是当前现代教育技术工作的重要内容。</p>
 								<div class="readmore">
-									<a href="movie/findMovie">马上体验<i
+									<a href="movie/listUI">马上体验<i
 										class="glyphicon glyphicon-menu-right"> </i></a>
 								</div>
 							</li>
@@ -304,34 +304,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="container" style="width: 1200px">
 				<ul class="grid cs-style-5">
-					<li><figure> <img src="images/mysql.jpg" alt="img03">
+					<li><figure> <img src="modify/images/mysql.jpg" alt="img03">
 						<figcaption>
 						<h3>数据库分析设计</h3>
 						<span>小明</span> <a href="about.jsp">进入学习</a> </figcaption> </figure></li>
-					<li><figure> <img src="images/a2.jpg" alt="img04">
+					<li><figure> <img src="modify/images/a2.jpg" alt="img04">
 						<figcaption>
 						<h3>JAVA与大数据</h3>
 						<span>小明</span> <a href="about.jsp">进入学习</a> </figcaption> </figure></li>
-					<li><figure> <img src="images/java.jpg" alt="img01">
+					<li><figure> <img src="modify/images/java.jpg" alt="img01">
 						<figcaption>
 						<h3>Java研究学习</h3>
 						<span>小明</span> <a href="about.jsp">进入学习</a> </figcaption> </figure></li>
-					<li><figure> <img src="images/php.jpg" alt="img02">
+					<li><figure> <img src="modify/images/php.jpg" alt="img02">
 						<figcaption>
 						<h3>PHP研究和学习</h3>
 						<span>小明</span> <a href="about.jsp">进入学习</a> </figcaption> </figure></li>
-					<li><figure> <img src="images/h5.jpg" alt="img06">
+					<li><figure> <img src="modify/images/h5.jpg" alt="img06">
 						<figcaption>
 						<h3>HTML5学习</h3>
 						<span>小明</span> <a href="about.jsp">进入学习</a> </figcaption> </figure></li>
-					<li><figure> <img src="images/c++.jpg" alt="img05">
+					<li><figure> <img src="modify/images/c++.jpg" alt="img05">
 						<figcaption>
 						<h3>C++语言</h3>
 						<span>小明</span> <a href="about.jsp">进入学习</a> </figcaption> </figure></li>
 				</ul>
 			</div>
 			<div class="border3" style="margin-left: 1200px">
-				<span class="texts"><a href="movie/findMovie">更多</a></span>
+				<span class="texts"><a href="movie/listUI">更多</a></span>
 			</div>
 			<div class="border4">
 				<p>----------------------------------------------------------------------------------------------------------------------------------------------</p>

@@ -20,23 +20,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!--bootstrap-->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!--coustom css-->
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css-info/style.css" rel="stylesheet" type="text/css"
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<link href="modify/css-info/style.css" rel="stylesheet" type="text/css"
 	media="all" />
 <!--script-->
-<script src="js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="modify/js/jquery.min.js"></script>
 <!-- js -->
-<script src="js/bootstrap.js"></script>
+<script src="modify/js/bootstrap.js"></script>
 <!-- /js -->
 <!--fonts-->
 
 <!--/fonts-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
 <!--script-->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</form>
 					</div>
 				</div>
-				<script src="js/menu_jquery.js"></script>
+				<script src="modify/js/menu_jquery.js"></script>
 			</div>
 			</nav>
 			<!--/script-->
@@ -117,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="sap_tabs">
 					<div id="horizontalTab"
 						style="display: block; width: 100%; margin: 0px;">
-						<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+						<script src="modify/js/easyResponsiveTabs.js" type="text/javascript"></script>
 						<script type="text/javascript">
 							$(document).ready(function() {
 								$('#horizontalTab').easyResponsiveTabs({
@@ -144,8 +144,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div>
 							<div class="port-left">
 								<ul class="resp-tabs-list">
-									<img src="images-info/2.png" alt="" />
+									<img src="modify/images-info/2.png" alt="" />
 									<li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>修改房间信息</span></li>
+									<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>修改联系方式</span></li>
 
 								</ul>
 							</div>
@@ -177,17 +178,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<h4>房间公告</h4>
 												<div class="phone-group">
 													<div class="cell-form">
-														<textarea name="memo" rows="4" cols="49" value="${user.room.memo}"
-															placeholder="${user.room.memo}"></textarea>
-													</div>
-													<div class="clear"></div>
-												</div>
-												<h4>联系方式</h4>
-												<div class="phone-group">
-													<div class="cell-form">
-														<input type="text" name="phone" class="fb-ico"
-															value="${user.room.phone }" onfocus="this.value = '';"
-															onblur="if (this.value == '') {this.value = '';}">
+														<textarea name="memo" rows="4" cols="49"
+															placeholder="${user.room.memo }"></textarea>
 													</div>
 													<div class="clear"></div>
 												</div>
@@ -208,6 +200,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+											</form>
+										</div>
+										<div class="clear"></div>
+
+									</div>
+
+
+
+									<!-- Tab 1 -->
+									<div class="tab-1 resp-tab-content"
+										aria-labelledby="tab_item-0">
+										<div class="profile-content">
+											<h3>${user.userName }</h3>
+											<form
+												action="${pageContext.request.contextPath}/room/editMyphone.do"
+												method="post">
+												<h4>联系方式</h4>
+												<div class="email-group">
+													<div class="email-form">
+
+														<input type="text" name="phone" class="fb-ico"
+															value="${user.room.phone }" onfocus="this.value = '';"
+															onblur="if (this.value == '') {this.value = '';}">
+
+													</div>
+													<div class="clear"></div>
+												</div>
+												<br /> <br /> <br /> <input type="submit" value="更新信息" />
 
 											</form>
 										</div>

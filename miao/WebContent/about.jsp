@@ -1,4 +1,4 @@
-<%@page import="com.miao.chat.controller.ChatServer"%>
+﻿<%@page import="com.miao.chat.controller.ChatServer"%>
 <%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -26,12 +26,12 @@
 <!-- No Baidu Siteapp-->
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<link rel="alternate icon" href="assets/i/favicon.png">
-<link rel="stylesheet" href="assets/css/amazeui.min.css">
-<link rel="stylesheet" href="assets/css/app.css">
+<link rel="alternate icon" href="modify/assets/i/favicon.png">
+<link rel="stylesheet" href="modify/assets/css/amazeui.min.css">
+<link rel="stylesheet" href="modify/assets/css/app.css">
 
 <!-- umeditor css -->
-<link href="umeditor/themes/default/css/umeditor.css" rel="stylesheet">
+<link href="modify/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
 
 <style>
 .title {
@@ -44,6 +44,9 @@
 	border: 1px solid silver;
 }
 </style>
+
+
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -67,8 +70,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function check() {
 		alert("请您先登录");
 	}
+	
+	function renewUsernameState() {
+		document.getElementById("userSpan").innerHTML = "";
+		document.getElementById("submitSpan").innerHTML = "";
+	}
+	
 
-	function loginCheckUserName() {
+	 function loginCheckUserName() {
 		var username = $('#username').val();
 		$.ajax({
 			url : 'user/checkUsername.do',
@@ -79,7 +88,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result == "pass") {
-					alert("该用户不存在");
+					document.getElementById("userSpan").innerHTML = "该用户名不存在";
+					document.getElementById("username").value = "";
 				}
 			}
 		})
@@ -98,31 +108,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			async : false,
 			success : function(result) {
 				if (result != "pass") {
-					alert("用户名与密码不匹配");
+					document.getElementById("submitSpan").innerHTML = "用户名与密码不匹配";
+					document.getElementById("username").value = "";
+					document.getElementById("password").value = "";
 				}
 			}
 		})
 	}
 
-	function doSubmit() {
-		if ($('#username').val() != "" && $('#password').val() != "") {
-			document.forms[0].submit();
-		} else {
-			alert("用户名或密码不能为空");
-		}
-	}
-
 	function openNewWindow() {
+		window.open("check.jsp", "newwindow",
+				"height=380, width=400,top=80,left=200")
 		$.ajax({
 			url : 'attendence/checkAttendentce.do',
 			data : {},
 			type : 'post',
 			async : false,
 		})
-		
-		window.open("check.jsp", "newwindow",
-				"height=400, width=400,top=80,left=200")
 	}
+	
 </script>
 
 <script type="text/javascript">
@@ -137,16 +141,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </script>
 
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all">
 
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/text.css" rel="stylesheet" type="text/css" />
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<link href="modify/css/text.css" rel="stylesheet" type="text/css" />
 
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script src="modify/js/bootstrap.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -179,14 +183,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 						</h1>
 					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
+
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
-									data-hover="About">视频直播</span></a></li>
-							<li><a href="movie/listUI"><span
-									data-hover="About">网络影院</span></a></li>
+									data-hover="About">视频直播</span></a></li>													<li><a href="movie/findMovie">
+<span data-hover="About">网络影院</span></a></li>
 							<li><a href="about.jsp" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
 						</ul>
@@ -203,23 +206,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<fieldset>
 											<label for="email">用户名</label> <input type="text"
 												name="userName" class="username" id="username"
-												placeholder="用户名" onblur="loginCheckUserName()" />
+												placeholder="用户名" onblur="loginCheckUserName()" 
+												onfocus="renewUsernameState()"/>
+												<span id="userSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
 										<fieldset>
 											<label for="password">密码</label> <input type="password"
 												id="password" class="password" placeholder="密码"
 												onblur="loginCheckUserNameAndPwd()" name="password">
+											<span id="submitSpan" style="font-size:12px;color:red"></span>
 										</fieldset>
-										<input type="submit" id="login" value="登录"
-											onclick="doSubmit()"> <label for="checkbox"><input
-											type="checkbox" id="checkbox"> <i>记住密码</i> </label>
+										<input type="submit" id="login" value="登录"> 
+										<label for="checkbox"><input
+											type="checkbox" id="checkbox"> <i>记住密码</i></label>
 									</fieldset>
 									<span><a href="register.jsp">点我快速注册</a></span>
 								</form>
 							</div>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> <c:if test="${user!=null}">
 				<div class="container" style="width: 1300px">
@@ -243,12 +249,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<c:if test="${user.role.roleName=='教师'}">
 							<li onclick="openNewWindow()"><a><span>电子点名</span></a></li>
-							</c:if>
-							<li><a href="${basePath }room/findRoom"><span
-									data-hover="About">视频直播</span></a></li>
-							<li><a href="movie/listUI"><span
-									data-hover="About">网络影院</span></a></li>
-							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
+							</c:if> 
+							<li><a href="${basePath }room/findRoom"><span 
+ 									data-hover="About">视频直播</span></a></li> 
+							<li><a href="movie/listUI"><span 
+ 									data-hover="About">网络影院</span></a></li> 
+ 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li> 
 
 						</ul>
 						<div class="clearfix"></div>
@@ -266,10 +272,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
-			</c:if> </nav>
-			<!--/script-->
+			</c:if> 
+			</nav>
 			<div class="clearfix"></div>
 		</div>
 		<!-- Top Navigation -->
@@ -357,11 +363,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  </div>
 				</div>
 
-				<script src="assets/js/jquery.min.js"></script>
+				<script src="modify/assets/js/jquery.min.js"></script>
 
-				<script charset="utf-8" src="umeditor/umeditor.config.js"></script>
-				<script charset="utf-8" src="umeditor/umeditor.min.js"></script>
-				<script src="umeditor/lang/zh-cn/zh-cn.js"></script>
+				<script charset="utf-8" src="modify/umeditor/umeditor.config.js"></script>
+				<script charset="utf-8" src="modify/umeditor/umeditor.min.js"></script>
+				<script src="modify/umeditor/lang/zh-cn/zh-cn.js"></script>
 				
 				<c:if test="${user.headImg!=null}">
 					<script>
@@ -369,7 +375,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 							// 初始化消息输入框
 							var um = UM.getEditor('myEditor');
-							// 使昵称框获取焦点
 							
 							// 新建WebSocket对象，最后的/chatroom跟服务器端的@ServerEndpoint("/chatroom")对应
 							var socket = new WebSocket(
@@ -390,17 +395,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													um.focus();
 									
 													// 添加抖动效果
-													$('.edui-container')
-															.addClass(
-																	'am-animation-shake');
-													setTimeout(
-															"$('.edui-container').removeClass('am-animation-shake')",
-															1000);
+													$('.edui-container').addClass('am-animation-shake');
 												}else{
 													// 发送消息
-													socket
-															.send(JSON
-																	.stringify({
+													socket.send(JSON.stringify({
 																		content : um.getContent(),
 																		nickname : nickname,
 																		headImg : '${user.headImg}'
@@ -417,10 +415,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								message = JSON.parse(message);
 								
 								
-								var messageItem = '<li class="am-comment '
-										+ (message.isSelf ? 'am-comment'
-												: 'am-comment')
-										+ '">'
+								var messageItem = '<li class="am-comment">'
 										+ '<a href="javascript:void(0)" ><img src=" '+message.headImg+' " alt="" class="am-comment-avatar" width="48" height="48"/></a>'
 										+ '<div class="am-comment-main"><header class="am-comment-hd"><div class="am-comment-meta">'
 										+ '<a href="javascript:void(0)" class="am-comment-author">'
@@ -448,7 +443,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 							// 初始化消息输入框
 							var um = UM.getEditor('myEditor');
-							// 使昵称框获取焦点
 							
 							// 新建WebSocket对象，最后的/chatroom跟服务器端的@ServerEndpoint("/chatroom")对应
 							var socket = new WebSocket(
@@ -469,17 +463,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													um.focus();
 									
 													// 添加抖动效果
-													$('.edui-container')
-															.addClass(
-																	'am-animation-shake');
-													setTimeout(
-															"$('.edui-container').removeClass('am-animation-shake')",
-															1000);
+													$('.edui-container').addClass('am-animation-shake');
 												}else{
 													// 发送消息
-													socket
-															.send(JSON
-																	.stringify({
+													socket.send(JSON.stringify({
 																		content : um.getContent(),
 																		nickname : nickname,
 																		headImg : 'images/miao.jpg'
@@ -495,11 +482,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							function addMessage(message) {
 								message = JSON.parse(message);
 								
-								
-								var messageItem = '<li class="am-comment '
-										+ (message.isSelf ? 'am-comment'
-												: 'am-comment')
-										+ '">'
+								var messageItem = '<li class="am-comment">'
 										+ '<a href="javascript:void(0)" ><img src=" '+message.headImg+' " alt="" class="am-comment-avatar" width="48" height="48"/></a>'
 										+ '<div class="am-comment-main"><header class="am-comment-hd"><div class="am-comment-meta">'
 										+ '<a href="javascript:void(0)" class="am-comment-author">'
@@ -510,7 +493,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										+ message.content
 										+ '</div></div></li>';
 									
-										
 								$(messageItem).appendTo('#message-list');
 								// 把滚动条滚动到底部
 								$(".chat-content-container")
@@ -571,13 +553,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$().UItoTop({
-						easingType : 'easeOutQuart'
-					});
-				});
-			</script>
 			
 		</div>
 	</body>

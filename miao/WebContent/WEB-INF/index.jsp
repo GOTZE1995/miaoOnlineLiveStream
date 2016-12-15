@@ -4,17 +4,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@include file="/common/header.jsp"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setAttribute("basePath", basePath);
+%>
+<base href="<%= basePath %>"/>
+<script type="text/javascript" src="modify/js/jquery-1.11.0.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>米奥课堂后台管理</title>
-<script type="text/javascript">
-
-//解决子框架嵌套的问题
-if(window != window.parent){
-	window.parent.location.reload(true);
-}
-
-</script>
 </head>
 <frameset rows="100px,*,19px" framespacing="0" border="0"
 	frameborder="0">

@@ -16,10 +16,10 @@
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/page_common.js"></script>
-<link href="style/css/common_style_blue.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="style/css/index_1.css" />
+<script type="text/javascript" src="modify/style/js/jquery.js"></script>
+<script type="text/javascript" src="modify/style/js/page_common.js"></script>
+<link href="modify/style/css/common_style_blue.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="modify/style/css/index_1.css" />
 </head>
 <body>
 <!-- 页面标题 -->
@@ -27,7 +27,7 @@
 	<div id="TitleArea_Head"></div>
 	<div id="TitleArea_Title">
 		<div id="TitleArea_Title_Content">
-			<img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 角色列表
+			<img border="0" width="13" height="13" src="modify/style/images/title_arrow.gif"/> 角色列表
 		</div>
     </div>
 	<div id="TitleArea_End"></div>

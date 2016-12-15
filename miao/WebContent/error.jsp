@@ -31,7 +31,7 @@
 </head>
 <body>
 		<div style="margin-left:200px">
-		<img src="images/qqq.png"/>
+		<img src="modify/images/qqq.png"/>
 		</div>
 		<div style="margin-left:400px">
 		<h3>没有发现您要找的页面，经砖家仔细研究结果如下：</h3>

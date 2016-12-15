@@ -3,28 +3,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<%@include file="/common/header.jsp"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setAttribute("basePath", basePath);
+%>
+<base href="<%= basePath %>"/>
+<script type="text/javascript" src="modify/js/jquery-1.11.0.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Video, FFmpeg, JavaEE" />
 <meta name="author" content="Lei Xiaohua" />
 <meta name="description" content="The simplest video website based on JavaEE and FFmpeg" />
 <title>网络影院</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-<link href="css/svw_style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> 
-<script type="text/javascript" src="js/jquery-ui.min.js"></script> 
-<script type="text/javascript" src="js/showhide.js"></script> 
-<link rel="stylesheet" href="css/slimbox2.css" type="text/css" media="screen" /> 
-<script type="text/JavaScript" src="js/jquery.mousewheel.js"></script> 
-<script type="text/JavaScript" src="js/slimbox2.js"></script> 
+<link href="modify/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="modify/css/style.css" rel="stylesheet" type="text/css" />
+<script src="modify/js/jquery-1.11.0.min.js"></script>
+<script src="modify/js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="modify/css/default.css" />
+<link rel="stylesheet" type="text/css" href="modify/css/component.css" />
+<script src="modify/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="modify/js/move-top.js"></script>
+<script type="text/javascript" src="modify/js/easing.js"></script>
+<link href="modify/css/svw_style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="modify/js/jquery-1.8.3.min.js"></script> 
+<script type="text/javascript" src="modify/js/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="modify/js/showhide.js"></script> 
+<link rel="stylesheet" href="modify/css/slimbox2.css" type="text/css" media="screen" /> 
+<script type="text/JavaScript" src="modify/js/jquery.mousewheel.js"></script> 
+<script type="text/JavaScript" src="modify/js/slimbox2.js"></script> 
 <script type="text/javascript">
 function doSearch() {
 	document.forms[2].action = "movie/findMovie.do";
@@ -105,7 +111,7 @@ function loginCheckUserNameAndPwd() {
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="movie/findMovie"><span
+							<li><a href="movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="" onclick="check()"><span
 									data-hover="Shortcodes">个人信息</span></a></li>
@@ -142,7 +148,7 @@ function loginCheckUserNameAndPwd() {
 							</div>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> <c:if test="${user!=null && user.userName!=null && user.userName!='' && user.password!=null && user.password!=''}">
 				<div class="container" style="width: 1300px">
@@ -165,7 +171,7 @@ function loginCheckUserNameAndPwd() {
 						<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 							<li><a href="${basePath }room/findRoom"><span
 									data-hover="About">视频直播</span></a></li>
-							<li><a href="movie/findMovie"><span
+							<li><a href="movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 							<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
@@ -185,7 +191,7 @@ function loginCheckUserNameAndPwd() {
 							</form>
 						</div>
 					</div>
-					<script src="js/menu_jquery.js"></script>
+					<script src="modify/js/menu_jquery.js"></script>
 				</div>
 			</c:if> </nav>
 			<div class="clearfix"></div>
@@ -210,7 +216,7 @@ function loginCheckUserNameAndPwd() {
 		            <span>
 		            	<b>视频管理</b>
 		            </span>
-		            <c:if test="${user.role.roleName=='管理员'||user.role.roleName=='教师'}">
+		            <c:if test="${user.role.roleName=='教师'||user.role.roleName=='管理员'}">
 		            <span class="add">
 		            	<a href="movie/editUI/0">添加</a>
 		            </span>
@@ -235,7 +241,7 @@ function loginCheckUserNameAndPwd() {
 	         
 	         <!-- 点播视频列表的循环显示  -->
 	         <c:forEach items="${page.list}" var="video">
-			 	<div class="col one_fourth gallery_box">
+			 	<div class="col one_fourth gallery_box" style="${video.videostate.cssstyle}">
 			        <a href="movie/viewRoom/${video.id}">
 			        	<img src="${video.thumbnailurl}" alt="thumbnail" class="image_frame"/>
 			        </a>
@@ -245,7 +251,7 @@ function loginCheckUserNameAndPwd() {
 			        <p>
 			        	编辑时间:${video.edittime}
 			        </p>
-			        <c:if test="${user.role.roleName=='管理员'||user.role.roleName=='教师'}">
+			        <c:if test="${user.role.roleName=='教师'||user.role.roleName=='管理员'}">
 			        <p>
 				        <a href="movie/editUI/${video.id}">编辑</a>|
 				        <a href="javascript:if(confirm('Are you sure to Delete?'))location='${pageContext.request.contextPath}/movie/delete/${video.id}'">删除</a>
