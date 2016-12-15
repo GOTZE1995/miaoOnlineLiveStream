@@ -312,15 +312,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 			</div>
 			<script type="text/javascript">
-				$(document).ready(function() {
-					$().UItoTop({
-						easingType : 'easeOutQuart'
-					});
-				});
-			</script>
-			<a href="#to-top" id="toTop" style="display: block;"> <span
-				id="toTopHover" style="opacity: 1;"> </span></a>
-		</div>
-	</body>
-</div>
-</html>
