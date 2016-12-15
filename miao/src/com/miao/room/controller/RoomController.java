@@ -191,8 +191,9 @@ public class RoomController {
 			room.setStatus(Room.ROOM_STATUS_INVAILD);
 			// 设置直播间创建时间
 			room.setBeginDate(new Date());
-			roomService.save(room);
 			User user = (User) session.getAttribute("user");
+			room.setUser(user);
+			roomService.save(room);
 			user.setRoom(room);
 			session.setAttribute("user", user);
 		}
@@ -253,32 +254,17 @@ public class RoomController {
 	 * @return 2016/11/22
 	 */
 	@RequestMapping("/editMyRoom")
-	public String addRoom(@RequestParam("roomName") String roomName, @RequestParam("memo") String memo,
+	public String addRoom(@RequestParam("roomName") String roomName, @RequestParam("memo") String memo,@RequestParam("phone") String phone,
 			HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		Room room = user.getRoom();
 		room.setRoomName(roomName);
 		room.setMemo(memo);
-		roomService.update(room);
-		return "myTVinfo";
-	}
-
-	/**
-	 * 功能：修改用户的联系方式
-	 * 
-	 * @author 程菊飞
-	 * @param phone
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping("/editMyphoe")
-	public String updateMyphone(@RequestParam("phone") String phone, HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		Room room = user.getRoom();
 		room.setPhone(phone);
 		roomService.update(room);
 		return "myTVinfo";
 	}
+
 	
 	@RequestMapping("/viewRoom")
 	public String viewRoom(@RequestParam("url") String url,String ip,HttpServletRequest request) {
