@@ -171,7 +171,17 @@ public class RawVideo implements HttpSessionBindingListener {
 	 */
 	public void getThumbnailImg(ServletContext sc, MovieService movieService, String realthumbnailDir, Video video)
 			throws IOException {
+		String realfileoriPath = sc.getRealPath("/").replace('\\', '/') + video.getOriurl();
+		String realthumbnailPath = realthumbnailDir + "/" + video.getId() + ".jpg";
+		// 截图指令
+		String videothumbnailcommand = "cmd /c start ffmpeg -y -i " + "\"" + realfileoriPath + "\""
+				+ " -ss 6 -s 220x110 -f image2 -vframes 1 " + "\"" + realthumbnailPath + "\"";
 
+		System.out.println(videothumbnailcommand);
+		Process process = Runtime.getRuntime().exec(videothumbnailcommand);
+
+		// 设置缩略图url
+		video.setThumbnailurl("videothumbnail/" + video.getId() + ".jpg");
 	}
 
 }
