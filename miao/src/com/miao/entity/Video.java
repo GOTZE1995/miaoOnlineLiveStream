@@ -32,15 +32,13 @@ public class Video implements java.io.Serializable {
 	private String url;           //处理后视频url
 	private String oriurl;        //上传视频url
 	private String thumbnailurl;  //缩略图url
-	private String remark;        //备注
-
 
 	public Video() {
 	}
 
 	public Video(Videostate videostate, String name,
 			String intro, Timestamp edittime, Integer islive, String url,
-			String oriurl, String thumbnailurl, String remark) {
+			String oriurl, String thumbnailurl) {
 		this.videostate = videostate;
 		this.name = name;
 		this.intro = intro;
@@ -49,7 +47,6 @@ public class Video implements java.io.Serializable {
 		this.url = url;
 		this.oriurl = oriurl;
 		this.thumbnailurl = thumbnailurl;
-		this.remark = remark;
 	}
 
 	@Id
@@ -137,12 +134,4 @@ public class Video implements java.io.Serializable {
 		this.thumbnailurl = thumbnailurl;
 	}
 
-	@Column(name = "remark")
-	public String getRemark() {
-		return this.remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
 }
