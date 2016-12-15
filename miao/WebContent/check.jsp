@@ -28,12 +28,21 @@
 	}
 	
 	function changeProperty(){
+		var classNames=document.getElementById("className");
+		var k=classNames.selectedIndex;
+		var className=classNames.options[k].text;
+		$.ajax({
+			url :'attendence/getStudents.do',
+			data : {'className':className},
+			type : 'post',
+			async : false,
+		})
         timer = setInterval(showNum,50);
 	}
 	
 	function showNum(){
 		$.ajax({
-			url :'attendence/getStudent.do',
+			url :'attendence/getRandomStudent.do',
 			data : {},
 			type : 'post',
 			async : false,
@@ -58,6 +67,11 @@
 		</div>
 		<div style="margin-top:30px;margin-left:30px">
 			<h2>准备好了吗</h2>
+			<select id="className">
+			 <c:forEach items="${classNames}" var="className">
+			 	<option><c:out value="${className}"/></option>
+			 </c:forEach>
+			</select>
 		</div>
 		<div style="margin-top:20px;margin-left:40px">
 		<input type="submit" id="state" value="开始" onclick="changeStatus(this)"/>	
