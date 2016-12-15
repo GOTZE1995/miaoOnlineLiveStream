@@ -71,8 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 */
 	function checkNewEmail() {
 		var newEmail = $('#email').val();
-		$
-				.ajax({
+		$.ajax({
 					url : 'user/checkNewEmail.do',
 					data : {
 						'newEmail' : newEmail
@@ -121,20 +120,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function checkRoom() {
-		$
-				.ajax({
-					url : 'room/checkRoom.do',
-					data : {},
-					type : 'post',
-					async : false,
-					success : function(result) {
-						if (result == "true") {
-							window.location.href = "tv-register.jsp";
-						} else {
-							document.getElementById("spanRoom").innerHTML = "对不起,你已经注册了直播间";
-						}
+		var roleName="${user.role.roleName}";
+		if(roleName=="管理员"||roleName=="教师"){
+			$.ajax({
+				url : 'room/checkRoom.do',
+				data : {},
+				type : 'post',
+				async : false,
+				success : function(result) {
+					if (result == "true") {
+						window.location.href = "tv-register.jsp";
+					} else {
+						document.getElementById("spanRoom").innerHTML = "对不起,你已经注册了直播间";
 					}
-				})
+				}
+			})
+		}else{
+			document.getElementById("spanRoom").innerHTML="对不起，你没有该权限";
+		}
 	}
 </script>
 <script>
@@ -310,17 +313,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													</div>
 													<div class="clear"></div>
 												</div>
-
-												<h4>所属班级</h4>
-												<div class="phone-group">
-													<div class="cell-form">
-														<input type="text" name="classId" value="四班"
-															onfocus="this.value = '';"
-															onblur="if (this.value == '') {this.value = '四班';}">
-													</div>
-													<div class="clear"></div>
-												</div>
-												
 												<h4>上传头像</h4>
 												<div class="phone-group">
 													<div class="cell-form">
@@ -328,9 +320,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<img src="${user.headImg }" widht='100' height='90'  style='display:none'/>
 													</div>
 												</div>
-												
+												<br/>
+												<div style="margin-top:30px;">
 												 <input type="button" value="更新"
 													onclick="doSubmit()" /> <span id="submitSpan"></span>
+												</div>
 											</form>
 										</div>
 										<div class="clear"></div>

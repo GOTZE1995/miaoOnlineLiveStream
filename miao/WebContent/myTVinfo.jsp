@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					style="width: 780px; margin-left: 60px">
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
-						<li><a href="movie/findMovie"><span
+						<li><a href="movie/listUI"><span
 									data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
@@ -146,7 +146,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<ul class="resp-tabs-list">
 									<img src="images-info/2.png" alt="" />
 									<li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>修改房间信息</span></li>
-									<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>修改联系方式</span></li>
 
 								</ul>
 							</div>
@@ -161,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="profile-content">
 											<h3>${user.userName }</h3>
 											<form
-												action="${pageContext.request.contextPath}/room/updateMyRoom.do"
+												action="${pageContext.request.contextPath}/room/editMyRoom.do"
 												method="post">
 												<h4>房间名称</h4>
 												<div class="phone-group">
@@ -178,8 +177,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<h4>房间公告</h4>
 												<div class="phone-group">
 													<div class="cell-form">
-														<textarea name="memo" rows="4" cols="49"
-															placeholder="${user.room.memo }"></textarea>
+														<textarea name="memo" rows="4" cols="49" value="${user.room.memo}"
+															placeholder="${user.room.memo}"></textarea>
+													</div>
+													<div class="clear"></div>
+												</div>
+												<h4>联系方式</h4>
+												<div class="phone-group">
+													<div class="cell-form">
+														<input type="text" name="phone" class="fb-ico"
+															value="${user.room.phone }" onfocus="this.value = '';"
+															onblur="if (this.value == '') {this.value = '';}">
 													</div>
 													<div class="clear"></div>
 												</div>
@@ -200,35 +208,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-
-											</form>
-										</div>
-										<div class="clear"></div>
-
-									</div>
-
-
-
-									<!-- Tab 1 -->
-									<div class="tab-1 resp-tab-content"
-										aria-labelledby="tab_item-0">
-										<div class="profile-content">
-											<h3>${user.userName }</h3>
-											<form
-												action="${pageContext.request.contextPath}/room/updateMyphone.do"
-												method="post">
-												<h4>联系方式</h4>
-												<div class="email-group">
-													<div class="email-form">
-
-														<input type="text" name="phone" class="fb-ico"
-															value="${user.room.phone }" onfocus="this.value = '';"
-															onblur="if (this.value == '') {this.value = '';}">
-
-													</div>
-													<div class="clear"></div>
-												</div>
-												<br /> <br /> <br /> <input type="submit" value="更新信息" />
 
 											</form>
 										</div>
