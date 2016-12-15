@@ -2,6 +2,7 @@ package com.miao.attendence.dao;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.query.Query;
 
 import com.miao.core.dao.BaseDaoImpl;
@@ -14,5 +15,13 @@ public class AttendenceDaoImpl extends BaseDaoImpl<User> implements AttendenceDa
 		Query query=currentSession().createQuery(hql);
 		query.setParameter(0, className);
 		return query.getResultList();	
+	}
+	
+	@Override
+	public List findAllClassNames(){
+		String sql="SELECT DISTINCT className from User";
+		SQLQuery query=currentSession().createSQLQuery(sql);
+		List classNames=query.list();
+		return classNames;
 	}
 }

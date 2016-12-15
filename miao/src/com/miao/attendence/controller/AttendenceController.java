@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.miao.attendence.service.AttendenceService;
 import com.miao.entity.User;
@@ -26,20 +27,24 @@ public class AttendenceController {
 	
 	@RequestMapping("/checkAttendentce")
 	public void checkAttendence(HttpSession session){
-		//获取当前的班级
-		User teacher=(User) session.getAttribute("user");
-		String className=teacher.getClassName();
+		//获取所有的班级
+		List classNames=attendenceService.findAllClassNames();
+		for(int i=0;i<classNames.size();i++){
+			System.out.println(classNames.get(i));
+		}
+		session.setAttribute("classNames", classNames);
+	}
+	
+	@RequestMapping("/getStudents")
+	@ResponseBody
+	public void getStudents(String className,HttpSession session){
 		//获取当前班级的所有同学,存入session中
 		List<User> users = attendenceService.findAllStudentsByClassName(className);
-		for(int i=0;i<users.size();i++){
-			System.out.println("学生"+i+"的名字"+users.get(i).getUserName());
-		}
-		
 		session.setAttribute("stus", users);
 	}
 	
-	@RequestMapping("/getStudent")
-	public void getStudent(HttpServletResponse response,HttpSession session){
+	@RequestMapping("/getRandomStudent")
+	public void getRandomStudent(HttpServletResponse response,HttpSession session){
 		List<User> users=(List<User>) session.getAttribute("stus");
 		int n=users.size();
 		int k=(int) Math.floor(Math.random()*n);

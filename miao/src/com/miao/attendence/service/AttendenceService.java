@@ -8,4 +8,5 @@ import com.miao.entity.User;
 
 public interface AttendenceService extends BaseService<User> {
 	public List<User> findAllStudentsByClassName(String className);
+	public List findAllClassNames();
 }

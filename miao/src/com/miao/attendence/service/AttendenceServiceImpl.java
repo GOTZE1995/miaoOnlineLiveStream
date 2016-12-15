@@ -21,6 +21,9 @@ public class AttendenceServiceImpl extends BaseServiceImpl<User> implements Atte
 	public List<User> findAllStudentsByClassName(String className){
 		return attendenceDao.findAllStudentsByClassName(className);
 	}
-
-
+	
+	@Override
+	public List findAllClassNames(){
+		return attendenceDao.findAllClassNames();
+	}
 }
