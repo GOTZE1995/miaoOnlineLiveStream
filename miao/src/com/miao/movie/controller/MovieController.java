@@ -18,7 +18,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.miao.core.utils.Page;
-import com.miao.entity.Category;
 import com.miao.entity.Configure;
 import com.miao.entity.Video;
 import com.miao.entity.Videostate;
@@ -135,7 +134,6 @@ public class MovieController {
 			orivideofile.delete();
 		}
 		// 删除视频对象
-		video.getCategory().getVideos().remove(video);
 		video.getVideostate().getVideos().remove(video);
 		movieService.deleteById(id);
 		return "redirect:/movie/findMovie";
@@ -165,9 +163,6 @@ public class MovieController {
 			String oriurl=folder_videoori_cfg.getVal()+"/"+newFileName;
 			video.setOriurl(oriurl);
 			
-			//获取视频的类型并保存
-			Category category=(Category) movieService.ReadSingle("Category", "id", 1);
-			video.setCategory(category);
 			
 			//获取视频的状态信息并保存
 			Videostate videostate=(Videostate) movieService.ReadSingle("Videostate", "order", 1);

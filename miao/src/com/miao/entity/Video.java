@@ -4,7 +4,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +25,6 @@ public class Video implements java.io.Serializable {
 
 	private Integer id;           //标识
 	private Videostate videostate;//状态  （外键）
-	private Category category;
 	private String name;          //视频名
 	private String intro;         //视频简介
 	private Timestamp edittime;   //视频编辑时间
@@ -40,11 +38,10 @@ public class Video implements java.io.Serializable {
 	public Video() {
 	}
 
-	public Video(Videostate videostate, Category category, String name,
+	public Video(Videostate videostate, String name,
 			String intro, Timestamp edittime, Integer islive, String url,
 			String oriurl, String thumbnailurl, String remark) {
 		this.videostate = videostate;
-		this.category = category;
 		this.name = name;
 		this.intro = intro;
 		this.edittime = edittime;
@@ -76,15 +73,6 @@ public class Video implements java.io.Serializable {
 		this.videostate = videostate;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "categoryid")
-	public Category getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
 
 	@Column(name = "name")
 	public String getName() {
