@@ -259,9 +259,12 @@
 			</ul>
 			<div class="cleaner h30"></div>
 
-			<!-- 显示5条最近添加 	<s:action name="SidebarRecent" executeResult="true">
-				<s:param name="num">5</s:param>
-			</s:action>-->
+			<h3>最近上传</h3>
+			<ul class="recent_post">
+				<c:forEach items="${resultvideo}" var="video">
+			    	<li><a href="VideoReadByID.action?videoid=${video.id}">${video.name}</a><br/>${video.edittime}</li>
+			    </c:forEach>
+    		</ul>
 		
 		</div>
 		<div class="cleaner"></div>

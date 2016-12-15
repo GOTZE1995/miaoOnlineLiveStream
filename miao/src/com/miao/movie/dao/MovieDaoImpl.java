@@ -31,4 +31,19 @@ public class MovieDaoImpl extends BaseDaoImpl<Video> implements MovieDao{
 		return query.getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Video> ReadLimitedByOrder(final String targetName,
+			final String propertyName, final int num, final String order) {
+
+		return (List<Video>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+			public Object doInHibernate(Session session) throws HibernateException{
+				String hql ="from "+targetName+" as "+targetName+ " order by "+targetName+"." + propertyName+ " " + order;
+				Query query = session.createQuery(hql);
+				query.setMaxResults(num);
+				return query.list();
+			}
+		});
+	}
+
 }

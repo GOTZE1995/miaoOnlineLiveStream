@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.miao.core.service.BaseServiceImpl;
 import com.miao.core.utils.Page;
-import com.miao.entity.Room;
 import com.miao.entity.Video;
 import com.miao.movie.dao.MovieDao;
-import com.miao.user.dao.UserDao;
 
 @Service("movieService")
 public class MovieServiceImpl extends BaseServiceImpl<Video> implements MovieService {
@@ -47,5 +45,11 @@ public class MovieServiceImpl extends BaseServiceImpl<Video> implements MovieSer
 	@Override
 	public List<Video> pageListByTime(Integer currentPage, int i){
 		return movieDao.pageListByTime(currentPage, i);
+	}
+	
+	@Override
+	public List ReadLimitedByOrder(String targetName, String propertyName,
+			int num, String order) {
+		return movieDao.ReadLimitedByOrder(targetName,propertyName,num,order);
 	}
 }

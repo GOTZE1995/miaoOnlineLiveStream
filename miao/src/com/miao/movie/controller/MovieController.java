@@ -69,7 +69,9 @@ public class MovieController {
 	 * @return
 	 */
 	@RequestMapping("viewRoom/{id}")
-	public ModelAndView viewRoom(@PathVariable Integer id) {
+	public ModelAndView viewRoom(@PathVariable Integer id,HttpSession session) {
+		List<Video> resultvideo = movieService.ReadLimitedByOrder("Video", "edittime",5,"desc");
+		session.setAttribute("resultvideo", resultvideo);
 		return new ModelAndView("videocontent", "video", movieService.findById(id));
 	}
 

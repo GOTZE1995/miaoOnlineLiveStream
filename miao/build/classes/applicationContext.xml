@@ -72,7 +72,6 @@
 	<bean id="attendenceDao" parent="baseDao" class="com.miao.attendence.dao.AttendenceDaoImpl"></bean>
 	<bean id="movieDao" class="com.miao.movie.dao.MovieDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	
 	</bean>
 	
 	<bean id="baseDao" abstract="true">
