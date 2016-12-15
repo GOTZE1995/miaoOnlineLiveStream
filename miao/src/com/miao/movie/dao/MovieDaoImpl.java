@@ -41,7 +41,7 @@ public class MovieDaoImpl extends BaseDaoImpl<Video> implements MovieDao{
 				String hql ="from "+targetName+" as "+targetName+ " order by "+targetName+"." + propertyName+ " " + order;
 				Query query = session.createQuery(hql);
 				query.setMaxResults(num);
-				return query.list();
+				return query.getResultList();
 			}
 		});
 	}
