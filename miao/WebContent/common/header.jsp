@@ -4,4 +4,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 request.setAttribute("basePath", basePath);
 %>
 <base href="<%= basePath %>"/>
-<script type="text/javascript" src="${basePath}js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${basePath}modify/js/jquery-1.11.0.min.js"></script>
