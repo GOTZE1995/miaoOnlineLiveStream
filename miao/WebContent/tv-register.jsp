@@ -12,16 +12,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
+<!--bootstrap-->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
+<!--coustom css-->
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css-info/style.css" rel="stylesheet" type="text/css"
 	media="all" />
+<!--script-->
 <script src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- js -->
 <script src="js/bootstrap.js"></script>
+<!-- /js -->
+<!--fonts-->
+<!--/fonts-->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
+<!--script-->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -32,10 +40,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
+<!--/script-->
 </head>
 <div id="main"
 	style="width: 1349px; MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
 	<body>
+		<!--header-->
 		<div class="header" id="home">
 			<nav class="navbar navbar-default">
 			<div class="container" style="width: 1300px">
@@ -52,18 +62,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a class="navbar-brand" href="index.jsp">MiaoEducation<br /></a>
 					</h1>
 				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1"
 					style="width: 780px; margin-left: 60px">
 					<ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
 						<li><a href="gallery.jsp"><span data-hover="About">视频直播</span></a></li>
-						<li><a href="movie/findMovie"><span
+						<li><a href="VideoReadAll.action?islive=0"><span
 									data-hover="About">网络影院</span></a></li>
 						<li><a href="myinfo.jsp"><span data-hover="Shortcodes">个人信息</span></a></li>
 
 					</ul>
 					<div class="clearfix"></div>
 				</div>
+				<!-- /.navbar-collapse -->
+				<!-- /.container-fluid -->
 				<p
 					style="font-size: 16px; color: #6B4226; font-family: YouYuan; margin-top: 27px; width: 1160px; margin-right: 140px">欢迎,${myName}</p>
 				<div class="login-pop"
@@ -100,11 +113,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<script type="text/javascript">
 							$(document).ready(function() {
 								$('#horizontalTab').easyResponsiveTabs({
-									type : 'default',            
-									width : 'auto', 
-									fit : true,
-									closed : 'accordion', 
-									activate : function(event) { 
+									type : 'default', //Types: default, vertical, accordion           
+									width : 'auto', //auto or any width like 600px
+									fit : true, // 100% fit in a container
+									closed : 'accordion', // Start closed if in accordion view
+									activate : function(event) { // Callback function if tab is switched
 										var $tab = $(this);
 										var $info = $('#tabInfo');
 										var $name = $('span', $info);
@@ -132,6 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 								<div class="resp-tabs-container">
 
+									<!-- Tab 0 -->
 									<div class="tab-1 resp-tab-content"
 										aria-labelledby="tab_item-0">
 										<div class="profile-content">
@@ -231,8 +245,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
+			<!-- //container -->
 		</div>
+		<!--/footer-->
+		<!--copy-rights-->
 		<div class="copyright">
+			<!-- container -->
 			<div class="container">
 				<div class="copyright-left">
 					<p>© 2016 米奥视频直播 | Design by 咖啡知音</p>
@@ -250,8 +268,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 
 			</div>
+			<!-- //container -->
+			<!---->
 			<script type="text/javascript">
 				$(document).ready(function() {
+					/*
+					var defaults = {
+					containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+					};
+					 */
 					$().UItoTop({
 						easingType : 'easeOutQuart'
 					});
@@ -259,7 +287,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</script>
 			<a href="#to-top" id="toTop" style="display: block;"> <span
 				id="toTopHover" style="opacity: 1;"> </span></a>
+			<!---->
 		</div>
+		<!--/copy-rights-->
 	</body>
 </div>
 </html>
