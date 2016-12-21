@@ -17,18 +17,10 @@ public class CustomerExceptionResolver extends HandlerExceptionResolverComposite
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
-		CustomerException customerException=null;
 		 //得到是哪个类抛出的异常
 		 String name=((HandlerMethod) handler).getMethod().getName();
 		 log.error(name+"这个方法抛出了异常："+ex);
-		 if(ex instanceof CustomerException){
-			 customerException=(CustomerException) ex;
-		 }else if(ex instanceof NullPointerException){
-			customerException=new CustomerException("空指针异常");
-		 }else{
-			 customerException=new CustomerException("未知错误");
-		 }
-		 String message=customerException.getMessage();
+		 String message=ex.getMessage();
 		 ModelAndView modelAndView=new ModelAndView();    
 		 modelAndView.addObject("message",message);
 		 modelAndView.setViewName("error");  
