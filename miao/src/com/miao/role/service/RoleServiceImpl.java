@@ -24,6 +24,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		super.setBaseDao(roleDao);
 		this.roleDao = roleDao;
 	}
+	
+	@Override
+	public Role getRoleByRoleName(String rolename){
+		return roleDao.getRoleByRoleName(rolename);
+	}
 
 
 }
