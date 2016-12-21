@@ -117,14 +117,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function openNewWindow() {
-		window.open("check.jsp", "newwindow",
-				"height=380, width=400,top=80,left=200")
 		$.ajax({
 			url : 'attendence/checkAttendentce.do',
 			data : {},
 			type : 'post',
 			async : false,
 		})
+		window.open("check.jsp", "newwindow",
+				"height=380, width=400,top=80,left=200")
 	}
 	
 </script>
